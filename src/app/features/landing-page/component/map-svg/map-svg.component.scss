@@ -1,0 +1,29 @@
+.map-section{
+    padding-top: 15rem;
+    padding-bottom: 100px;
+    @media screen and (max-width: 767px){
+        padding-top: 10rem;
+        padding-bottom: 75px;
+    }
+    .map-heading-div{
+        text-align: center;
+        margin-bottom: 3rem;
+
+        @media screen and (max-width: 767px){
+            margin-bottom: 2rem;
+        }
+        .map-heading{
+            font-size: 62px;
+
+            @media screen and (max-width: 1399px) {
+                font-size: 52px;
+            }
+            @media screen and (max-width: 1199px){
+                font-size: 42px;
+            }
+            @media screen and (max-width: 575px){
+                font-size: 36px;
+            }
+        }
+    }
+}

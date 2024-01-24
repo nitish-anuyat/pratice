@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-card"></div>
+        <div class="card">
+            <div class="card-body px-3">
+                <div class="d-flex justify-content-center mt-n2" [ngClass]="transactionId !== '' ? 'success-icon' : 'failed-icon'"> 
+                    <div class="modal-common-circle outer-circle">
+                        <div class="modal-common-circle inner-circle">
+                            <svg width="37" height="29" viewBox="0 0 37 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.108 20.492L30.772 1.82794C31.352 1.24798 32.0901 0.958008 32.9864 0.958008C33.8827 0.958008 34.6208 1.24798 35.2008 1.82794C35.7807 2.4079 36.0707 3.14602 36.0707 4.04232C36.0707 4.93862 35.7807 5.67675 35.2008 6.2567L14.3224 27.1351C13.6897 27.7678 12.9515 28.0842 12.108 28.0842C11.2644 28.0842 10.5263 27.7678 9.8936 27.1351L1.66876 18.9103C1.08881 18.3303 0.798828 17.5922 0.798828 16.6959C0.798828 15.7996 1.08881 15.0615 1.66876 14.4815C2.24872 13.9016 2.98685 13.6116 3.88314 13.6116C4.77944 13.6116 5.51756 13.9016 6.09752 14.4815L12.108 20.492Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="fw-bold mt-4 text-center"> {{ transactionId !== '' ? 'Payment Success!' : 'Payment failed!' }} </h3>
+                <h5 class="text-center">
+                    {{ transactionId !== '' ? 
+                        'Your purchase was successful and your plan is ready to be installed' : 
+                        'Your purchase was failed or canceled.' }}
+                </h5>
+                <div class="mt-3">
+                    <div class="bg-primary-light rounded p-3">
+                        <h3 class="fw-bold"> $41 </h3>
+                        <hr class="mx-n3"/>
+                        <p class="fs-5 my-2 fw-bold"> Plan Details </p>
+                        <p class="mb-1"> Unlimited plan </p>
+                    </div>
+                    <div class="mt-3">
+                        <p>
+                            <input id="activatePlan" type="radio" [value]="true"/> Activate Plan Now
+                        </p>
+                        <p>
+                            <input id="activatePlanLater" type="radio" [value]="false"/> Manually Activate Later
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 d-flex justify-content-center">
+                    <button class="btn btn-primary rounded-pill w-100 py-2"> Continue </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

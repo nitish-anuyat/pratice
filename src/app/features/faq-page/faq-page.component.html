@@ -1,0 +1,35 @@
+<div class="container page-padding-top-medium" id="faqSection">
+    <app-page-title 
+         [title]="'faq.heading' | translate"
+         [subDetails]="'faq.sub_details' | translate"
+        [titleStyle]=" {subDetails: 'sub-detail-padding-large px-md-0' }"
+    >   
+    </app-page-title>
+
+    <div class="page-explore-card-container">
+        <div class="page-explore-card faq-div faq-container g-bg-white">
+            <app-faq></app-faq>
+        </div>
+
+        <div class="faq-base-section">
+             <p class="faq-base-head">{{'faq.base_heading' | translate}}</p>
+             <p class="faq-base-subhead">{{'faq.base_sub_heading' | translate}}</p>
+            <a class="btn g-color-white g-bg-primary border-radius-100 faq-base-btn" routerLink="/contact-us"> {{ 'footer.contact_us' | translate}} </a>
+        </div>
+    </div>
+
+    <!-- <div class="card faq-div page-details-card mt-n-4 mx-auto">
+        <div class="card-body">
+            <app-faq></app-faq>
+        </div>
+    </div> -->
+
+    
+
+    
+    <!-- <div class="text-center mt-5 pb-6 tt-firs-neue-trial-medium mx-auto faq-footer-section">
+        <h3 class="faq-footer-text-heading">Still have questions and need assistance?</h3>
+        <p class="faq-footer-text-supporting-text mt-4 mb-4"> If you still have doubts and questions you couldn’t find an answer to here, <br class="d-none d-md-inline"> do not hesitate to contact us and find out more! </p>
+        <a class="btn btn-primary faq-footer-btn text-white px-4 py-2 rounded-pill mt-2" routerLink="/contact-us"> Contact Us </a>
+    </div> -->
+</div>

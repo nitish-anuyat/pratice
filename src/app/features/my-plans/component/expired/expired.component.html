@@ -1,0 +1,31 @@
+<ng-container *ngIf="!inProgress">
+    <div class="plan-container px-2" [class.internal-scrollbar-y]="showAll">
+        <div class="plan-section tt-firs-neue-trial-regular p-2 p-lg-4 mb-4" *ngFor="let plan of expiredPlans | slice:0:( (showAll ||  2 >= expiredPlans.length ) ? expiredPlans.length : 2 ); trackBy : trackPlan">
+            <app-expired-plan class="expiry-grid-container" [planDetails]="plan" (triggerEvent)="handleEvent($event)"></app-expired-plan>
+        </div>
+    </div>
+</ng-container>
+
+<div class="w-auto d-flex justify-content-center" *ngIf="inProgress">
+    <app-loader></app-loader>
+</div>
+
+<div class="entries sf-pro-regular mt-2 ms-4">
+</div>
+
+<ng-container *ngIf="expiredPlans.length > 0; else msg">
+    <div class="d-flex">
+        <div class="entries sf-pro-regular mt-2 ms-4">
+            {{ 'my_plan.expired.pagination' | translate:{displayPlan: ((showAll || expiredPlans.length <= 2 ) ? expiredPlans.length : '2'), totalPlan: expiredPlans.length} }}
+        </div>
+        <button type="button" class="btn btn-outline-primary rounded-pill ms-auto me-2 view-more-btn" (click)="showAll = true" *ngIf="!showAll && expiredPlans.length > 2">
+            {{ 'my_plan.view_more' | translate }}
+        </button>
+    </div>
+</ng-container>
+
+<ng-template #msg>
+    <div class="entries sf-pro-regular mt-2 ms-4 d-flex justify-content-center">
+        {{ 'my_plan.expired.no_plan' | translate }}
+    </div>
+</ng-template>

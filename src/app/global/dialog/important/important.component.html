@@ -1,0 +1,88 @@
+<!-- <div class="row p-4 important-popup">
+    <div class="d-flex justify-content-between">
+        <h4 class="text-center w90">Important</h4>
+        <p class="w10 text-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <mask id="mask0_1_12674" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                    <rect width="24" height="24" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_1_12674)">
+                    <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="#303030"/>
+                </g>
+            </svg>
+        </p>
+    </div>
+    <p class="mt-4">{{ description }}</p>
+
+    <div class="sf-pro-regular d-flex justify-content-between gap-2 mt-4">
+        <button type="button" class="btn installation-btn" (click)="goToHome()">Go Back</button>
+        <button type="button" class="btn activate-btn" (click)="continue()">Continue</button>
+    </div>
+</div> -->
+
+<div class="row important-popup" *ngIf="!newSim">
+    <ng-container *ngIf="!inProgress">
+    <div class="col-md-12">
+        <div class="card shadow-card"></div>
+        <div class="card p-4">
+            <div class="d-flex justify-content-between">
+                <h4 class="text-center w90 title">Important</h4>
+                <p class="w10 text-end">
+                    <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" (click)="close()">
+                        <mask id="mask0_1_12674" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                            <rect width="24" height="24" fill="#D9D9D9"/>
+                        </mask>
+                        <g mask="url(#mask0_1_12674)">
+                            <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="#303030"/>
+                        </g>
+                    </svg>
+                </p>
+            </div>
+            <p class="mt-4 message mx-5 mx-lg-0">{{ description | translate }}</p>
+            <div class="sf-pro-regular d-block d-lg-flex justify-content-between gap-2 mt-4">
+                <button type="button" class="btn installation-btn" (click)="goToHome()">Go Back</button>
+                <button type="button" class="btn activate-btn" (click)="continue()">Continue</button>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+    <div class="w-auto mx-auto" *ngIf="inProgress">
+        <app-loader></app-loader>
+    </div> 
+</div>
+
+<div class="row important-popup install" *ngIf="newSim">
+    <ng-container *ngIf="!inProgress">
+        <div class="col-md-12">
+            <div class="card shadow-card"></div>
+            <div class="card p-4">
+                <div class="d-flex">
+                    <div class="w-100 d-flex">
+                        <p class="title mx-auto">Please install your <br/>eSIM before activating <br/>your plan</p>
+                    </div>
+                    <div class="close">
+                        <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" (click)="close()">
+                            <mask id="mask0_1_12674" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                <rect width="24" height="24" fill="#D9D9D9"/>
+                            </mask>
+                            <g mask="url(#mask0_1_12674)">
+                                <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="#303030"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sf-pro-regular d-flex justify-content-center mt-4">
+                    <button type="button" class="btn activate-btn" (click)="redirectToInstallation()">
+                        <span class="mx-auto w-100">Installation Instruction </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 14" fill="none" class="mx-2 chevron-right">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.319518 0.323721C0.7456 -0.107907 1.43622 -0.107907 1.86226 0.323721L7.68047 6.21852C8.10651 6.65016 8.10651 7.34987 7.68047 7.78151L1.86226 13.6763C1.43622 14.1079 0.7456 14.1079 0.319518 13.6763C-0.106506 13.2446 -0.106506 12.5449 0.319518 12.1133L5.36628 7.00002L0.319518 1.8868C-0.106506 1.45518 -0.106506 0.75535 0.319518 0.323721Z" fill="white"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="w-auto mx-auto" *ngIf="inProgress">
+        <app-loader></app-loader>
+    </div> 
+</div>

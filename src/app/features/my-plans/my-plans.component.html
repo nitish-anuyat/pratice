@@ -1,0 +1,42 @@
+<div class="container my-plans-page page-padding-top-medium">
+   <app-page-title [title]=" 'my_plan.title' | translate " [subDetails]=" 'my_plan.sub_details' | translate "></app-page-title>
+    <div class="page-details-card mx-auto mb-1">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 ps-2 pe-lg-4">
+                <div class="card">
+                    <div class="card-body d-flex d-md-flex d-lg-block button-group">
+                        <!-- <button class="btn mb-3 w-100 rounded-pill" [ngClass]="selectedSection == 'active' ? 'btn-primary' : 'btn-secondary'" routerLink="/my-plans/active"> -->
+                        <button class="btn w-100" [ngClass]="selectedSection === 'active' ? 'btn-primary' : 'btn-secondary'" routerLink="/my-plans/active" (click)="switchTab('active')">
+                            <!-- <div class="d-flex align-items-center justify-content-center"> -->
+                                <!-- <p class="mb-0 flex-fill sf-pro-regular text-gray">Active Plan (1)</p> -->
+                            <!-- </div> -->
+                            <span [innerHtml]=" 'my_plan.active.button_text' | translate:{ count : activePlansCount } "> </span>
+                            <!-- Active<span class="d-none d-lg-inline"> Plan </span> ({{ activePlansCount }}) -->
+                        </button>
+                        <button class="btn w-100" [ngClass]="selectedSection === 'upcoming' ? 'btn-primary' : 'btn-secondary'" routerLink="/my-plans/upcoming" (click)="switchTab('upcoming')">
+                            <!-- <div class="d-flex align-items-center justify-content-center"> -->
+                                <!-- <p class="mb-0 flex-fill sf-pro-regular text-gray">Upcoming Plan (2)</p> -->
+                            <!-- </div> -->
+                            <span [innerHtml]=" 'my_plan.upcoming.button_text' | translate:{ count : upcomingPlansCount} "></span>
+                            <!-- Upcoming<span class="d-none d-lg-inline"> Plan </span> ({{ upcomingPlansCount }}) -->
+                        </button>
+                        <button class="btn w-100" [ngClass]="selectedSection === 'expired' ? 'btn-primary' : 'btn-secondary'"  routerLink="/my-plans/expired" (click)="switchTab('expired')">
+                            <!-- <div class="d-flex align-items-center justify-content-center"> -->
+                                <!-- <p class="mb-0 flex-fill sf-pro-regular text-gray">Expired Plan (2)</p> -->
+                            <!-- </div> -->
+                            <span [innerHtml]=" 'my_plan.expired.button_text' | translate:{ count : expiredPlansCount } "></span>
+                            <!-- Expired<span class="d-none d-lg-inline"> Plan </span> ({{ expiredPlansCount }}) -->
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-8 ps-lg-4 plans-section">
+                <div class="card mt-2 mt-md-4 mt-lg-0">
+                    <div class="card-body py-4 px-2 h-auto">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

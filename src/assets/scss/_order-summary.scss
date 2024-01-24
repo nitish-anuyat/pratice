@@ -1,0 +1,546 @@
+.order-summary-page{
+    .summary-container{
+        padding: 3.068vw 2.288vw 2.288vw;
+    }
+    .plan-details{
+        padding: 0.94vw 2.25vw 0.94vw 0.94vw;
+        border: 1px solid var(--primary-color);
+        border-radius: 20px;
+        font-family:var(--g-font-regular) !important;
+        margin-bottom: 1.559vw;
+        .heading{
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 172.91%;
+            letter-spacing: -0.02em;
+        }
+        .sub-heading{
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 175%;
+            letter-spacing: -0.02em;
+        }
+        .plan-info{
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 200%;
+            letter-spacing: -0.02em;
+        }
+    }
+    .loyalty-points-section{
+        margin-bottom: 1.559vw;
+        .points-label{
+            font-family:var(--g-font-regular) !important;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 180%;
+            letter-spacing: -0.02em;
+            text-align: left;
+            margin-bottom: 0.5vw;
+        }
+        .points-value{
+            font-family: var(--sf-pro-regular) !important;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 145.45%;
+            letter-spacing: 0em;
+            .rewards-icon{
+                margin-right: 0.52vw;
+            }
+            :last-child(){
+                margin-left: 0.52vw;
+            }
+        }
+        .input-group{
+            &:not(.invalid-input){
+                --bs-border-color: #E6E6E6 !important;
+            }
+            &.invalid-input{
+                --bs-border-color: #FF2C2C4D !important;
+            }
+            
+            .input-group-text{
+                background: #fff;
+                padding: 0.52vw 1.144vw;
+            }
+            input{
+                font-family: var(--sf-pro-regular) !important;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 155.55%;
+                letter-spacing: -0.02em;
+                padding: 0.779vw 0.728vw;
+                border-color: var(--bs-border-color);
+            }
+            &.coupon-code-input{
+                .input-group-text{
+                    border-radius: 0 18px 18px 0;
+                }
+                input{
+                    &.valid-code{
+                        border-radius: 18px 0 0 18px;
+                        border-right: unset !important;
+                    }
+                    &:not(.valid-code){
+                        border-radius: 18px;
+                    }
+                }
+            }
+            &:not(.coupon-code-input){
+                .input-group-text{
+                    border-radius: 18px 0 0 18px;
+                }
+                input{
+                    border-radius: 0 18px 18px 0;
+                }
+            }
+        }
+        .btn{
+            font-family: var(--sf-pro-regular) !important;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 145.45%;
+            letter-spacing: -0.02em;
+            padding: 0.35vw 2.16vw;
+            width: 9.863vw;
+            height: 3.016vw;
+        }
+        .help-block{
+            &.text-danger{
+                font-family: var(--sf-pro-regular) !important;
+            }
+            &.text-primary{
+                font-family: var(--g-font-regular) !important;
+            }
+            margin-top: 5px;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 155.55%;
+            letter-spacing: -0.02em;
+        }
+    }
+
+    .redeem-points-section{
+        margin-bottom: 1.559vw;
+        padding: 0.935vw 2.34vw 0.935vw 0.935vw;
+        border: 1px solid var(--primary-color);
+        border-radius: 20px;
+        .add-spacing-bottom{
+            margin-bottom: 0.52vw;
+        }
+        .plan-icon{
+            fill: var(--primary-color);
+            width: 1.20vw;
+            height: 1.43vw;
+        }
+        .rewards-icon{
+            fill: var(--primary-color);
+            width: 1.34vw;
+            height: 1.34vw;
+        }
+        .icon-section{
+            width: 1.75vw;
+        }
+        .details-section{
+            display: flex;
+            margin-left: 1.04vw;
+            width: 100%;
+            font-family: var(--sf-pro-regular) !important;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 158.33%;
+            letter-spacing: -0.02em;
+            margin-top: -0.3vw;
+            b{
+                font-size: 1.26vw;
+            }
+        }
+    }
+
+    .payable-amount-section{
+        display: flex;
+        width: 100%;
+        background: var(--primary-color);
+        border-radius: 20px;
+        color: #fff;
+        padding: 1.3vw 2.34vw;
+        font-family:var(--g-font-regular) !important;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 200%;
+        letter-spacing: -0.02em;
+        .payable-amount{
+            font-size: 32px;
+            line-height: 187.5%;
+        }
+        &:not(.discount-applied){
+            margin-bottom: 5.2vw;
+        }
+        &.discount-applied{
+            margin-bottom: 3.328vw;
+        }
+    }
+    .pay-button-section{
+        display: flex;
+        width: 100%;
+        background: var(--color-primary-light);
+        border-radius: 20px;
+        padding: 1.3vw 2.34vw;
+        span{
+            color: var(--text-color);
+            font-family: var(--g-font-regular) !important;
+            font-size: 50px;
+            font-weight: 600;
+            line-height: 120%;
+            letter-spacing: -0.02em;
+            text-align: left;
+        }
+        button{
+            padding: 18px 120px;
+            font-family: var(--sf-pro-regular) !important;
+            font-size: 22px;
+            line-height: 145.45%;
+            letter-spacing: -0.02em;
+        }
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}
+
+// Only for mobile screen
+@include media-breakpoint-down(md) {
+    .order-summary-page{
+        .summary-container{
+            padding: 4.5vw 3vw;
+        }
+        .plan-details{
+            padding: 2.5vw 2vw !important;
+            margin-bottom: 4vw !important;
+            border-radius: 10px !important;
+            .heading{
+                font-size: 12px !important;
+                line-height: 216.66% !important;
+                font-weight: 600 !important;
+            }
+            .sub-heading{
+                font-size: 16px !important;
+                line-height: 150% !important;
+                font-weight: 600 !important;
+            }
+            .plan-info{
+                font-size: 12px !important;
+                line-height: 200% !important;
+                font-weight: 400 !important;
+            }
+        }
+        .loyalty-points-section{
+            margin-bottom: 4vw !important;
+            .w-50{
+                width: 100% !important;
+            }
+            .points-label{
+                font-size: 14px !important;
+                line-height: 171.42% !important;
+                margin-bottom: 2vw !important;
+            }
+            .points-value{
+                font-size: 14px !important;
+                line-height: 185.71% !important;
+                .rewards-icon{
+                    margin-right: 0.52vw;
+                    height: 4.5vw !important;
+                    width: 4.5vw !important;
+                }
+                :last-child(){
+                    margin-left: 0.52vw;
+                }
+            }
+            .input-group{
+                .input-group-text{
+                    padding: 0.52vw 1.96vw !important;
+                    svg{
+                        height: 4.5vw;
+                        width: 4.5vw;
+                    }
+                }
+                input{
+                    font-size: 14px !important;
+                    line-height: 171.42% !important;
+                    padding: 0.98vw 1.176vw !important;
+                    letter-spacing: 0.025vw !important;
+                }
+                &.coupon-code-input{
+                    .input-group-text{
+                        border-radius: 0 8px 8px 0 !important;
+                    }
+                    input{
+                        &.valid-code{
+                            border-radius: 8px 0 0 8px !important;
+                        }
+                        &:not(.valid-code){
+                            border-radius: 8px !important;
+                        }
+                    }
+                }
+                &:not(.coupon-code-input){
+                    .input-group-text{
+                        border-radius: 8px 0 0 8px !important;
+                    }
+                    input{
+                        border-radius: 0 8px 8px 0 !important;
+                    }
+                }
+            }
+            .btn{
+                font-size: 14px !important;
+                line-height: 100% !important;
+                width: 22vw !important;
+                height: auto !important;
+            }
+            .help-block{
+                font-size: 12px !important;
+                line-height: 183.33% !important;
+            }
+        }
+    
+        .redeem-points-section{
+            margin-bottom: 4vw !important;
+            padding: 0.78vw 2.96vw 0.78vw 1.568vw !important;
+            .add-spacing-bottom{
+                margin-bottom: 0.52vw;
+            }
+            .plan-icon{
+                width: 4vw !important;
+                height: 4vw !important;
+            }
+            .rewards-icon{
+                width: 4vw !important;
+                height: 4vw !important;
+            }
+            .coupon-icon{
+                width: 4vw !important;
+                height: 4vw !important;
+            }
+            .icon-section{
+                width: 1.75vw;
+            }
+            .details-section{
+                margin-left: 4.5vw !important;
+                font-size: 14px !important;
+                line-height: 171.42% !important;
+                letter-spacing: 0.01em !important;
+                margin-top: -0.1vw !important;
+                b{
+                    font-size: 3.75vw !important;
+                }
+            }
+        }
+    
+        .payable-amount-section{
+            border-radius: 12px !important;
+            padding: 2.5vw 3.5vw 2.5vw 4vw !important;
+            margin-bottom: 11vw !important;
+            font-size: 18px !important;
+            line-height: 155.55% !important;
+            letter-spacing: 0.01em !important;
+            span:not(.payable-amount){
+                margin-top: 0.25vw;
+            }
+            .payable-amount{
+                font-size: 20px !important;
+                line-height: 180% !important;
+            }
+        }
+        .pay-button-section{
+            border-radius: 12px !important;
+            padding: 2.5vw 3.5vw 2.5vw 4vw !important;
+            span{
+                font-size: 24px !important;
+                line-height: 138.46% !important;
+                letter-spacing: 0.1em !important;
+            }
+            button{
+                padding: 6px 0 !important;
+                width: 50% !important;
+                font-size: 14px !important;
+                // line-height: 171.42% !important;
+            }
+        }
+    }
+}
+
+// For tablet screen
+@include media-breakpoint-between(md, lg) {
+    .order-summary-page{
+        .summary-container{
+            padding: 3.068vw 2.288vw 2.288vw;
+        }
+        .plan-details{
+            padding: 1.568vw 1.764vw 1.568vw 0.78vw !important;
+            font-family:var(--g-font-regular) !important;
+            margin-bottom: 1.96vw;
+            .heading{
+                font-family:var(--g-font-medium) !important;
+                font-size: 20px !important;
+                line-height: 210% !important;
+                font-weight: 600 !important;
+            }
+            .sub-heading{
+                font-size: 20px !important;
+                line-height: 200% !important;
+                font-weight: 600 !important;
+                .inner-text{
+                    font-weight: 400 !important;
+                }
+            }
+            .plan-info{
+                font-size: 18px !important;
+                line-height: 222.22% !important;
+            }
+        }
+        .loyalty-points-section{
+            margin-bottom: 1.96vw;
+            .points-label{
+                font-size: 18px !important;
+                line-height: 200% !important;
+                margin-bottom: 0.5vw;
+            }
+            .points-value{
+                font-size: 16px !important;
+                line-height: 200% !important;
+                .rewards-icon{
+                    margin-right: 0.52vw;
+                    height: 1.568vw;
+                    width: 1.568vw;
+                }
+                :last-child(){
+                    margin-left: 0.52vw;
+                }
+            }
+            .input-group{
+                .input-group-text{
+                    padding: 0.52vw 1.96vw !important;
+                    svg{
+                        height: 1.568vw;
+                        width: 1.568vw;
+                    }
+                }
+                input{
+                    font-size: 14px !important;
+                    line-height: 200% !important;
+                    padding: 0.98vw 1.176vw !important;
+                    letter-spacing: 0.025vw !important;
+                }
+                &.coupon-code-input{
+                    .input-group-text{
+                        border-radius: 0 12px 12px 0 !important;
+                    }
+                    input{
+                        &.valid-code{
+                            border-radius: 12px 0 0 12px !important;
+                        }
+                        &:not(.valid-code){
+                            border-radius: 12px !important;
+                        }
+                    }
+                }
+                &:not(.coupon-code-input){
+                    .input-group-text{
+                        border-radius: 12px 0 0 12px !important;
+                    }
+                    input{
+                        border-radius: 0 12px 12px 0 !important;
+                    }
+                }
+            }
+            .btn{
+                font-size: 16px !important;
+                line-height: 162.5% !important;
+                width: 10.33vw !important;
+                height: 4.508vw !important;
+            }
+            .help-block{
+                font-size: 16px !important;
+                line-height: 162.5% !important;
+            }
+        }
+    
+        .redeem-points-section{
+            margin-bottom: 1.96vw;
+            padding: 0.78vw 2.96vw 0.78vw 1.568vw !important;
+            .add-spacing-bottom{
+                margin-bottom: 0.52vw;
+            }
+            .plan-icon{
+                width: 2.57vw !important;
+                height: 2.57vw !important;
+            }
+            .rewards-icon{
+                width: 2.57vw !important;
+                height: 2.57vw !important;
+            }
+            .coupon-icon{
+                width: 2.75vw !important;
+                height: 2.75vw !important;
+            }
+            .icon-section{
+                width: 1.75vw;
+            }
+            .details-section{
+                margin-left: 2.96vw !important;
+                font-size: 16px !important;
+                line-height: 237.31% !important;
+                letter-spacing: 0.01em !important;
+                margin-top: -0.1vw !important;
+                .amount{
+                    font-size: 18px !important;
+                    line-height: 210.94% !important;
+                    letter-spacing: 0.01em !important;
+                }
+                b{
+                    font-size: 16px !important;
+                }
+            }
+        }
+    
+        .payable-amount-section{
+            border-radius: 12px !important;
+            padding: 1.96vw 3.56vw 1.96vw 2.156vw !important;
+            margin-bottom: 8.232vw !important;
+            font-size: 24px !important;
+            line-height: 141.66% !important;
+            letter-spacing: 0.01em !important;
+            span:not(.payable-amount){
+                margin-top: 0.25vw;
+            }
+            .payable-amount{
+                font-size: 26px !important;
+                line-height: 161.53% !important;
+            }
+        }
+        .pay-button-section{
+            border-radius: 12px !important;
+            padding: 1.96vw 3.56vw 1.96vw 2.156vw !important;
+            span{
+                font-size: 36px !important;
+                line-height: 116.66% !important;
+                letter-spacing: 0.1em !important;
+            }
+            button{
+                width: auto !important;
+                font-size: 16px !important;
+                line-height: 162.5% !important;
+                padding: 10px 80px !important;
+            }
+        }
+    }
+}

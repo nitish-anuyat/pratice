@@ -1,0 +1,75 @@
+.important-popup {
+    font-family: "tt-firs-neue-trial-regular";
+    h4 {
+        color: var(--text-main, #303030);
+        font-size: 1.46vw;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 135.714%;
+        letter-spacing: -0.56px;
+    }
+
+    button {
+        display: flex;
+        width: 48%;
+        padding-top: 0.5vw;
+        padding-bottom: 0.5vw;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        font-size: 1.146vw;
+        line-height: 145.455%;
+        letter-spacing: -0.44px;
+    }
+
+    .installation-btn {  
+        border-radius: 100px;
+        text-align: center;
+        border: 1px solid var(--stroke-primary, #6365EF);
+        background: var(--white, #FFF);
+        color: var(--primary-main, #6365EF);
+        
+    }
+
+    .activate-btn {
+        background: var(--primary-main, #6365EF);
+        color: var(--white, #FFF);
+        border-radius: 100px;
+    }
+
+    .message {
+        font-family: 0.833vw;
+        font-weight: 600;
+        line-height: 162.5%;
+        letter-spacing: -0.32px;
+    }
+    .chevron-right{
+        height: 0.75vw !important;
+    }
+}
+
+.install {
+    .title {
+        width: 300px;
+        color: var(--text-main, #303030);
+        text-align: center;
+        font-size: 1.46vw;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 135.714%;
+        letter-spacing: -0.56px;
+    }
+
+    button { 
+        width: 100%;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.146vw;
+        line-height: 145.455%;
+        letter-spacing: -0.44px;
+    }
+
+    .close {
+        text-align: right;
+    }
+}

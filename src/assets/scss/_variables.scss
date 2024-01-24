@@ -1,0 +1,143 @@
+.container{
+    @media (max-width: 767px){
+        padding: 0 30px;
+    }
+}
+
+// border
+
+.border-radius-100{
+    border-radius: 100px !important;
+}
+
+// cursor style //////
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+// page explore Destination and Plans list //////////////////////
+.page-explore-card-container{
+    padding: 0 32px;
+    margin-top: -167px;
+    position: relative;
+    padding-bottom: 80px;
+
+    @media (max-width: 1199px)  {
+        margin-top: -194px;
+    }
+
+    @media (max-width: 767px)  {
+        margin-top: -25px;
+        padding: 0 14px;
+    }
+
+    .page-explore-card-shadow{
+        width: calc(100% - 140px);
+        height: 55px;
+        position: absolute;
+        top: -10px;
+        background: var(--color-white-light);
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 15px;
+
+        @media (max-width: 767px)  {
+            width: calc(100% - 32px);
+            top: -6px;
+        }
+    }
+
+    .page-explore-card{
+        // background-color: var(--color-white);
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+    }
+}
+
+
+
+
+
+
+// Privacy and terms //////////////////////////////////////
+
+.terms-policy-container{
+    padding: 34px 40px;
+
+    @media (max-width: 1199px){
+        padding: 32px 34px;
+    }
+
+    @media (max-width: 767px){
+        padding: 16px 14px;
+    }
+
+    p{
+        color: var(--color-dark);
+        font-family: var(--sf-pro-regular);
+        font-size: 18px;
+        line-height: 30px;
+        letter-spacing: -0.36px;
+
+        @media (max-width: 1199px){
+            line-height: 28px;
+        }
+
+        @media (max-width: 767px){
+            font-size: 14px;
+            line-height: 24px;
+        }
+    }
+}
+
+
+
+// welcome card
+
+.welcome-card{
+    .ngx-gauge-meter {
+        width: 123px !important;
+        height: 123px !important;
+        position: relative;
+
+        @media (max-width: 1199px) {
+            width: 120px !important;
+            height: 120px !important;
+        }
+
+        @media (max-width: 767px) {
+            width: 86px !important;
+            height: 86px !important;
+        }
+        
+        canvas{
+            width: 123px !important;
+            height: 123px !important;
+
+            @media (max-width: 1199px) {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            @media (max-width: 767px) {
+                width: 86px !important;
+                height: 86px !important;
+            }
+
+        }
+
+        .reading-block{
+            position: absolute;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            color: var(--color-dark-disabled);
+            font-family: var(--g-font-medium);
+            font-size: 20px !important;
+            line-height: 26px;
+            letter-spacing: -0.32px;
+        }
+    }
+}

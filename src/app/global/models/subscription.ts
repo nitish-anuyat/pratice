@@ -1,0 +1,35 @@
+export interface Subscription {
+    _id: string;
+    name: string;
+    stripeProductId: string;
+    currency: string;
+    productId: string;
+    customerId: string;
+    reFelling: boolean;
+    validity: number;
+    productCategory: string;
+    data: string;
+    transactionId: string;
+    SMDPSubscriptionId: string;
+    cycleUnits: string;
+    cycle: number;
+    expiredDate: string;
+    planAutoRefilled: string;
+    expiredNotified: boolean;
+    expiryNotified: boolean;
+    ninetyPerUsedNotified: boolean;
+    isActive: boolean;
+    isDeleted: boolean;
+    status: string;
+    iccid: string;
+    isAutoRefillOn: boolean;
+    subscriberId: string;
+    price: number;
+    purchaseDate: string;
+    createdAt: string;
+    updatedAt: string;
+    activationDate: string;
+    expiryDate: string;
+    totalData: number;
+    usedData: number;
+}

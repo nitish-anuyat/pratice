@@ -1,0 +1,253 @@
+.testimonials-section-div {
+    background: linear-gradient(to right, #D1CBF7 0%, #AAA4EE 25%, #AAA4EE 75%, #C6BDF6 100%);
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border-radius: 136px 136px 27px 27px;
+    padding: 3rem 0;
+    height: 40rem;
+
+    @media screen and (max-width: 667px) {
+        height: 45rem;
+        border-radius: 27px;
+    }
+    @media screen and (max-width: 575px){
+        // width: 351px;
+        height: 537px;
+    }
+
+    .testimonials-heading-group {
+        text-align: center;
+
+        .testimonials-subheading {
+            font-size: 24px;
+            line-height: 1.1;
+
+            @media screen and (max-width: 575px) {
+                font-size: 14px;
+            }
+        }
+
+        .testimonials-heading {
+            font-size: 62px;
+            line-height: 1.1;
+
+            @media screen and (max-width: 1199px) {
+                font-size: 42px;
+            }
+
+            @media screen and (max-width: 575px) {
+                font-size: 36px;
+            }
+        }
+    }
+
+    .testimonials-img-div {
+        width: 446px;
+        height: 627px;
+        position: absolute;
+        left: 29%;
+        transform: translateX(-50%);
+
+        @media screen and (max-width: 767px) {
+            width: 380px;
+            height: 524px;
+            top: 38%;
+        }
+
+        @media screen and (max-width: 575px) {
+            width: 185.09px;
+            height: 297.815px;
+        }
+
+        img {
+            @media screen and (max-width: 767px) {
+                object-fit: contain;
+            }
+        }
+    }
+
+    .testimonials-content-div {
+        position: absolute;
+        top: 57%;
+        transform: translateY(-50%);
+
+        @media screen and (max-width: 667px) {
+            top: 54%;
+        }
+        @media screen and (max-width: 575px){
+            top: 48%;
+        }
+
+        .testimonials-text-group {
+            width: 49%;
+            margin-left: auto;
+            margin-right: 11.25rem;
+            position: relative;
+            z-index: 2;
+
+            @media screen and (max-width: 1399px) {
+                margin-right: 8.5rem;
+            }
+
+            @media screen and (max-width: 1199px) {
+                margin-right: 3.5rem;
+                width: 55%;
+            }
+
+            @media screen and (max-width: 767px) {
+                margin-right: 3.5rem;
+            }
+
+            @media screen and (max-width: 575px){
+                width: 45%;
+            }
+
+            &::before {
+                content: "‘‘";
+                position: absolute;
+                color: rgba(255, 255, 255, 0.33);
+                text-align: center;
+                font-size: 160px;
+                line-height: 80px;
+                top: -1rem;
+                letter-spacing: -2.08px;
+                font-family: "tt-firs-neue-trial-demibold";
+
+                @media screen and (max-width: 1199px) {
+                    top: -3rem;
+                }
+
+                @media screen and (max-width: 575px) {
+                    font-size: 104px;
+                    top: 0;
+                    left: -4rem;
+                }
+            }
+
+            &::after {
+                content: "’’";
+                position: absolute;
+                margin-top: 2rem;
+                color: rgba(255, 255, 255, 0.33);
+                text-align: center;
+                font-size: 160px;
+                line-height: 80px;
+                letter-spacing: -2.08px;
+                font-family: "tt-firs-neue-trial-demibold";
+
+                @media screen and (max-width: 575px) {
+                    font-size: 104px;
+                    margin-top: 0rem;
+                    right: 4rem;
+                }
+            }
+
+            .testimonials-card-heading {
+                font-size: 78px;
+
+                @media screen and (max-width: 1199px) {
+                    font-size: 48px;
+                }
+
+                @media screen and (max-width: 575px) {
+                    font-size: 36px;
+                    margin-bottom: 0;
+                }
+            }
+
+            .testimonials-card-text {
+                font-size: 18px;
+                letter-spacing: 0.5px;
+
+                @media screen and (max-width: 991px) {
+                    font-size: 16px;
+                }
+
+                @media screen and (max-width: 575px) {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .back-next-btn-group {
+        position: absolute;
+        right: 5rem;
+        bottom: 3rem;
+        display: flex;
+        gap: 5px;
+
+        @media screen and (max-width: 991px) {
+            right: 2rem;
+            bottom: 4rem;
+        }
+
+        @media screen and (max-width: 667px) {
+            bottom: 5rem;
+        }
+
+        @media screen and (max-width: 575px){
+            bottom: 4rem;
+        }
+
+        .btn {
+            border-radius: 50rem;
+            width: 134px;
+            height: 48px;
+            font-size: 18px;
+            padding: 10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+
+            @media screen and (max-width: 575px) {
+                font-size: 14px;
+                width: 85px;
+                height: 36px;
+            }
+
+            svg {
+                @media screen and (max-width: 575px) {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+
+        .back-btn {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .bullets-indicator-ul {
+        display: flex;
+        justify-content: center;
+        padding-left: 0;
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        li {
+            margin: 0 3px;
+            list-style: none;
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.17);
+
+            @media screen and (max-width: 575px){
+                width: 6px;
+                height: 6px;
+            }
+
+            &.active {
+                background-color: var(--color-primary);
+                opacity: 1 !important;
+            }
+        }
+    }
+}

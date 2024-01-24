@@ -1,0 +1,8 @@
+ <div *ngIf="isBrowser else serverTemp">
+    <router-outlet></router-outlet>
+ </div>
+ <ng-template #serverTemp>
+    <div style="display: none">
+        <router-outlet></router-outlet>
+     </div>    
+ </ng-template>

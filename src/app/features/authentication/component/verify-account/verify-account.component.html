@@ -1,0 +1,68 @@
+<div class="authentication-right-inner authentication-right-signup authentication-right-signin">
+    <h1 class="mb-5 auth-right-head" [innerHtml]=" 'auth.verify_account.heading' | translate "></h1>
+
+    <div class="auth-form-container bg-white">
+        <div class="form-container d-flex flex-column h-100">
+            <p class="auth-subhead mb-2 mb-md-3">{{ 'auth.verify_account.sub_head' | translate }}</p>
+            <p class="mb-3 mb-md-4 auth-subtext" [ngClass]="{'text-danger': otpError && otpValue.length === settings.length }">
+                <span *ngIf="(otpError && otpValue.length === settings.length); else noError" [innerHtml]=" 'auth.verify_account.error_sub_text' | translate "></span> 
+                <ng-template #noError>
+                    {{ 'auth.verify_account.sub_text' | translate }}
+                </ng-template>
+            </p>
+    
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group mb-4">
+                        <label for="inputOTP" class=" auth-form-label mb-2"> {{ 'form.otp_title' | translate }}</label>
+                        <app-angular-otp id="inputOTP" [setting]="settings" [hasError]="otpError && otpValue.length === settings.length" (valueChange)="onOTPChange($event)"  [class.otp-error]="otpError && otpValue.length > 0"></app-angular-otp>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-auto d-flex mt-10-vw">
+                <button (click)="verifyOtp()" class="btn auth-btn-submit mb-3 mt-auto" [disabled]="otpError || otpValue.length !== settings.length">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="mb-0 flex-fill sf-pro-regular btn-text">{{ 'form.submit_text' | translate }}</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="auth-right signin-auth-right">
+    <h1 class="mb-5 tt-firs-neue-trial-semibold heading">
+        We’ve <span class="heading-sub-text">sent a verification code in your email ID</span>
+    </h1>
+
+    <div class="main-form-section">
+        <div class="form-section d-flex flex-column h-100">
+            <h1 class="tt-firs-neue-trial-semibold form-heading mb-2 mb-md-3">Verify Account</h1>
+            <p class="mb-3 mb-md-4 form-subheading sf-pro-regular" [ngClass]="{'text-danger': otpError && otpValue.length === settings.length }">
+                <span *ngIf="(otpError && otpValue.length === settings.length); else noError">
+                    The OTP you have entered is incorrect. <br class="d-block d-md-none"/> Please verify the OTP and try again.
+                </span> 
+                <ng-template #noError>
+                    Enter the verification code sent to your email ID
+                </ng-template>
+            </p>
+    
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group mb-4">s
+                        <label for="inputOTP" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Enter the OTP</label>
+                        <app-angular-otp id="inputOTP" [setting]="settings" [hasError]="otpError && otpValue.length === settings.length" (valueChange)="onOTPChange($event)"  [class.otp-error]="otpError && otpValue.length > 0"></app-angular-otp>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-auto d-flex mt-10-vw">
+                <button (click)="verifyOtp()" class="btn auth-btn mb-3 mt-auto" [disabled]="otpError || otpValue.length !== settings.length">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="mb-0 flex-fill sf-pro-regular btn-text">Submit</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+-->

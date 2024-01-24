@@ -1,0 +1,22 @@
+<div class="transaction-history">
+    <h3 class="heading"> {{ 'my_reward.transaction_history' | translate }} </h3>
+
+    <div class="d-flex">
+        <h5 class="sub-heading" *ngIf="transactionHistory.length > 0; else noTransactions"> {{ 'my_reward.all_transaction' | translate }}</h5>
+        <ng-template #noTransactions>
+            <span class="no-transactions-found"> {{ 'my_reward.no_data_available' | translate }} </span>
+        </ng-template>
+    </div>
+    <div class="transaction-container internal-scrollbar-y" *ngIf="transactionHistory.length > 0">
+        <div class="transaction-details" *ngFor="let transaction of transactionHistory; trackBy: trackTransaction">
+            <div class="w-70">
+                <div class="transaction-heading">{{ ('my_reward.'+transaction.type+'_label') | translate }}</div>
+                <div class="transaction-sub-heading">{{ transaction.createdAt | date: 'dd/MM/yyyy' }}</div>
+            </div>
+            <div class="w-30 my-auto" [ngClass]="transaction.rewardPointsRedeemed > 0 ? 'negative-value' : 'positive-value'">
+                <span *ngIf="transaction.rewardPointsEarned > 0">+ {{ transaction.rewardPointsEarned }} ({{ transaction.cashValueEarned | currency: transaction.currency : 'symbol'}})</span>
+                <span *ngIf="transaction.rewardPointsRedeemed > 0">- {{ transaction.rewardPointsRedeemed }} ({{ transaction.cashValueRedeemed | currency: transaction.currency : 'symbol'}})</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="authentication-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 authentication-left-container">
+                <app-common-ui></app-common-ui>
+            </div>
+            <div class="col-xl-6 authentication-right-container">
+                
+                <!-- if signup -->
+                <div class="" *ngIf="currentURL === 'signup'">
+                    <div>
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+
+                <!-- without signup -->
+
+                <div class="" *ngIf="currentURL !== 'signup'">
+                    <div >
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="container-fluid main-section"  *ngIf="currentURL !== 'home'">
+    <div class="row">
+        <div class="col-lg-6 px-0">
+            <app-common-ui></app-common-ui>
+        </div>
+        <div class="col-lg-6 px-0 pe-lg-0" >
+
+            <div class="h-100" *ngIf="currentURL === 'signup'">
+                <div>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+
+
+            <div class="h-100 d-block d-lg-flex align-items-center justify-content-center" *ngIf="currentURL !== 'signup'">
+                <div >
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,149 @@
+<!-- <section class="trending-div">
+    <div class="section-header">
+        <p class="supporting-text">Yeah, the best</p>
+        <p class="heading tt-firs-semibold">Trending Plans</p>
+    </div>
+    <div class="browse-plan">
+        <button class="btn browse-plan-button btn-primary" routerLink="/plans/trending">
+            View All 
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="call_made">
+                    <mask id="mask0_693_18961" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect id="Bounding box" width="24" height="24" fill="#D9D9D9"/>
+                    </mask>
+                    <g mask="url(#mask0_693_18961)">
+                        <path id="call_made_2" d="M5.4 20L4 18.6L15.6 7H9V5H19V15H17V8.4L5.4 20Z" fill="white"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </div>
+
+    <div class="row trending-plans g-0 justify-content-center trending-plans-main">
+        <ng-container *ngIf="!inProgress">
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-3 down-tab-margin" *ngFor="let plan of trendingPlans| slice:0:4; trackBy : trackPlan">
+                <div class="trending-plans-card d-flex flex-column plan-details-card">
+                    <p class="heading text-overflow-break tt-firs-semibold"> {{ plan.name }}</p>
+                    <p class="details mt-2">
+                        {{ plan.data }} for {{ plan.validity }} <span class="text-capitalize">Day{{ ( plan.validity > 1 ? 's' : '' )}}</span>
+                    </p>
+                    <p class="price mt-auto">
+                        <span class="symbol">{{ currencySymbol }}</span> 
+                        {{ plan.priceBundle | currency : defaultCurrency.currency: 'symbol' : '1.0-2' | slice: currencySymbol.length }}
+                    </p>
+                    <div class="btn-group d-flex justify-content-between gap-2">
+                        <button class="btn btn-outline-primary bg-white text-primary rounded-pill learn" (click)="showPlanDetails(plan)">Learn More</button>
+                        <button class="btn btn-primary rounded-pill buy" (click)="showPlanDetails(plan)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="w-auto mx-auto" *ngIf="inProgress">
+            <app-loader></app-loader>
+        </div> 
+    </div>   -->
+
+    <!-- Below Part already commented -->
+    <!-- <div class="trending-plans-tab-and-mob g-0 justify-content-center">
+        <ng-container *ngIf="!inProgress">
+            <div class="trending-plans-card-perent" *ngFor="let plan of trendingPlans| slice:0:4; trackBy : trackPlan">
+                <div class="trending-plans-card-mob-and-tab d-flex flex-column plan-details-card">
+                    <p class="heading text-overflow-break"> {{ plan.name }}</p>
+                    <div class="trending-paln-below-setup">
+                        <p class="details mt-2">
+                            {{ plan.data }} for {{ plan.validity }} <span class="text-capitalize">Day{{ plan.validity > 1 ? 's' : '' }}</span>
+                        </p>
+                        <p class="price mt-auto" *ngIf="defaultCurrency">
+                            <span class="symbol">{{ currencySymbol }}</span> 
+                            {{ plan.priceBundle | currency : defaultCurrency.currency: 'symbol' : '1.0-2' | slice: currencySymbol.length }}
+                        </p>
+                        <div class="btn-group d-flex justify-content-between gap-2">
+                            <button class="btn btn-outline-primary bg-white text-primary rounded-pill learn" (click)="showPlanDetails(plan)">Learn More</button>
+                            <button class="btn btn-primary rounded-pill buy" (click)="showPlanDetails(plan)">Buy Now</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </ng-container>
+        <div class="w-auto mx-auto" *ngIf="inProgress">
+            <app-loader></app-loader>
+        </div> 
+    </div> -->
+<!-- </section> -->
+
+
+<section class="trending-plan-section container">
+    <div class="trending-plan-text-group">
+        <p class="trending-sm-text g-font-medium g-color-dark">{{ 'landing.trending_plan.sm_title' | translate }}</p>
+        <p class="trending-heading g-color-dark g-font-semibold">{{ 'landing.trending_plan.title' | translate }}</p>
+    </div>
+    <div class="view-all-btn-div">
+        <button class="btn view-all-btn g-bg-primary g-color-white sf-pro-medium" routerLink="/plans/trending">
+            {{ 'form.view_all_text'| translate}} 
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="call_made">
+                    <mask id="mask0_693_18961" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect id="Bounding box" width="24" height="24" fill="#D9D9D9"/>
+                    </mask>
+                    <g mask="url(#mask0_693_18961)">
+                        <path id="call_made_2" d="M5.4 20L4 18.6L15.6 7H9V5H19V15H17V8.4L5.4 20Z" fill="white"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </div>
+
+    <div class="plans-card-parent row">
+        <ng-container *ngIf="!inProgress">
+            <div class="card-row col-md-6 col-lg-4 col-xl-3" *ngFor="let plan of trendingPlans| slice:0:4; trackBy : trackPlan">
+                <div class="card">
+                    <div class="card-heading-div">
+                        <p class="card-heading g-font-semibold g-color-dark"> {{ plan.name }}</p>
+                    </div>
+                    <p class="card-text g-font-medium">
+                        {{ 'plans.plan_detail' | translate:{ data: plan.data, validity: plan.validity } }} <span class="text-capitalize">{{ ( plan.validity > 1 ? 'plans.days' : 'plans.day' ) | translate }}</span>
+                    </p>
+                    <p class="plan-price g-font-semibold g-color-dark">
+                        <span class="currency-symbol">{{ currencySymbol }}</span> 
+                        {{ plan.priceBundle | currency : defaultCurrency.currency: 'symbol' : '1.0-2' | slice: currencySymbol.length }}
+                    </p>
+                    <div class="card-btn-div">
+                        <button class="btn card-btn primary-border-btn g-color-primary g-bg-white sf-pro-medium" (click)="showPlanDetails(plan)"> {{ 'plans.learn_more' | translate }} </button>
+                        <button class="btn card-btn g-bg-primary g-color-white sf-pro-medium" (click)="showPlanDetails(plan)">{{ 'plans.buy_now' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="" *ngIf="inProgress">
+            <app-loader></app-loader>
+        </div> 
+    </div>  
+
+    <!-- <div class="trending-plans-tab-and-mob g-0 justify-content-center">
+        <ng-container *ngIf="!inProgress">
+            <div class="trending-plans-card-perent" *ngFor="let plan of trendingPlans| slice:0:4; trackBy : trackPlan">
+                <div class="trending-plans-card-mob-and-tab d-flex flex-column plan-details-card">
+                    <p class="heading text-overflow-break"> {{ plan.name }}</p>
+                    <div class="trending-paln-below-setup">
+                        <p class="details mt-2">
+                            {{ plan.data }} for {{ plan.validity }} <span class="text-capitalize">Day{{ plan.validity > 1 ? 's' : '' }}</span>
+                        </p>
+                        <p class="price mt-auto" *ngIf="defaultCurrency">
+                            <span class="symbol">{{ currencySymbol }}</span> 
+                            {{ plan.priceBundle | currency : defaultCurrency.currency: 'symbol' : '1.0-2' | slice: currencySymbol.length }}
+                        </p>
+                        <div class="btn-group d-flex justify-content-between gap-2">
+                            <button class="btn btn-outline-primary bg-white text-primary rounded-pill learn" (click)="showPlanDetails(plan)">Learn More</button>
+                            <button class="btn btn-primary rounded-pill buy" (click)="showPlanDetails(plan)">Buy Now</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </ng-container>
+        <div class="w-auto mx-auto" *ngIf="inProgress">
+            <app-loader></app-loader>
+        </div> 
+    </div> -->
+</section>

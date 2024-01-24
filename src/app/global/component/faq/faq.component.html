@@ -1,0 +1,27 @@
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item" *ngFor="let faq of faqList; let accIndex = index;">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseIndex' + accIndex" aria-expanded="false" [attr.aria-controls]="'accordionIndex' + accIndex" (click)="faq.isExpanded = !faq.isExpanded" [class.collapsed]="!faq.isExpanded">
+                <svg *ngIf="!faq.isExpanded" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Iconsax/Bold/pointer">
+                    <path id="Vector" d="M16.9948 2.83203C9.17479 2.83203 2.82812 9.1787 2.82812 16.9987C2.82812 24.8187 9.17479 31.1654 16.9948 31.1654C24.8148 31.1654 31.1615 24.8187 31.1615 16.9987C31.1615 9.1787 24.8148 2.83203 16.9948 2.83203ZM22.874 18.1745L20.4231 18.9962C19.7431 19.2229 19.219 19.747 18.9923 20.427L18.1706 22.8779C17.4765 24.9887 14.5015 24.9462 13.8498 22.8354L11.0873 13.9387C10.549 12.1679 12.1781 10.5387 13.9206 11.077L22.8315 13.8395C24.9423 14.5054 24.9706 17.4804 22.874 18.1745Z" fill="white"/>
+                    </g>
+                </svg>
+                <svg *ngIf="faq.isExpanded" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Iconsax/Bold/pointer">
+                    <path id="Vector" d="M17.5052 31.168C25.3252 31.168 31.6719 24.8213 31.6719 17.0013C31.6719 9.1813 25.3252 2.83463 17.5052 2.83463C9.6852 2.83463 3.33854 9.1813 3.33854 17.0013C3.33854 24.8213 9.68521 31.168 17.5052 31.168ZM11.626 15.8255L14.0769 15.0038C14.7569 14.7771 15.281 14.253 15.5077 13.573L16.3294 11.1221C17.0235 9.0113 19.9985 9.0538 20.6502 11.1646L23.4127 20.0613C23.951 21.8321 22.3219 23.4613 20.5794 22.923L11.6685 20.1605C9.55771 19.4946 9.52937 16.5196 11.626 15.8255Z" fill="white"/>
+                    </g>
+                </svg>
+                &nbsp;
+                <span class="ms-1 ms-md-2">
+                    {{ faq.question }}
+                </span>
+            </button>
+        </h2>
+        <div [id]="'collapseIndex' + accIndex" class="accordion-collapse collapse" data-bs-parent="#accordionExample" [class.show]="faq.isExpanded">
+            <div class="accordion-body sf-pro-regular">
+                {{ faq.answer }}
+            </div>
+        </div>
+    </div>
+</div>

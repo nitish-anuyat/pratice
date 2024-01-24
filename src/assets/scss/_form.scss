@@ -1,0 +1,115 @@
+/// These are commonly used in settings help my plans /////
+
+.border-hs{
+    border-radius: 20px;
+
+    @media (max-width: 767px){
+        border-radius: 8px;
+    }
+}
+
+.padding-hs{
+    padding: 16px;
+
+    @media (max-width: 767px){
+        padding: 6px;
+    }
+}
+
+.tab-hs{
+    @media (max-width: 991px){
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+
+    .btn{
+        &:not(:first-child){
+            margin-top: 12px;
+
+            @media (max-width: 991px){
+               margin-top: unset;
+            }
+        }
+    }
+
+    .hs-btn-secondary{
+        @media (max-width: 991px){
+            border-radius: 18px;
+            background: var(--color-white);
+            color: var(--color-dark);
+        
+            &:hover{
+                background: var(--color-dark-muted);
+                color: var(--color-dark-disabled);
+            }
+        }
+    }
+}
+
+.hs-btn-primary{
+    border-radius: 18px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--g-font-regular);
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    height: 48px;
+
+    &:hover{
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
+
+    @media (max-width: 767px){
+        font-size: 14px;
+        line-height: 24px;
+        height: 36px;
+        letter-spacing: -0.28px;
+        border-radius: 6px;
+    }
+}
+
+.hs-btn-secondary{
+    border-radius: 18px;
+    background: var(--color-dark-muted);
+    color: var(--color-dark-disabled);
+    text-align: center;
+    font-family: var(--g-font-regular);
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    height: 48px;
+
+    &:hover{
+        background: var(--color-dark-muted);
+        color: var(--color-dark-disabled);
+    }
+
+    @media (max-width: 767px){
+        font-size: 14px;
+        line-height: 24px;
+        height: 36px;
+        letter-spacing: -0.28px;
+        border-radius: 6px;
+    }
+}
+
+
+
+// settings form ////////////////////////////////////////////
+
+.s-form-subheading{
+    color: var(--color-dark);
+    font-family: var(--sf-pro-regular);
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: -0.36px;
+
+
+    @media (max-width: 767px){
+        color: var(--color-dark);
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: -0.28px;
+    }
+}

@@ -1,0 +1,262 @@
+<div class="s-form-container">
+    <p class="form-heading-large mb-3">{{ 'footer.request_support' | translate }}</p>
+    <p class="s-form-subheading"> {{ 'help.sub_details' | translate }}</p>
+    <p class="mb-4 small sf-pro-regular text-danger" *ngIf="err"> {{ err }}</p>
+
+
+    <form [formGroup]="requestSupportForm" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="name" class="hs-form-label mb-2"> {{ 'form.full_name.title' | translate }} </label>
+                    <input type="text" class="form-control hs-form-input" [ngClass]="{'err': err || err2 || (submitted && f.name.errors)}" (keyup)="err = false; err2 = false;" formControlName="name" [placeholder]=" 'form.full_name.title' | translate ">
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.name.valid && !f.name.pristine) || (f.name.errors && submitted)">
+                            <span class="small" *ngIf="submitted && (f.name.errors.required || f.name.errors.spacesOnly)">
+                                {{ 'form.full_name.required' | translate }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="email" class="hs-form-label mb-2">{{ 'form.email.title' | translate }}</label>
+                    <input type="email" class="form-control hs-form-input" [ngClass]="{'err': err || err2 || (submitted && f.email.errors)}" (keyup)="err = false; err2 = false;" formControlName="email" placeholder="abc@company.com">
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.email.valid && !f.email.pristine) || (f.email.errors && submitted)">
+                            <span class="small" *ngIf="submitted && f.email.errors.required">
+                                {{ 'form.email.required' | translate }}
+                            </span>
+                        </span>
+                        <span class="help-block ng-invalid text-danger" *ngIf="f.email.errors && submitted">
+                            <span class="small" *ngIf="submitted && f.email.errors.email">
+                                {{ 'form.email.invalid' | translate }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="number" class="hs-form-label mb-2">{{ 'help.phone_number.title' | translate }}</label>
+                    <div class="d-flex mobile-input-flex">
+                        <div class="form-control form-mobile-number" >
+                            <div class="dropdown">
+                                <button class="btn btn-ghost dropdown-toggle form-control mobile-selection" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  {{ countryDialCode }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="country-search-box"> 
+                                        <span class="search-icon-div">
+                                            <svg class="img-fluid" fill="#747373" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px">
+                                              <path
+                                                d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z" />
+                                            </svg>
+                                        </span>
+                                        <input type="text" placeholder="Search" formControlName="country" class="form-control search-form-input">
+                                    </li>
+                                    <span class="country-list">
+                                        <li class="country-options row" *ngFor="let country of countries | searchFilter : f.country.value : 'name'; trackBy: trackCountries" (click)="countryDialCode = country.dial_code;">
+                                            <span class="col-3 ps-1">{{ country.dial_code }}</span> <span class="col-9">{{ country.name }}</span>
+                                        </li>
+                                    </span>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="tel" class="form-control mobile-input" formControlName="number" [placeholder]="'help.phone_number.placeholder' | translate" (keypress)="isNumber($event)">
+                    </div>
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.number.valid && !f.number.pristine) || (f.number.errors && submitted)">
+                            <span class="small" *ngIf="submitted && f.number.errors.required">
+                                {{ 'help.phone_number.required' | translate }}
+                            </span>
+                            <span class="small" *ngIf="submitted && (f.number.errors?.minlength || f.number.errors?.maxlength)">
+                                {{ 'help.phone_number.length_error' | translate:{length : f.number.errors?.minlength?.requiredLength || f.number.errors?.maxlength?.requiredLength } }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="deviceInfo" class="hs-form-label mb-2">{{ 'help.device_info.title' | translate }}</label>
+                    <input type="text" class="form-control hs-form-input" formControlName="deviceInfo" placeholder="{{ 'help.device_info.placeholder' | translate }}">
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.deviceInfo.valid && !f.deviceInfo.pristine) || (f.deviceInfo.errors && submitted)">
+                            <span class="small" *ngIf="submitted && (f.deviceInfo.errors.required || f.deviceInfo.errors.spacesOnly)">
+                                {{ 'help.device_info.required' | translate }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="form-group mb-5">
+                    <label for="message" class="hs-form-label mb-2">{{ 'form.message.title' | translate }}</label>
+                    <textarea rows="4" class="form-control hs-form-input" formControlName="message" [placeholder]=" 'form.message.request_placeholder' | translate "></textarea>
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.message.valid && !f.message.pristine) || (f.message.errors && submitted)">
+                            <span class="small" *ngIf="submitted && (f.message.errors.required || f.message.errors.spacesOnly)">
+                                {{ 'form.message.required' | translate }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 m-auto mb-4">
+                <div class="d-flex align-items-center justify-content-center">
+                    <button type="submit" class="btn hs-btn-primary border-radius-100 w-100">
+                        {{ 'footer.request_support' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+
+</div>
+
+
+<!-- Will delele this after this form testing -->
+<!-- <div class="form-section">
+    <h3 class="tt-firs-neue-trial-semibold form-heading mb-3">Request Support</h3>
+    <p class="mb-4 form-subheading sf-pro-regular"> Got something in mind? Let's Talk! </p>
+
+    <p class="mb-4 form-subheading sf-pro-regular text-danger" *ngIf="err"> {{ err }}</p>
+    
+    <form [formGroup]="requestSupportForm" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="name" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Full Name</label>
+                    <input type="text" class="form-control sf-pro-regular" [ngClass]="{'err': err || err2 || (submitted && f.name.errors)}" (keyup)="err = false; err2 = false;" formControlName="name" placeholder="Full Name">
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.name.valid && !f.name.pristine) || (f.name.errors && submitted)">
+                            <span class="small" *ngIf="submitted && (f.name.errors.required || f.name.errors.spacesOnly)">
+                                Full Name is required!
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="email" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Email</label>
+                    <input type="email" class="form-control sf-pro-regular" [ngClass]="{'err': err || err2 || (submitted && f.email.errors)}" (keyup)="err = false; err2 = false;" formControlName="email" placeholder="abc@company.com">
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.email.valid && !f.email.pristine) || (f.email.errors && submitted)">
+                            <span class="small" *ngIf="submitted && f.email.errors.required">
+                                Email is required!
+                            </span>
+                        </span>
+                        <span class="help-block ng-invalid text-danger" *ngIf="f.email.errors && submitted">
+                            <span class="small" *ngIf="submitted && f.email.errors.email">
+                                Enter valid email!
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="number" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Phone number needing support</label>
+                    <div class="d-flex">
+                        <div class="form-control form-mobile-number" >
+                            <div class="dropdown">
+                                <button class="btn btn-ghost dropdown-toggle form-control mobile-selection" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  {{ countryDialCode }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="country-search-box"> 
+                                        <span class="search-icon-div">
+                                            <svg class="img-fluid" fill="#747373" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px">
+                                              <path
+                                                d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z" />
+                                            </svg>
+                                        </span>
+                                        <input type="text" placeholder="Search" formControlName="country" class="form-control search-form-input">
+                                    </li>
+                                    <span class="country-list">
+                                        <li class="country-options row" *ngFor="let country of countries | searchFilter : f.country.value : 'name'; trackBy: trackCountries" (click)="countryDialCode = country.dial_code;">
+                                            <span class="col-3 ps-1">{{ country.dial_code }}</span> <span class="col-9">{{ country.name }}</span>
+                                        </li>
+                                    </span>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="tel" class="form-control mobile-input" formControlName="number" placeholder="Enter the phone number requiring support" (keypress)="isNumber($event)">
+                    </div>
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.number.valid && !f.number.pristine) || (f.number.errors && submitted)">
+                            <span class="small" *ngIf="submitted && f.number.errors.required">
+                                Phone number is required!
+                            </span>
+                            <span class="small" *ngIf="submitted && (f.number.errors?.minlength || f.number.errors?.maxlength)">
+                                Phone number must be of {{ f.number.errors?.minlength?.requiredLength || f.number.errors?.maxlength?.requiredLength }} digits!
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="deviceInfo" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Device Information</label>
+                    <input type="text" class="form-control sf-pro-regular" formControlName="deviceInfo" placeholder="Make and Model of device being used">
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.deviceInfo.valid && !f.deviceInfo.pristine) || (f.deviceInfo.errors && submitted)">
+                            <span class="small" *ngIf="submitted && (f.deviceInfo.errors.required || f.deviceInfo.errors.spacesOnly)">
+                                Device Information is required!
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="form-group mb-5">
+                    <label for="message" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Message</label>
+                    <textarea rows="4" class="form-control textarea-restrict-resize sf-pro-regular" formControlName="message" placeholder="Any additional details regarding the request of support to help you further resolve your issue"></textarea>
+                    <div>
+                        <span class="help-block ng-invalid text-danger"
+                            *ngIf="(!f.message.valid && !f.message.pristine) || (f.message.errors && submitted)">
+                            <span class="small" *ngIf="submitted && (f.message.errors.required || f.message.errors.spacesOnly)">
+                                Message is required!
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 m-auto mb-4">
+                <div class="d-flex align-items-center justify-content-center">
+                    <button type="submit" class="btn btn-primary mb-1 rounded-pill px-4 py-2 w-100">
+                        <p class="mb-0 flex-fill sf-pro-regular text-white text-center">Request Support</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+</div> -->

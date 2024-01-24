@@ -1,0 +1,171 @@
+<!-- <header>
+    <div class="container justify-content-center navbar-main d-none d-xl-flex">
+        <a routerLink="/" class="d-flex align-items-center mb-md-0 me-md-auto link-body-emphasis text-decoration-none logo-link">
+            <img src="assets/images/auth/gb-logo.png" alt="mdo">
+        </a>
+        
+        <ul class="nav">
+            <li class="nav-item"><a routerLink="/" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a routerLink="/choose-destination" class="nav-link">View Plans</a></li>
+            <li class="nav-item" *ngIf="userDetails"><a routerLink="/my-plans" class="nav-link">My Plans</a></li>
+            <li class="nav-item"><a routerLink="/FAQ" class="nav-link">FAQ</a></li>
+            <li class="nav-item"><a routerLink="/contact-us" class="nav-link">Help</a></li>
+            <li class="nav-item" *ngIf="userDetails || configData?.currencyConversionMasterEnabled"><a [routerLink]="'/settings' +(userDetails ? '' : '/currency')" class="nav-link">Settings</a></li>
+            <li class="nav-item" *ngIf="!userDetails"><a routerLink="auth/signin" class="btn px-2 rounded-pill">Get Started</a></li>
+            <li class="nav-item" *ngIf="userDetails">
+                <a class="dropdown-toggle remove-chevron profile-img-section" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img [src]="userDetails.profileImageURL">
+                </a>
+                <ul class="dropdown-menu my-account-dropdown mt-3 tt-firs-neue-trial-regular px-3 nav-item-boder-bottom">
+                    <ng-container *ngFor="let navItem of navigationData; let nIndex = index;">
+                        <li *ngIf="navItem.name !== 'Terms & Conditions'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer d-flex" [routerLink]="navItem.routeLink"> {{ navItem.name }} <i class="gb-chevron-right m-auto me-0"></i></a></li>
+                        <li *ngIf="navItem.name === 'Terms & Conditions'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer" [routerLink]="navItem.routeLink">
+                            <div class="d-flex justify-content-start flex-wrap">
+                                <p class="m-0 border-bottom-0"> {{navItem.name.split('&')[0] }} </p> &nbsp;
+                                <p class="m-0 border-bottom-0">&amp; </p> &nbsp;
+                                <p class="m-0 border-bottom-0"> {{ navItem.name.split('&')[1] }}</p>
+                                <i class="gb-chevron-right m-auto me-0"></i>
+                            </div>
+                        </a></li>
+                    </ng-container>
+                    <li *ngIf="userDetails" class="me-0"><a class="dropdown-item py-2 cursor-pointer d-flex" (click)="logout()"> Log Out  <i class="gb-chevron-right m-auto me-0"></i></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="d-block d-xl-none bg-white p-3 navbar-main mx-auto">
+        <div class="d-flex img-1 px-1">
+            <a routerLink="/" class="d-flex align-items-center mb-md-0 me-md-auto link-body-emphasis text-decoration-none cursor-pointer logo-link">
+                <img src="assets/images/auth/gb-logo.png" alt="mdo" height="48" class="d-none d-md-block">
+                <img src="assets/images/auth/gb-logo-small.png" class="logo-small d-md-none" alt="" >
+            </a>
+            
+            <div class="ms-auto">
+                <ng-container *ngIf="!userDetails">
+                    <a routerLink="auth/signin" class="btn btn-primary py-2 px-4 text-white rounded-pill sf-pro-regular">Get Started</a>
+                </ng-container>
+                <a class="dropdown-toggle remove-chevron" [ngClass]="userDetails ? 'profile-img-section' : 'ms-3'" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img [src]="userDetails.profileImageURL" *ngIf="userDetails">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" *ngIf="!userDetails">
+                        <mask id="mask0_1338_33684" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect width="24" height="24" fill="#D9D9D9"/>
+                        </mask>
+                        <g mask="url(#mask0_1338_33684)">
+                        <path d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z" fill="#1C1B1F"/>
+                        </g>
+                    </svg>
+                </a>
+                <ul class="dropdown-menu my-account-dropdown tt-firs-neue-trial-regular px-3 nav-item-boder-bottom">
+                    <ng-container *ngFor="let navItem of navigationData; let nIndex = index;">
+                        <li *ngIf="(!navItem.forUser || navItem.forUser == !!(userDetails)) && navItem.name != 'Terms & Conditions' && navItem.name != 'Settings'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer d-flex" [routerLink]="navItem.routeLink"> {{ navItem.name }} <i class="gb-chevron-right m-auto me-0"></i></a></li>
+                        <li *ngIf="(userDetails || configData?.currencyConversionMasterEnabled) && navItem.name == 'Settings'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer d-flex" [routerLink]="navItem.routeLink + ( !userDetails ? '/currency' : '')"> {{ navItem.name }} <i class="gb-chevron-right m-auto me-0"></i></a></li>
+                        <li *ngIf="navItem.name == 'Terms & Conditions'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer" [routerLink]="navItem.routeLink">
+                            <div class="d-flex justify-content-start flex-wrap">
+                                <p class="m-0 border-bottom-0"> {{navItem.name.split('&')[0] }} </p> &nbsp;
+                                <p class="m-0 border-bottom-0">&amp; </p> &nbsp;
+                                <p class="m-0 border-bottom-0"> {{ navItem.name.split('&')[1] }}</p>
+                                <i class="gb-chevron-right m-auto me-0"></i>
+                            </div>
+                        </a></li>
+                    </ng-container>
+                    <li *ngIf="userDetails" class="me-0"><a class="dropdown-item py-2 cursor-pointer d-flex" (click)="logout()"> Log Out  <i class="gb-chevron-right m-auto me-0"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header> -->
+
+
+<nav class="navbar g-navbar navbar-expand-xl bg-white">
+    <div class="container">
+        <div class="brand-container">
+            <a class="navbar-brand g-navbar-brand d-none d-xl-flex" href="#">
+                <img class="web-logo" src="assets/images/auth/gb-logo.png" alt="">
+            </a>
+
+            <a class="navbar-brand g-navbar-brand d-block d-xl-none" href="#">
+                <img class="mob-logo" src="assets/images/auth/gb-logo-small.png" alt="" >
+            </a>
+        
+            <div class="nav-item btn-get-started-container navbar-toggler p-0 border-0">
+                <a class="nav-link" *ngIf="!userDetails">
+                    <button routerLink="auth/signin" class="btn g-bg-primary btn-get-started g-color-white border-radius-100">{{ 'header.get_started' | translate }}</button>
+                </a>
+
+                <div class="dropdown nav-item user-icon-container navbar-toggler p-0 border-0" [ngClass]="{'ms-auto': 'userDetails'}">
+                    <button class="nav-link btn dropdown-toggle user-icon p-0"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img *ngIf="userDetails" [src]="userDetails.profileImageURL">
+                        <span *ngIf="!userDetails" class="navbar-toggler-icon"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <ng-container *ngFor="let navItem of navigationData; let nIndex = index;">
+                            <li *ngIf="navItem.name !== 'header.terms&header.conditions' && navItem.name !== 'header.settings'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer d-flex" [routerLink]="navItem.routeLink"> {{ navItem.name | translate }} <i class="g-chevron-right m-auto me-0"></i></a></li>
+                            <li *ngIf="configData?.currencyConversionMasterEnabled && navItem.name === 'header.settings'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer d-flex" [routerLink]="navItem.routeLink + ( !userDetails ? '/currency' : '')"> {{ navItem.name | translate}} <i class="gb-chevron-right m-auto me-0"></i></a></li>
+                            <li *ngIf="navItem.name === 'header.terms&header.conditions'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer" [routerLink]="navItem.routeLink">
+                                <div class="d-flex justify-content-start flex-wrap">
+                                    <p class="m-0 border-bottom-0"> {{navItem.name.split('&')[0]  | translate}} </p> &nbsp;
+                                    <p class="m-0 border-bottom-0">&amp; </p> &nbsp;
+                                    <p class="m-0 border-bottom-0"> {{ navItem.name.split('&')[1] | translate}}</p>
+                                    <i class="g-chevron-right m-auto me-0"></i>
+                                </div>
+                            </a></li>
+                        </ng-container>
+                        <li *ngIf="userDetails" class="me-0"><a class="dropdown-item py-2 cursor-pointer d-flex" (click)="logout()"> {{ 'header.logout' | translate }}  <i class="g-chevron-right m-auto me-0"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- <button class="navbar-toggler g-navbar-toggler" *ngIf="!userDetails" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+
+            
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a routerLink="/" class="nav-link active" aria-current="page">{{ 'header.home' | translate }}</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/choose-destination" class="nav-link">{{ 'header.view_plans' | translate }}</a>
+                </li>
+                <li class="nav-item" *ngIf="userDetails">
+                    <a routerLink="/my-plans" class="nav-link">{{ 'header.my_plans' | translate }}</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/FAQ" class="nav-link">{{ 'header.faq' | translate }}</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact-us" class="nav-link"> {{ 'header.help' | translate }}</a>
+                </li>
+                <li class="nav-item" *ngIf="userDetails || configData?.currencyConversionMasterEnabled">
+                    <a [routerLink]="'/settings' +(userDetails ? '' : '/currency')" class="nav-link"> {{ 'header.settings' | translate }}</a>
+                </li>
+                <li class="nav-item" *ngIf="!userDetails">
+                    <a class="nav-link">
+                        <button routerLink="auth/signin" class="btn btn-get-started g-bg-primary g-color-white border-radius-100"> {{ 'header.get_started' | translate }}</button>
+                    </a>
+                </li>
+                <li class="dropdown nav-item user-icon-container" *ngIf="userDetails">
+                    <button class="nav-link btn dropdown-toggle user-icon p-0"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img [src]="userDetails.profileImageURL">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <ng-container *ngFor="let navItem of navigationData; let nIndex = index;">
+                            <li *ngIf="navItem.name !== 'header.terms&header.conditions'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer d-flex" [routerLink]="navItem.routeLink"> {{ navItem.name | translate }} <i class="g-chevron-right m-auto me-0"></i></a></li>
+                            <li *ngIf="navItem.name === 'header.terms&header.conditions'" class="me-0" [ngClass]="navItem.cssClass"><a class="dropdown-item py-2 cursor-pointer" [routerLink]="navItem.routeLink">
+                                <div class="d-flex justify-content-start flex-wrap">
+                                    <p class="m-0 border-bottom-0"> {{navItem.name.split('&')[0] | translate }} </p> &nbsp;
+                                    <p class="m-0 border-bottom-0">&amp; </p> &nbsp;
+                                    <p class="m-0 border-bottom-0"> {{ navItem.name.split('&')[1] | translate }}</p>
+                                    <i class="g-chevron-right m-auto me-0"></i>
+                                </div>
+                            </a></li>
+                        </ng-container>
+                        <li *ngIf="userDetails" class="me-0"><a class="dropdown-item py-2 cursor-pointer d-flex" (click)="logout()"> Log Out  <i class="g-chevron-right m-auto me-0"></i></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

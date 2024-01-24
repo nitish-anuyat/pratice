@@ -1,0 +1,407 @@
+.popular-destination-parent {
+    @media screen and (max-width: 767px) {
+        overflow: hidden;
+    }
+
+    .popular-destination-text-group {
+        text-align: center;
+
+        .destination-heading {
+            font-size: 62px;
+
+            @media screen and (max-width: 1399px) {
+                font-size: 52px;
+            }
+
+            @media screen and (max-width: 1199px) {
+                font-size: 42px;
+            }
+
+            @media screen and (max-width: 575px) {
+                font-size: 36px;
+            }
+        }
+
+        .destination-text {
+            font-size: 24px;
+
+            @media screen and (max-width: 1199px) {
+                font-size: 20px;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            @media screen and (max-width: 575px) {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .country-destinations-card {
+        border-radius: 27px 27px 116px 116px;
+        background: rgba(99, 101, 239, 0.07);
+        padding: 30px;
+        margin-top: 56px;
+
+        @media screen and (max-width: 767px) {
+            position: relative;
+            height: 25rem;
+            border-radius: 27px 27px 60px 60px;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+
+            @media screen and (max-width: 767px) {
+                width: 150%;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            @media screen and (max-width: 575px) {
+                width: 225%;
+            }
+
+            .card-style {
+                width: 32%;
+                height: 342px;
+                box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.08);
+                border-radius: 27px;
+                padding: 30px 50px;
+                background-repeat: no-repeat !important;
+                background-position: center bottom !important;
+                position: relative;
+
+                @media screen and (max-width: 1199px) {
+                    height: 299px;
+                    padding: 23px 15px;
+                }
+
+                @media screen and (max-width: 990px) {
+                    height: 260px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    border-radius: 15px;
+                    width: 31%;
+                }
+
+                @media screen and (max-width: 575px) {
+                    height: 231px;
+                }
+
+                &:first-child {
+                    border-radius: 20px 20px 20px 104px;
+
+                    @media screen and (max-width: 1199px) {
+                        border-radius: 18px 18px 18px 80px;
+                    }
+                }
+
+                &:last-child {
+                    border-radius: 20px 20px 104px 20px;
+
+                    @media screen and (max-width: 1199px) {
+                        border-radius: 18px 18px 80px 18px;
+                    }
+                }
+
+                &:nth-child(2) {
+                    @media screen and (max-width: 767px) {
+                        transform: scale(1.1);
+                    }
+                }
+
+                .card-country-name {
+                    font-size: 38px;
+                    line-height: 1.2;
+
+                    @media screen and (max-width: 1199px) {
+                        font-size: 36px;
+                        line-height: 1;
+                    }
+
+                    @media screen and (max-width: 575px) {
+                        font-size: 26px;
+                    }
+                }
+
+                .explore-plan-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 11px 32px;
+                    font-size: 18px;
+                    border-radius: 100px;
+                    position: absolute;
+                    bottom: 30px;
+                    left: 35px;
+
+                    @media screen and (max-width: 1199px) {
+                        font-size: 16px;
+                    }
+
+                    @media screen and (max-width: 990px) {
+                        padding: 10px 20px;
+                        left: 25px;
+                    }
+
+                    @media screen and (max-width: 575px) {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        .view-all-btn-div {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+
+            @media screen and (max-width: 767px) {
+                position: absolute;
+                bottom: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .view-all-btn {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                padding: 13px 20px 13px 42px;
+                border-radius: 100px;
+                font-size: 18px;
+                gap: 22px;
+
+                &:hover {
+                    background-color: var(--color-primary);
+                    color: var(--color-white);
+                }
+
+                @media screen and (max-width: 1199px) {
+                    padding: 10px 16px 10px 32px;
+                    font-size: 16px;
+                }
+
+                @media screen and (max-width: 575px) {
+                    font-size: 14px;
+                }
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+
+                    @media screen and (max-width: 575px) {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//On click View All!
+.view-all-up-arrow{
+    width: 48px;
+    height: 48px;
+    background: var(--color-white);
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 767px){
+        width: 40px;
+        height: 40px;
+        padding: 7.5px;
+    }
+    @media screen and (max-width: 575px){
+       width: 32px;
+       height: 32px;
+       padding: 5px; 
+    }
+
+    .arrow-up{
+        fill: var(--color-primary);
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+    }
+}
+.view-all-destination {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 575px) {
+        flex-direction: column;
+    }
+
+    .country-destination {
+        width: 33.33%;
+        flex: 0 0 33.33%;
+        padding: 25px 50px;
+
+        &:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.85);
+
+            @media screen and (max-width: 767px) {
+                border-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+            }
+        }
+
+        &:nth-child(odd){
+            @media screen and (max-width: 767px) {
+                border-right: 1px solid rgba(255, 255, 255, 0.85);
+            }
+            @media screen and (max-width: 575px) {
+                border-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 1199px) {
+            padding: 20px 30px;
+        }
+
+        @media screen and (max-width: 767px) {
+            width: 50%;
+            flex: 0 0 50%;
+        }
+
+        @media screen and (max-width: 575px) {
+            width: 100%;
+            flex: 0 0 100%;
+        }
+
+        .countries-flag-name-div {
+            display: flex;
+            align-items: center;
+
+            .countries-flag-div {
+                width: 48px;
+                height: 35px;
+                margin-right: 2rem;
+                border-radius: 7px;
+                overflow: hidden;
+                filter: drop-shadow(0px 3.495px 5.242px rgba(66, 71, 76, 0.08)) drop-shadow(0px 0px 0.437px rgba(66, 71, 76, 0.32));
+
+                @media screen and (max-width: 575px) {
+                    width: 34px;
+                    height: 24px;
+                }
+
+                .flag-icon {
+                    object-fit: cover;
+                }
+            }
+
+            .country-name {
+                font-size: 24px;
+                margin-bottom: 0;
+
+                @media screen and (max-width: 1399px) {
+                    font-size: 20px;
+                }
+
+                @media screen and (max-width: 1199px) {
+                    font-size: 18px;
+                }
+
+                @media screen and (max-width: 575px) {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .country-text-arrow-div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+
+            .country-text {
+                font-size: 16px;
+                margin-bottom: 0;
+
+                @media screen and (max-width: 1399px) {
+                    font-size: 14px;
+                }
+
+                @media screen and (max-width: 1199px) {
+                    font-size: 12px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    font-size: 14px;
+                }
+
+                @media screen and (max-width: 575px) {
+                    font-size: 12px;
+                }
+            }
+
+            .card-details-arrow {
+                width: 36px;
+                height: 36px;
+                flex-shrink: 0;
+                border-radius: 50%;
+                border: 1px solid var(--color-primary);
+                background: var(--color-white);
+                display: flex;
+                align-items: center;
+
+                @media screen and (max-width: 1199px) {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                @media screen and (max-width: 575px) {
+                    width: 26px;
+                    height: 26px;
+                }
+
+                svg {
+                    fill: var(--color-primary);
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .card-border-top {
+        border-top: 1px solid rgba(255, 255, 255, 0.85);
+    }
+}
+
+.close-btn-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+
+    .close-btn {
+        border-radius: 100px;
+        border: 0.764px solid var(--color-primary);
+        background: var(--color-white);
+        font-size: 18px;
+
+        @media screen and (max-width: 1199px) {
+            font-size: 16px;
+        }
+
+        .collapse-back-arrow {
+            fill: var(--color-primary);
+            transform: rotate(180deg);
+        }
+    }
+}

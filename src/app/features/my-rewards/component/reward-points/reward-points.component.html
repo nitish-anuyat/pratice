@@ -1,0 +1,32 @@
+<div class="rewards-section">
+    <h3 class="heading"> {{ 'my_reward.heading' | translate }}</h3>
+
+    <div class="d-flex flex-wrap">
+        <div class="sub-heading"> {{ 'my_reward.title' | translate }} </div>
+        <div class="ms-auto text-end">
+            <img src="/assets/svg/rewards.svg" class="rewards-icon">
+            <span class="reward-points-value" *ngIf="rewardPointsDetails"> {{ rewardPointsDetails.rewardPoints || 0 }}</span>
+            <span class="reward-points-value" *ngIf="rewardPointsDetails">( {{ (rewardPointsDetails.cashValue || 0 ) | currency : rewardPointsDetails.currency : 'symbol' : "1.0-2"}})</span>
+        </div>
+    </div>
+    <hr />
+    <div class="row mb-3" *ngIf="transactionHistory?.length === 0">
+        <div class="col-12">
+            <span class="note-heading"> {{ 'my_reward.note_heading' | translate }} : </span> <span class="note-text"> {{ 'my_reward.get_referral_note' | translate }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <h5 class="sub-heading col-12"> {{ 'my_reward.referral_code' | translate }} </h5>
+    </div>
+    <div class="row">
+        <div class="col-12 form-group">
+            <input type="text" readonly [formControl]="referralCode" class="form-control">
+            <span class="copy-icon my-auto" (click)="copyCode()" *ngIf="referralCode.value"><img src="/assets/svg/copy.svg"></span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 note-text" [innerHtml]=" 'my_reward.referral_note' | translate:{ referralReward: configData?.rewardPointsReferral || 0 }">
+        </div>
+    </div>
+</div>

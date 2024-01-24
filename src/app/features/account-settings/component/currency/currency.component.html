@@ -1,0 +1,93 @@
+<div class="account-setting-card g-bg-white border-hs">
+    <div class="form-container">
+        <div class="row">
+            <div class="col-12 col-md-5 currency-inner-container">
+                <p class="currency-heading-bold mb-4">{{ 'settings.currency_info.title' | translate }}</p>
+                <p class="currency-subheading mb-0">{{ 'settings.currency_info.sub_details' | translate }}</p>
+                <div class="selected-currency-container">
+                    <div class="selected-currency">
+                        <span class="currency-symbol"> {{ (defaultCurrency?.currency || '') | currencySymbol}} </span> {{ defaultCurrency?.currency_name }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 search-corrency-container">
+                <p class="form-heading-large mt-3 mt-md-0">{{ 'settings.currency_info.all_currencies' | translate }}</p>
+                <div class="currency-search-input">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input [(ngModel)]="searchInput" class="form-control w-100" [placeholder]=" 'settings.currency_info.search_currency' | translate ">
+                </div>
+
+                <div class="currency-dropdown-list-conatainer">
+                    <div *ngFor="let country of countries | searchFilter:searchInput:'currency_name'" class="currency-dropdown-flex" (click)="selectedCurrency = country;"> 
+                        <span class="country-symbol my-auto"> {{ country.currency | currencySymbol}} </span>
+                        <span class="country-name my-auto"> {{ country.currency_name }} </span>
+                        <div class="currency-dropdown-radio">
+                            <input type="radio" [checked]=" country?.currency === selectedCurrency?.currency">
+                            <span class="checkmark"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="button" class="btn hs-btn-primary border-radius-100 w-100 mt-5"
+                        (click)="applyCurrency()">
+                        {{ 'settings.currency_info.change_currency' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<!-- will delete this after testing the functionality -->
+<!-- <div class="form-container card">
+    <div class="row currency-setting-card">
+        <div class="col-12 col-md-6">
+            <div class="form-section">
+                <h3 class="tt-firs-neue-trial-semibold form-heading mb-0 mt-1 font-size-18">Currency</h3>
+
+                <h5 class="tt-firs-neue-trial-semibold form-subheading"> Default Currency</h5>
+
+                <div class="default-currency">
+                    <p class="currency-name"> <span class="currency-symbol"> {{ (defaultCurrency?.currency || '') | currencySymbol}} </span> {{ defaultCurrency?.currency_name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 border-start">
+            <div class="form-section">
+                <h3 class="tt-firs-neue-trial-semibold form-heading mb-0 mt-1 font-size-18">All Currencies</h3>
+                <div class="row d-flex justify-content-start">
+                    <div class="col-12 col-md-11 col-lg-10 search-form-section">
+                        <span class="search-icon-div d-flex">
+                            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z" stroke="#667085" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <input [(ngModel)]="searchInput" class="form-control w-100" placeholder="Search Currency">
+                    </div>
+                    <div class="col-11 internal-scrollbar-y countries-list-container mt-2">
+                        <div *ngFor="let country of countries | searchFilter:searchInput:'currency_name'" class="country d-flex cursor-pointer" (click)="selectedCurrency = country;"> 
+                            <span class="country-symbol my-auto"> {{ country.currency | currencySymbol}} </span>
+                            <span class="country-name my-auto"> {{ country.currency_name }} </span>
+                            <div class="form-radio-btn ms-auto mb-auto">
+                                <input type="radio" [checked]=" country?.currency === selectedCurrency?.currency">
+                                <span class="checkmark"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-11 col-lg-10">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 w-100 mt-4" (click)="applyCurrency()">
+                            <p class="mb-0 flex-fill sf-pro-regular text-white text-center">Change Currency
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

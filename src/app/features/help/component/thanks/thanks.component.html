@@ -1,0 +1,45 @@
+<div class="row thanks-modal-outer-div">
+    <div class="col-12">
+        <div class="card shadow-card"></div>
+        <div class="card">
+            <div class="card-body px-0">
+                <div class="row ">
+                    <div class="col-12 m-auto">
+                        <div class="thanks-modal-inner-div">
+                            <h4 class="text-center">{{ 'help.thanks_modal.title' | translate }}
+                            </h4>
+
+                            <ng-container *ngIf="ticket">
+                                <p class="text-center fw-normal m-0 sf-pro-medium" [innerHtml]=" 'help.thanks_modal.message' | translate: {ticket : ticket} ">
+                                </p>
+                            </ng-container>
+
+                            <ng-container *ngIf="contactTxt">
+                                <p class="text-center sf-pro-medium custom-black">{{ contactTxt }}</p>
+                            </ng-container>
+
+
+
+
+                            <div class="text-center">
+                                <img src="assets/images/help/thanks-email.png" class="thanks-img"
+                                    alt="thanks-email.png" [class.reduce-margin]="ticket">
+                            </div>
+
+                            <br>
+
+                            <div class="col-12 col-md-11 col-lg-11 m-auto">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <button type="submit" class="btn btn-primary mb-1 rounded-pill  w-100"
+                                        (click)="close()">
+                                        <span class="mb-0 flex-fill sf-pro-medium text-white text-center">{{ 'header.home' | translate }}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,183 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/scss/functions";
+
+* {
+    scrollbar-width: thin !important;
+}
+
+:root {
+
+     // COLOR ROOTS START --------------- ///////
+     --color-primary: #6365EF;
+     --color-primary-light: #E2E4FC;
+     --color-secondary: #F5F6FD;
+     --color-dark: #303030;
+     --color-dark-secondary: #4F4F4F;
+     --color-dark-disabled: #747373;
+     --color-dark-muted: #E6E6E6;
+     --color-success: #00C853;
+     --color-danger: #FF2C2C;
+     --color-white: #fff;
+     --color-white-light: #ffffff8a;
+     // COLOR ROOTS FINISH --------------- ///////
+ 
+     // fonts //////
+     --g-font-bold: "tt-firs-neue-trial-bold";
+     --g-font-semibold: "tt-firs-neue-trial-demibold";
+     --g-font-medium: "tt-firs-neue-trial-medium";
+     --g-font-regular: "tt-firs-neue-trial-regular";
+ 
+     --sf-pro-regular: "sf-pro-regular"
+     --sf-pro-medium: "sf-pro-medium";
+
+
+
+    --background-color: rgb(245,244,251);
+    --t-disabled: #747373; 
+    --border-light: #E6E6E6;
+    --border-nav-item: #EBEBEB;
+    --primary-color: #6365EF;
+    --primary-light-color: #6365EF82;
+    --secondary-color: #E6E6E6;
+    --error-color: #FF2C2C;
+    --success-color: #00C853;
+    --background-gray: #E8E8E8;
+    --success-button-bg-color: #2D9563;
+    --delete-button-bg-color: #D92D20;
+
+    --text-color: #303030;
+    --text-secondary-color: #4F4F4F;
+    --hover-background: #E9E9FB;
+    --background-primary-light: #E2E4FC;
+    --bs-accordion-active-color: #FFF;
+    
+    // Modal
+    --modal-background-color: #FFF;
+    --cancel-button-border-color: #D0D5DD;
+    --modal-header-text-color: #101828;
+    --modal-sub-header-text-color: #475467;
+    --modal-header-text-size: 18px;
+    --modal-sub-header-text-size: 14px;
+
+    // ripple opacity
+    --ripple-opacity: 0.1;
+
+    --bs-border-radius: 1rem;
+    // otp input border color
+    --otp-input-border: #e0e0e0;
+
+}
+
+$theme-colors: (
+    primary: #6365EF,
+    secondary: #E6E6E6
+);
+
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px,
+//   xxl: 1450px
+// ) ;
+
+// // $container-max-widths: (
+// //   sm: 90%,
+// //   md: 90%,
+// //   lg: 80%,
+// //   xl: 80%,
+// //   xxl: 80%
+// // );
+
+// $container-max-widths: (
+//   sm: 90%,
+//   md: 90%,
+//   lg: 80%,
+//   xl: 86vw,
+//   xxl: 85vw
+// );
+
+body {
+    background-color: var(--background-color);
+
+    .modal-sm{
+        --bs-modal-width: 400px;        // for customer add/edit, plan info, subscriber info modals
+    }
+
+    .modal-vw-35{
+        --bs-modal-width: 35vw;        // for customer add/edit, plan info, subscriber info modals
+    }
+   
+    .modal-vw-40{
+        --bs-modal-width: 40vw;        // for customer add/edit, plan info, subscriber info modals
+    }
+
+    ::-webkit-scrollbar {
+        // background-color:#fff;
+        width:  10px;
+        height: 5px;
+    }
+    /* background of the scrollbar except button or resizer */
+    ::-webkit-scrollbar-track {
+        // background-color:#fff
+    }
+    ::-webkit-scrollbar-track:hover {
+        // background-color:#f4f4f4
+    }
+    /* scrollbar itself */
+    ::-webkit-scrollbar-thumb {
+        background-color:darkgray;
+        border-radius:16px;
+        // border:5px solid #fff
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color:#a0a0a5;
+        // border:4px solid #f4f4f4
+    }
+
+    ::-webkit-scrollbar-button {
+        width: 0px; //for horizontal scrollbar
+        height: 25px; //for vertical scrollbar
+      }
+}
+
+textarea:focus, input:focus, .form-control:focus, .btn:focus{
+    outline: none !important;
+    box-shadow: unset !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-danger {
+    color: var(--color-danger) !important;
+}
+
+.text-uderline {
+    text-decoration: underline !important;
+}
+
+@import "bootstrap/scss/bootstrap";
+@import './assets/scss/authentcation';
+@import './assets/scss/landing-page';
+@import './assets/scss/fonts';
+@import './assets/scss/dialog';
+@import './assets/scss/modal';
+@import './assets/scss/common';
+@import './assets/scss/plans-page';
+@import './assets/scss/account-settings';
+@import './assets/scss/mobile-responsive';
+@import './assets/scss/tablet-responsive';
+@import './assets/scss/large-screen-responsive';
+@import './assets/scss/tooltip';
+@import './assets/scss/rewards';
+@import './assets/scss/order-summary';
+// @import './assets//scss/tooltip';
+
+
+@import './assets/scss/color';
+@import './assets/scss/variables';
+@import './assets/scss/form';
+@import './assets/scss/landing-common';

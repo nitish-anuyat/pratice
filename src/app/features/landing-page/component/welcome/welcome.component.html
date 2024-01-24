@@ -1,0 +1,153 @@
+<!-- <section class="welcome-div"> -->
+<section class="welcome-container page-padding-top-medium">
+    <div class="container">
+        <app-page-title [title]=" 'landing.user.title' | translate:{ userName: userDetails.firstName }"></app-page-title>
+
+
+
+        <div class="page-explore-card-container">
+            <div class="page-explore-card-shadow"></div>
+            <div class="page-explore-card g-bg-white explore-welcome-div">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="welcome-card welcome-card-1">
+                            <div class="welcome-card-1-left">
+                                <p class="welcome-card-head">
+                                    {{ 'my_plan.data_balance' | translate }}
+                                </p>
+                                <p class="data-balance-subhead-primary">
+                                    <ng-container *ngIf="dataUsage?.total_data_size_in_MB; else noActivePlan">
+                                        <!-- {{ dataUsage?.used_data_size_in_MB | internetUsage }} / {{ dataUsage?.total_data_size_in_MB | internetUsage }} -->
+                                        {{ dataUsage?.used_data_size_in_MB | internetUsage : dataUsage?.total_data_size_in_MB }}
+                                    </ng-container>
+                                    <ng-template #noActivePlan>
+                                       <span class="data-balance-subhead"> 0.00 KB </span>
+                                    </ng-template>
+                                </p>
+                            </div>
+                            <div class="welcome-card-1-right">
+                                <ngx-gauge type="full" [value]="usageInPercent" [thick]="15" [max]="100" 
+                                foregroundColor="#6365EF" backgroundColor="#E6E6E6" *ngIf="isBrowser" append="%" id="dataUsageGauge"></ngx-gauge>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="welcome-card welcome-card-2">
+                            <div class="welcome-card-2-left">
+                                <p class="welcome-card-head">
+                                    {{ 'my_plan.plan_status' | translate }}:
+                                </p>
+                                <p class="welcome-card-status-indicator" [ngClass]=" activeSubscription?.status ? 'active-status' : 'inactive-status'">
+                                    <span class="status-indicator"></span>
+                                    {{ activeSubscription?.status || 'Inactive' }} 
+                                </p>
+                            </div>
+                            <div class="welcome-card-2-right">
+                                <img [src]="'assets/images/landing-page/'+ (activeSubscription?.status ? 'plan-active-status' : 'plan-inactive-status') +'.png'" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="welcome-card welcome-card-3">
+                            <div class="welcome-card-3-left">
+                                <div *ngIf="activeSubscription?.data; else noActivePlanDetails" class="welcome-card-3-left-flex">
+                                    <p class="welcome-card-head">
+                                        {{ activeSubscription.name }} :
+                                    </p>
+                                    <div class="my-auto">
+                                        <p class="card-3-subhead mb-1">
+                                            {{ 'plans.plan_detail' | translate:{ data : activeSubscription.data, validity: activeSubscription.validity} }}<span class="text-capitalize"> {{ (activeSubscription.validity > 1 ? 'plans.days' : 'plans.day') | translate}} </span>
+                                        </p>
+                                        <p class="card-3-helping-text d-none d-md-block mb-0" [innerHTML]="activeSubscription.expiryDate | dateDifference"></p>
+                                    </div>
+                                </div>
+                                <ng-template #noActivePlanDetails>
+                                    <div class="welcome-card-3-left-flex">
+                                        <p class="welcome-card-head"> {{ 'landing.user.no_plan' | translate}}:</p>
+                                        <div>
+                                            <p class="card-3-helping-text m-auto">
+                                                 {{ 'landing.user.supporting_text' | translate}}
+                                            </p>
+                                            <a routerLink="/choose-destination" class="card-3-subhead m-md-auto me-md-0"> {{ 'landing.user.explore_plan' | translate}}.</a>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </div>
+                            <div class="welcome-card-3-right">
+                                <img src="assets/images/landing-page/plan.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- will delete this after testing this functionality -->
+        <!-- <div class="page-details-card  mx-auto mb-1">
+            <div class="card shadow-card"></div>
+            <div class="card">
+                <div class="row m-0">
+                    <div class="col-12 col-lg-4 p-3 p-lg-4">
+                        <div class="card-col d-flex justify-content-between">
+                            <div>
+                                <p class="heading data-balance-heading">Data Balance</p>
+                                <p class="supporting-text">
+                                    <ng-container *ngIf="dataUsage?.total_data_size_in_MB; else noActivePlan">
+                                        {{ dataUsage?.used_data_size_in_MB | internetUsage : dataUsage?.total_data_size_in_MB }}
+                                    </ng-container>
+                                    <ng-template #noActivePlan>
+                                       <span class="inactive-data-remain"> 0.00 KB </span>
+                                    </ng-template>
+                                </p>
+                            </div>
+                            <div>
+                                <ngx-gauge type="full" [value]="usageInPercent" [thick]="15" [max]="100" 
+                                foregroundColor="#6365EF" backgroundColor="#E6E6E6" *ngIf="isBrowser" append="%" id="dataUsageGauge"></ngx-gauge>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 p-3 pt-0 p-lg-4 px-lg-0">
+                        <div class="card-col d-flex justify-content-between plan-status-section flex-row-reverse flex-lg-row">
+                            <div class="d-flex d-lg-block w-100">
+                                <p class="heading my-auto me-auto">Plan Status:</p>
+                                <p class="supporting-text d-flex my-auto mt-lg-2 text-capitalize" [ngClass]=" activeSubscription?.status ? 'active-status' : 'inactive-status'">
+                                    <span class="status-indicator me-2 d-block my-auto"></span>
+                                    {{ activeSubscription?.status || 'Inactive' }} 
+                                </p>
+                            </div>
+                            <div >
+                                <img [src]="'assets/images/landing-page/'+ (activeSubscription?.status ? 'plan-active-status' : 'plan-inactive-status') +'.png'" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 p-3 pt-0 p-lg-4">
+                        <div class="card-col d-flex justify-content-between plan-details-section flex-row-reverse flex-lg-row">
+                            <div *ngIf="activeSubscription?.data; else noActivePlanDetails" class="d-flex d-lg-block w-100 active-sub-div">
+                                <p class="heading my-auto me-auto">{{ activeSubscription.name }} :</p>
+                                <div class="my-auto">
+                                    <p class="supporting-text my-auto">
+                                        {{ activeSubscription.data }} for {{ activeSubscription.validity }} <span class="text-capitalize">Day{{ activeSubscription.validity > 1 ? 's' : ''}} </span>
+                                    </p>
+                                    <p class="helping-text d-none d-md-block mb-0" [innerHTML]="activeSubscription.expiryDate | dateDifference"></p>
+                                </div>
+                            </div>
+                            <ng-template #noActivePlanDetails>
+                                <div class="d-flex d-lg-block w-100 flex-wrap">
+                                    <p class="heading my-auto">No Plan :</p>
+                                    <p class="no-plan-text sf-pro-regular m-auto">
+                                        You do not have any active plan. 
+                                    </p>
+                                    <a routerLink="/choose-destination" class="sf-pro-regular m-md-auto me-md-0"> Explore Plans to continue.</a>
+                                </div>
+                            </ng-template>
+                            <div>
+                                <img src="assets/images/landing-page/plan.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>

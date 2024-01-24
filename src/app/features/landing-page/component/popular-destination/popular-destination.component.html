@@ -1,0 +1,137 @@
+<!-- <section class="section-div popular-destination-section overflow-hidden" [class.user-custom-spacing]="userDetails">
+    <div class="mid">
+        <div class="section-header">
+            <p class="heading tt-firs-semibold">Popular Destinations</p>
+            <p class="helping-text">View the most popular destinations where we have helped customers stay connected the most!</p>
+        </div>
+        <div class="container destinations" [class.h-auto]="showAll">
+            <ng-container *ngIf="!showAll else showAllDestinations">
+                <div class="row justify-content-between destinations-inner-perent flex-nowrap flex-md-wrap" 
+                gbDraggable breakPoint="md" (dragStart)="onDragStart($event)" (dragEnd)="onDragEnd($event)" [ngClass]="{ 'positive-transform': activeIndex == 0, 'negative-transform': activeIndex == 2}">
+                    <div class="box" *ngFor="let country of countries | slice:0:3 ;let bIndex=index; trackBy: trackCountries" [style.background]="'url(' +country.imageUrl +'),' + colorGradient" [class.active]="activeIndex == bIndex">
+                        <p class="mt-4 ms-md-2 ms-lg-4 tt-firs-semibold">{{ country.name }}</p>
+                        <button class="btn explore-btn me-auto ms-md-2 ms-lg-4 mt-auto mb-4 text-primary" [routerLink]="'/plans/'+country.name">Explore Plans</button>
+                    </div>
+                </div>
+                <div class="browse-plan">
+                    <button class="btn browse-plan-button btn-primary" (click)="showAll = true">
+                        View All 
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="call_made">
+                                <mask id="mask0_693_18961" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                    <rect id="Bounding box" width="24" height="24" fill="#D9D9D9"/>
+                                </mask>
+                                <g mask="url(#mask0_693_18961)">
+                                    <path id="call_made_2" d="M5.4 20L4 18.6L15.6 7H9V5H19V15H17V8.4L5.4 20Z" fill="white"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </ng-container>
+            <ng-template #showAllDestinations>
+                <div class="d-flex justify-content-center mb-3">
+                    <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-svg arrow-up-svg cursor-pointer" (click)="showAll = false">
+                        <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z"/>
+                    </svg>
+                </div>
+                <div class="row countries-result-section m-md-4 m-2">
+                    <ng-container *ngFor="let country of countries; trackBy: trackCountries;">
+                        <div class="col-md-6 col-lg-4 country-details">
+                            <div class="d-flex align-items-center">
+                                <img *ngIf="country.iso3code" [src]="'/assets/flags/'+ (country.iso3code | lowercase) +'.svg'" class="flag-style">
+                                <div *ngIf="!country.iso3code" class="flag-style"></div>
+                                <h6 class="country-name my-auto">{{country.name}}</h6>
+                            </div>
+                            <div class="d-flex mt-2">
+                                 <p class="my-auto sf-pro-regular helping-text">Plans starting from <span class="plan-pricing" *ngIf="defaultCurrency">{{ country.startingPrice | currency: defaultCurrency.currency :'symbol': '1.0-2'}} </span></p>
+                                <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-svg ms-auto cursor-pointer" [routerLink]="'/plans/'+country.name">
+                                    <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-outline-primary bg-white text-primary rounded-pill" (click)="showAll = false">
+                        Collapse
+                        <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="back-arrow-svg">
+                            <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</section> -->
+
+
+<section class="popular-destination-parent" [class.user-custom-spacing]="userDetails">
+    <div class="container-lg">
+        <div class="popular-destination-text-group">
+            <p class="destination-heading g-font-semibold g-color-dark" [innerHtml]=" 'landing.destinations.title' | translate "></p>
+            <p class="destination-text g-font-medium g-color-primary"> {{ 'landing.destinations.sub_details' | translate }}</p>
+        </div>
+        <div class="country-destinations-card" [class.h-auto]="showAll">
+            <ng-container *ngIf="!showAll else showAllDestinations">
+                <div class="card-row" gbDraggable breakPoint="md" (dragStart)="onDragStart($event)" (dragEnd)="onDragEnd($event)" [ngClass]="{ 'positive-transform': activeIndex === 0, 'negative-transform': activeIndex === 2}">
+                    <div class="card-style" (click)="onCardClick(bIndex)" *ngFor="let country of countries | slice:0:3 ;let bIndex=index; trackBy: trackCountries" [style.background]="'url(' +country.imageUrl +'),' + colorGradient" [class.active]="activeIndex === bIndex">
+                        <p class="card-country-name g-color-white g-font-semibold">{{ country.name }}</p>
+                        <button class="btn explore-plan-btn sf-pro-medium g-bg-white g-color-primary" [routerLink]="'/plans/'+country.name"> {{ 'landing.destinations.explore_plans' | translate }}</button>
+                    </div>
+                </div>
+                <div class="view-all-btn-div">
+                    <button class="btn view-all-btn g-bg-primary g-color-white sf-pro-medium" (click)="showAll = true">
+                        {{ 'form.view_all_text' | translate }}
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="call_made">
+                                <mask id="mask0_693_18961" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                    <rect id="Bounding box" width="24" height="24" fill="#D9D9D9"/>
+                                </mask>
+                                <g mask="url(#mask0_693_18961)">
+                                    <path id="call_made_2" d="M5.4 20L4 18.6L15.6 7H9V5H19V15H17V8.4L5.4 20Z" fill="white"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </ng-container>
+            <ng-template #showAllDestinations>
+                <div class="view-all-up-arrow">
+                    <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-svg arrow-up cursor-pointer" (click)="showAll = false">
+                        <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z"/>
+                    </svg>
+                </div>
+                <div class="view-all-destination">
+                    <ng-container *ngFor="let country of countries; let i = index; trackBy: trackCountries;">
+                        <div class="country-destination"  [ngClass]="{'card-border-top': i !== 0 && i !== 1 && i !== 2}">
+                            <div class="countries-flag-name-div">
+                                <div class="countries-flag-div">
+                                    <img *ngIf="country.iso3code" [src]="'/assets/flags/'+ (country.iso3code | lowercase) +'.svg'" class="w-100 h-100 flag-icon">
+                                </div>
+                                <div *ngIf="!country.iso3code"></div>
+                                <h6 class="country-name g-color-dark g-font-medium">{{country.name}}</h6>
+                            </div>
+                            <div class="country-text-arrow-div">
+                                <p class="country-text sf-pro-medium">{{ 'destinations.plans_starting_from' | translate}} <span class="country-plan-pricing g-color-primary" *ngIf="defaultCurrency">{{ country.startingPrice | currency: defaultCurrency.currency :'symbol': '1.0-2'}} </span></p>
+                                <div class="card-details-arrow">
+                                    <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="g-color-primary cursor-pointer" [routerLink]="'/plans/'+country.name">
+                                        <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="close-btn-div">
+                    <button class="btn close-btn sf-pro-medium g-color-primary" (click)="showAll = false">
+                        {{ 'landing.destinations.collapse' | translate }}
+                        <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="collapse-back-arrow">
+                            <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</section>

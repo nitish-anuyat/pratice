@@ -1,0 +1,58 @@
+<div
+  class="container vh-lg-100 account-settings page-padding-top-medium"
+>
+  <app-page-title
+    [title]="'header.settings' | translate "
+    [subDetails]=" (selectedSection === 'currency' ? 'settings.currency_sub_details' : 'settings.sub_details') | translate"
+    [titleStyle]=" {subDetails: 'px-md-0 ' + (selectedSection ==='currency' ? 'px-5' : 'px-3') }"
+    backToRoute="/"
+  ></app-page-title>
+
+  <!-- new setting v2.0 -->
+
+  <div class="page-explore-card-container hs-page-explore">
+    <div class="page-explore-card setting-explore-container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="g-bg-white tab-hs border-hs padding-hs">
+            <button class="btn w-100" *ngIf="this.userDetails" [ngClass]="selectedSection === 'account' ? 'hs-btn-primary' : 'hs-btn-secondary'" routerLink="/settings/account" (click)="selectedSection = 'account';">
+              {{ 'settings.my_account' | translate }}
+            </button>
+            <button class="btn w-100" [ngClass]="selectedSection === 'currency' ? 'hs-btn-primary' : 'hs-btn-secondary'" routerLink="/settings/currency" (click)="selectedSection = 'currency';" *ngIf="configData?.currencyConversionMasterEnabled">
+              {{ 'settings.currency' | translate }}
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- will detete the below section after testing the app -->
+
+  <!-- <div class="page-details-card mx-auto mb-1">
+    <div class="row">
+      <div class="col-md-12 col-lg-4 mb-3 mb-md-4">
+        <div class="card">
+          <div class="card-body d-flex d-md-flex d-lg-block button-group">
+            <button class="btn w-100" *ngIf="this.userDetails" [ngClass]="selectedSection === 'account' ? 'btn-primary' : 'btn-secondary'" routerLink="/settings/account" (click)="selectedSection = 'account';">
+              My Account
+            </button>
+            <button class="btn w-100" [ngClass]="selectedSection === 'currency' ? 'btn-primary' : 'btn-secondary'" routerLink="/settings/currency" (click)="selectedSection = 'currency';" *ngIf="configData?.currencyConversionMasterEnabled">
+              Currency
+            </button>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-12 col-lg-8 mb-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div> -->
+
+
+</div>

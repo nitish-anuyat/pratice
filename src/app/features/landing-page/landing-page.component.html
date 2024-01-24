@@ -1,0 +1,55 @@
+<!-- Carousel - START -->
+<app-carousel *ngIf="!userDetails"></app-carousel>
+<!-- Carousel - END -->
+
+<!-- User Welcome - START -->
+<app-welcome *ngIf="userDetails" [userDetails]="userDetails"></app-welcome>
+<!-- User Welcome - END -->
+
+<!-- Popular Destination - START -->
+<app-popular-destination [userDetails]="userDetails"></app-popular-destination>
+<!-- Popular Destination - END -->
+
+<!-- Trending Plan - START -->
+<div #trendingPlanSection  [style.height]="trendingPlanRendered ? 'auto' : '200px'"></div>
+<!-- <app-trending-plan></app-trending-plan> -->
+<!-- Trending Plan - END -->
+
+<!-- eSIM - START -->
+<div #eSimInfoSection  [style.height]="eEimRendered ? 'auto' : '200px'"></div>
+<!-- <app-e-sim-info></app-e-sim-info> -->
+<!-- eSIM - END -->
+
+<!-- Testimonials - START -->
+<div #testimonialSection  [style.height]="eEimRendered ? 'auto' : '200px'"></div>
+<!-- Testimonials - END -->
+
+<!-- Map - START -->
+<div #mapSection  [style.height]="mapRendered ? 'auto' : '200px'"></div>
+<!-- Map - END -->
+
+<!-- FAQ - START -->
+<section class="landing-faq-section faq-div">
+    <div class="faq-heading-div">
+        <p class="landing-faq-heading g-color-dark g-font-semibold">{{ 'faq.heading' | translate }}</p>
+    </div>
+    <div class="container">
+        <app-faq></app-faq>
+    </div>
+    <div class="view-all-btn-div">
+        <button class="btn view-all-btn g-bg-primary g-color-white sf-pro-medium" routerLink="/FAQ">
+            {{ 'form.view_all_text' | translate }}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="call_made">
+                    <mask id="mask0_693_18961" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <rect id="Bounding box" width="24" height="24" fill="#D9D9D9"/>
+                    </mask>
+                    <g mask="url(#mask0_693_18961)">
+                        <path id="call_made_2" d="M5.4 20L4 18.6L15.6 7H9V5H19V15H17V8.4L5.4 20Z" fill="white"/>
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </div>
+</section>
+<!-- FAQ - END -->

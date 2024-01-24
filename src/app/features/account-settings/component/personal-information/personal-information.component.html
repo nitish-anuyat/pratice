@@ -1,0 +1,362 @@
+<div class="account-setting-card">
+    <div class="form-container">
+        <p class="form-heading-large">{{ 'settings.personal_info.title' | translate }}</p>
+
+        <div class="user-account-name">
+            <img [src]="userDetails?.profileImageURL || 'assets/images/landing-page/user.png'" alt="Avatar" class="user-account-img">
+            <p class="user-account-text">{{ userDetails?.displayName }}</p>
+        </div>
+
+        <form [formGroup]="accountSettingForm" (ngSubmit)="updateProfile()">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="fullName" class="hs-form-label mb-2">
+                            {{ 'form.first_name.title' | translate }}
+                        </label>
+                        <input type="text" class="form-control hs-form-input"
+                            formControlName="firstName" [placeholder]="'form.first_name.title' | translate"
+                            [ngClass]="{'err': submitted && f.firstName.errors}" (input)="onInput($event, 'firstName')">
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.firstName.valid && !f.firstName.pristine) || (f.firstName.errors && submitted)">
+                                <span class="small"
+                                    *ngIf="submitted && (f.firstName.errors.required || f.firstName.errors.spacesOnly)">
+                                    {{ 'form.first_name.required' | translate }}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="lastName" class="hs-form-label mb-2">
+                            {{ 'form.last_name.title' | translate }}
+                        </label>
+                        <input type="text" class="form-control hs-form-input"
+                        formControlName="lastName" [placeholder]="'form.last_name.title' | translate"
+                        [ngClass]="{'err': submitted && f.lastName.errors}" (input)="onInput($event, 'lastName')">
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.lastName.valid && !f.lastName.pristine) || (f.lastName.errors && submitted)">
+                                <span class="small"
+                                    *ngIf="submitted && (f.lastName.errors.required || f.lastName.errors.spacesOnly)">
+                                    {{ 'form.last_name.required' | translate }}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="email" class="hs-form-label mb-2">
+                            {{ 'form.email.title' | translate }}
+                        </label>
+                        <input type="text" class="form-control hs-form-input"
+                        formControlName="email" [placeholder]=" 'form.email.title' | translate "
+                        [ngClass]="{'err': submitted && f.email.errors}">
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.email.valid && !f.email.pristine) || (f.email.errors && submitted)">
+                                <span class="small" *ngIf="submitted && f.email.errors.required">
+                                    {{ 'form.email.required' | translate}}
+                                </span>
+                            </span>
+                            <span class="help-block ng-invalid text-danger" *ngIf="f.email.errors && submitted">
+                                <span class="small" *ngIf="submitted && f.email.errors.email">
+                                    {{ 'form.email.invalid' | translate}}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="mobileNumber" class="hs-form-label mb-2">
+                            {{ 'form.mobile_number.title' | translate }}
+                        </label>
+                        <div class="d-flex">
+                            <div class="form-control mobile-number-border"
+                                [ngClass]="{'err': submitted && f.mobile.errors}">
+                                <div class="dropdown">
+                                    <button class="btn btn-ghost dropdown-toggle form-control mobile-selection"
+                                        [disabled]="!isEdit" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ countryDialCode }}
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li class="country-search-box">
+                                            <span class="search-icon-div">
+                                                <svg class="img-fluid" fill="#747373" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" width="18px" height="18px">
+                                                    <path
+                                                        d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z" />
+                                                </svg>
+                                            </span>
+                                            <input type="text" [placeholder]=" 'form.search_text' | translate" formControlName="country"
+                                                class="form-control search-form-input">
+                                        </li>
+                                        <span class="country-list">
+                                            <li class="country-options row"
+                                                *ngFor="let country of countries | searchFilter : f?.country?.value : 'name'; trackBy: trackCountries"
+                                                (click)="countryDialCode = country?.dial_code;">
+                                                <span class="col-3">{{ country?.dial_code }}</span> <span
+                                                    class="col-9">{{ country?.name }}</span>
+                                            </li>
+                                        </span>
+                                    </ul>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control acc-setting-form-input mobile-input"
+                                (keypress)="isNumber($event)" formControlName="mobile" [placeholder]=" 'form.mobile_number.title' | translate "
+                                [ngClass]="{'err': submitted && f.mobile.errors}">
+                        </div>
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.mobile.valid && !f.mobile.pristine) || (f.mobile.errors && submitted)">
+                                <span class="small" *ngIf="submitted && f.mobile.errors.required">
+                                    {{ 'form.mobile_number.required' | translate }}
+                                </span>
+                                <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.minlength">
+                                    {{ 'form.mobile_number.min_length_error' | translate:{ minLength : f.mobile.errors?.minlength?.requiredLength} }}
+                                </span>
+                                <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.maxlength">
+                                    {{ 'form.mobile_number.max_length_error' | translate:{ maxLength : f.mobile.errors?.maxlength?.requiredLength} }}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="row mt-3" *ngIf="!isEdit">
+
+                <div class="col-md-6 col-lg-6 mt-1"></div>
+                <div class="col-md-6 col-lg-6 mt-1">
+                    <div class="form-group mb-1">
+                        <button type="button" class="btn hs-btn-primary border-radius-100 w-100"
+                            (click)="edit()">
+                            {{ 'form.edit_text' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isEdit">
+                <div class="col-xxl-6"></div>
+                <div class="col-6 col-xxl-3 mt-1">
+                    <div class="form-group mb-1">
+                        <button type="button" class="btn hs-btn-secondary border-radius-100 w-100" (click)="cancel()">
+                            {{ 'form.cancel_text' | translate }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-6 col-xxl-3 mt-1">
+                    <div class="form-group mb-1">
+                        <button type="submit" name="action" value="edit"
+                            class="btn hs-btn-primary border-radius-100 w-100">
+                            {{ 'form.save_changes_text' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+<!-- will delete after testing -->
+
+<!-- <div class="acc-setting-card ">
+    <div class="form-section">
+        <h3 class="tt-firs-neue-trial-semibold form-heading mb-4 mt-1 font-size-18">Personal Information</h3>
+        <p class="mb-4 form-subheading sf-pro-regular text-danger" *ngIf="err"> {{ err }}</p>
+        <div class="row d-flex align-items-center mb-4 mt-4 mb-xs-2 mt-xs-2">
+            <div class="col-auto">
+                <img [src]="userDetails?.profileImageURL || 'assets/images/landing-page/user.png'" alt="Avatar"
+                    class="rounded-circle profile-image">
+            </div>
+            <div class="col ps-0 ps-md-2">
+                <h4 class="tt-firs-neue-trial-semibold form-heading user-name mb-0"> {{ userDetails?.displayName }}</h4>
+            </div>
+        </div>
+
+        <form [formGroup]="accountSettingForm" (ngSubmit)="updateProfile()">
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="fullName" class=" tt-firs-neue-trial-medium mb-2 form-input-label">First
+                            Name</label>
+                        <input type="text" class="form-control auth-form-input acc-setting-form-input"
+                            formControlName="firstName" placeholder="First Name"
+                            [ngClass]="{'err': submitted && f.firstName.errors}" (input)="onInput($event, 'firstName')">
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.firstName.valid && !f.firstName.pristine) || (f.firstName.errors && submitted)">
+                                <span class="small"
+                                    *ngIf="submitted && (f.firstName.errors.required || f.firstName.errors.spacesOnly)">
+                                    First Name is required!
+                                </span>
+                                <span class="small" *ngIf="submitted && (f.firstName.errors.maxlength)">
+                                    First Name must be 32 characters long
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="fullName" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Last Name</label>
+                        <input type="text" class="form-control auth-form-input acc-setting-form-input"
+                            formControlName="lastName" placeholder="Last Name"
+                            [ngClass]="{'err': submitted && f.lastName.errors}" (input)="onInput($event, 'lastName')">
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.lastName.valid && !f.lastName.pristine) || (f.lastName.errors && submitted)">
+                                <span class="small"
+                                    *ngIf="submitted && (f.lastName.errors.required || f.lastName.errors.spacesOnly)">
+                                    Last Name is required!
+                                </span>
+                                <span class="small" *ngIf="submitted && (f.firstName.errors.maxlength)">
+                                    Last Name must be 32 characters long
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+           
+
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="email" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Email</label>
+                        <input type="email" class="form-control auth-form-input acc-setting-form-input"
+                            formControlName="email" placeholder="Email"
+                            [ngClass]="{'err': submitted && f.email.errors}">
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.email.valid && !f.email.pristine) || (f.email.errors && submitted)">
+                                <span class="small" *ngIf="submitted && f.email.errors.required">
+                                    Email is required!
+                                </span>
+                            </span>
+                            <span class="help-block ng-invalid text-danger" *ngIf="f.email.errors && submitted">
+                                <span class="small" *ngIf="submitted && f.email.errors.email">
+                                    Enter valid email!
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group mb-3">
+                        <label for="mobileNumber" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Mobile Number</label>
+                        <div class="d-flex">
+                            <div class="form-control mobile-number-border"
+                                [ngClass]="{'err': submitted && f.mobile.errors}">
+                                <div class="dropdown">
+                                    <button class="btn btn-ghost dropdown-toggle form-control mobile-selection"
+                                        [disabled]="!isEdit" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ countryDialCode }}
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li class="country-search-box">
+                                            <span class="search-icon-div">
+                                                <svg class="img-fluid" fill="#747373" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" width="18px" height="18px">
+                                                    <path
+                                                        d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z" />
+                                                </svg>
+                                            </span>
+                                            <input type="text" placeholder="Search" formControlName="country"
+                                                class="form-control search-form-input">
+                                        </li>
+                                        <span class="country-list">
+                                            <li class="country-options row"
+                                                *ngFor="let country of countries | searchFilter : f?.country?.value : 'name'; trackBy: trackCountries"
+                                                (click)="countryDialCode = country?.dial_code;">
+                                                <span class="col-3">{{ country?.dial_code }}</span> <span
+                                                    class="col-9">{{ country?.name }}</span>
+                                            </li>
+                                        </span>
+                                    </ul>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control acc-setting-form-input mobile-input"
+                                (keypress)="isNumber($event)" formControlName="mobile" placeholder="Mobile Number"
+                                [ngClass]="{'err': submitted && f.mobile.errors}">
+                        </div>
+                        <div>
+                            <span class="help-block ng-invalid text-danger"
+                                *ngIf="(!f.mobile.valid && !f.mobile.pristine) || (f.mobile.errors && submitted)">
+                                <span class="small" *ngIf="submitted && f.mobile.errors.required">
+                                    Mobile number is required!
+                                </span>
+                                <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.minlength">
+                                    Mobile Number must be of min. {{ f.mobile.errors?.minlength?.requiredLength }} digits!
+                                </span>
+                                <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.maxlength">
+                                    Mobile Number must be of max. {{ f.mobile.errors?.maxlength?.requiredLength }} digits!
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-3">
+
+                <div class="col-md-6 col-lg-6 mt-1"></div>
+                <ng-container *ngIf="!isEdit">
+
+                    <div class="col-md-6 col-lg-6 mt-1">
+                        <div class="form-group mb-1">
+                            <button type="button" class="btn btn-primary  rounded-pill px-4 py-2 w-100"
+                                (click)="edit()">
+                                <p class="mb-0 flex-fill sf-pro-regular text-white text-center">Edit</p>
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="isEdit">
+                    <div class="col-6 col-md-3 col-lg-3 mt-1">
+                        <div class="form-group mb-1">
+
+                            <button type="button" class="btn btn-custom  rounded-pill   w-100" (click)="cancel()">
+                                <p class="mb-0 flex-fill sf-pro-regular text-black-50 fw-bold text-center font-size-14">
+                                    Cancel</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 col-lg-3 mt-1">
+                        <div class="form-group mb-1">
+
+                            <button type="submit" name="action" value="edit"
+                                class="btn btn-primary rounded-pill w-100">
+                                <p class="mb-0 flex-fill sf-pro-regular text-white text-center font-size-14">Save
+                                    Changes</p>
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+        </form>
+    </div>
+</div> -->

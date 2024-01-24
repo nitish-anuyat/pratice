@@ -1,0 +1,48 @@
+.modal-dialog.bg-transparent {
+    --modal-background-color: transparent;
+}
+.modal-content {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+
+    .es-modal{
+        .modal-header-flex{
+            display: flex;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+        .modal-header-text{
+            color: var(--modal-header-text-color);
+            font-size: var(--modal-header-text-size);
+            font-weight: 600;
+        }
+
+        .modal-sub-header-text{
+            margin-top: 5px;
+            color: var(--modal-sub-header-text-color);
+            font-style: normal;
+            font-weight: 400;
+            font-size: var(--modal-sub-header-text-size);
+            line-height: 20px;
+        }
+    }
+}
+
+.has-backdrop{
+    min-height: 100vh;
+    width: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(3px);
+}
+
+.modal{
+    @media (min-width: 1024px) {
+        &:has(.purchase-details-modal){
+            .has-backdrop{
+                height: 120%;
+            }
+        }
+    }   
+}

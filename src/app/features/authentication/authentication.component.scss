@@ -1,0 +1,40 @@
+.authentication-container{
+    background-color: var(--color-primary);
+    .authentication-left-container{
+        min-height: 100vh;
+        background: #fff url(/assets/images/auth/background.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        border-radius: 0 0 120px 0;
+        overflow: hidden;
+
+        @media (min-width: 1500px){
+            border-radius: 0 0 160px 0;
+        }
+
+        @media (max-height: 650px){
+            min-height: 900px;
+        }
+
+        @media (max-width: 1199px){
+            min-height: 100px;
+            border-radius: 0;
+            background: none;
+            background-color: var(--color-white);
+        }
+
+        @media (max-width: 767px){
+            min-height: 60px;
+        }
+    }
+
+    .authentication-right-container{
+        min-height: 100vh;
+
+        @media (max-height: 650px){
+            min-height: 900px;
+        }
+    }
+}
+

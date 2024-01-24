@@ -1,0 +1,117 @@
+.currency-inner-container{
+    border-right: 1px solid var(--color-dark-muted);
+}
+
+.currency-heading-bold{
+    color: var(--color-dark);
+    font-family: var(--g-font-semibold);
+    font-size: 24px;
+    line-height: 38px;
+    letter-spacing: -0.48px;
+}
+
+.currency-subheading{
+    color: var(--color-dark);
+    font-family: var(--g-font-medium);
+    font-size: 20px;
+    line-height: 36px;
+    letter-spacing: -0.4px;
+}
+
+.selected-currency-container{
+    border: 1px solid var(--color-dark-muted);
+    padding: 6px;
+    border-radius: 14px;
+    display: flex;
+}
+
+.selected-currency{
+    padding: 8px 14px;
+    border-radius: 14px;
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    font-family: var(--sf-pro-regular);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.currency-search-input{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-dark-muted);
+    padding: 10px 12px;
+    border-radius: 18px;
+
+    svg{
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    input{
+        border: none;
+        color: var(--color-dark-disabled);
+        font-family: var(--sf-pro-regular);
+        font-size: 14px;
+        line-height: 28px;
+        letter-spacing: -0.28px;
+        padding: 0;
+    }
+}
+
+
+.currency-dropdown-list-conatainer{
+    padding: 0px 24px 14px 0;
+    margin-top: 14px;
+    height: 255px;
+    overflow: auto;
+    .currency-dropdown-flex{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 14px 12px;
+
+        .country-symbol{
+            width: 55px;
+            flex-shrink: 0;
+            margin: 5px;
+            font-weight: 600;
+        }
+
+        .currency-dropdown-radio{
+            margin-left: auto;
+            position: relative;
+            display: block;
+            line-height: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            -webkit-user-select: none;
+            user-select: none;
+            
+            input {
+                position: absolute;
+                // opacity: 0;
+                cursor: pointer;
+                z-index: 1;
+                width: 18px;
+                height: 18px;
+            }
+
+            .checkmark{
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 18px;
+                width: 18px;
+                border-radius: 50%;
+                border: 2px solid var(--color-primary);
+                transition: all 0.3s;
+            }
+
+            input:checked ~ .checkmark {
+                background-color: var(--color-primary);
+                border-color: var(--color-primary);
+            }
+        }
+    }    
+}

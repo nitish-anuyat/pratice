@@ -1,0 +1,464 @@
+<div class="authentication-right-inner authentication-right-signup">
+    <p class="auth-right-head" [innerHtml]=" 'auth.sign_up.heading' | translate "></p>
+
+    <div class="auth-form-container bg-white">
+        <div class="form-container">
+            <p class="mb-3 form-subheading sf-pro-regular text-danger" *ngIf="errMessage"> {{ errMessage }}</p>
+
+            <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                <div class="row auth-signup-overflow">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="fullName" class="auth-form-label">{{ 'form.first_name.title' | translate }}</label>
+                            <input type="text" class="form-control auth-form-input auth-input-border" formControlName="firstName" [placeholder]="'form.first_name.title' | translate" [ngClass]="{'err': submitted && f.firstName.errors}" (input)="onInput($event, 'firstName')">
+                            <div>
+                                <span class="auth-help-block ng-invalid text-danger"
+                                    *ngIf="(!f.firstName.valid && !f.firstName.pristine) || (f.firstName.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.firstName.errors.required || f.firstName.errors.spacesOnly)">
+                                        {{ 'form.first_name.required' | translate }}
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.firstName.errors.maxlength)">
+                                        {{ 'form.first_name.length_error' | translate }}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="fullName" class="auth-form-label">{{ 'form.last_name.title' | translate}}</label>
+                            <input type="text" class="form-control auth-form-input auth-input-border" formControlName="lastName" [placeholder]="'form.last_name.title' | translate" [ngClass]="{'err': submitted && f.lastName.errors}" (input)="onInput($event, 'lastName')">
+                            <div>
+                                <span class="auth-help-block ng-invalid text-danger"
+                                    *ngIf="(!f.lastName.valid && !f.lastName.pristine) || (f.lastName.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.lastName.errors.required || f.lastName.errors.spacesOnly)">
+                                        {{ 'form.last_name.required' | translate}}
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.lastName.errors.maxlength)">
+                                        {{ 'form.last_name.length_error' | translate}}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="mobileNumber" class="auth-form-label">{{ 'form.mobile_number.title' | translate }}</label>
+                            <div class="d-flex auth-input-border auth-input-border-radius align-items-center">
+                                <div class="form-control mobile-number-border" [ngClass]="{'err': submitted && f.mobile.errors}">
+                                    <div class="dropdown">
+                                        <button class="btn btn-ghost dropdown-toggle form-control mobile-selection" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                          {{ countryDialCode }}
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li class="country-search-box"> 
+                                                <span class="search-icon-div">
+                                                    <svg class="img-fluid" fill="#747373" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px">
+                                                      <path
+                                                        d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" [placeholder]=" 'form.search_text' | translate" formControlName="country" class="form-control search-form-input">
+                                            </li>
+                                            <span class="country-list">
+                                                <li class="country-options row" *ngFor="let country of countries | searchFilter : f.country.value : 'name'; trackBy: trackCountries" (click)="countryDialCode = country.dial_code;">
+                                                    <span class="col-3">{{ country.dial_code }}</span> <span class="col-9">{{ country.name }}</span>
+                                                </li>
+                                            </span>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="tel" class="form-control auth-form-input mobile-input" formControlName="mobile" [placeholder]="'form.mobile_number.title' | translate" [ngClass]="{'err': submitted && f.mobile.errors}" (keypress)="$event.charCode >= 48 && 57 >= $event.charCode">
+                            </div>
+                            <div>
+                                <span class="auth-help-block ng-invalid text-danger"
+                                    *ngIf="(!f.mobile.valid && !f.mobile.pristine) || (f.mobile.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors.required">
+                                        {{ 'form.mobile_number.required' | translate }}
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.minlength" [innerHtml]=" 'form.mobile_number.min_length_error' | translate:{minLength : f.mobile.errors?.minlength?.requiredLength} ">
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.maxlength" [innerHtml]=" 'form.mobile_number.max_length_error' | translate:{maxLength : f.mobile.errors?.maxlength?.requiredLength} ">
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="email" class="auth-form-label"> {{ 'form.email.title' | translate }}</label>
+                            <input type="email" class="form-control auth-form-input auth-input-border" formControlName="email" [placeholder]=" 'form.email.title' | translate " [ngClass]="{'err': submitted && f.email.errors}">  
+                            <div>
+                                <span class="auth-help-block ng-invalid text-danger"
+                                    *ngIf="(!f.email.valid && !f.email.pristine) || (f.email.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.email.errors.required">
+                                        {{ 'form.email.required' | translate }}
+                                    </span>
+                                </span>
+                                <span class="auth-help-block ng-invalid text-danger" *ngIf="f.email.errors && submitted">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.email.errors.email">
+                                        {{ 'form.email.invalid' | translate }}
+                                    </span>
+                                </span>
+                            </div>          
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group" [class.mb-3]="!((!f.password.valid && !f.password.pristine) || (f.password.errors && submitted))">
+                            <label for="createPassword" class="auth-form-label">{{ 'form.create_password.title' | translate }}</label>
+                            <div class="d-flex auth-input-border auth-input-border-radius align-items-center">
+                                <input [type]="showPassword ? 'text' : 'password'" class="form-control auth-form-input auth-password-input" formControlName="password" [placeholder]=" 'form.create_password.placeholder' | translate" [ngClass]="{'err': submitted && f.password.errors}">
+                            
+                                <div class="svg svg-right password-visible-svg me-2"  [ngClass]="{'err': submitted && f.password.errors}">
+                                    <svg *ngIf="!showPassword" class="cursor-pointer m-auto" (click)="showPassword=!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 26 26" fill="none">
+                                        <mask id="mask0_60_45365" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                        <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_60_45365)">
+                                        <path d="M21.4487 24.4852L16.8987 19.9893C16.2668 20.1879 15.6305 20.3371 14.9899 20.4367C14.3485 20.5357 13.6848 20.5852 12.9987 20.5852C10.2723 20.5852 7.84384 19.8315 5.71328 18.3242C3.58273 16.8162 2.03898 14.8615 1.08203 12.4602C1.4612 11.5032 1.93967 10.6138 2.51745 9.79191C3.09523 8.97074 3.75425 8.23516 4.49453 7.58516L1.51536 4.55182L3.03203 3.03516L22.9654 22.9685L21.4487 24.4852ZM12.9987 17.3352C13.1973 17.3352 13.3822 17.3261 13.5534 17.3081C13.7253 17.29 13.9105 17.2539 14.1091 17.1997L8.25911 11.3497C8.20495 11.5484 8.16884 11.7336 8.15078 11.9055C8.13273 12.0767 8.1237 12.2615 8.1237 12.4602C8.1237 13.8143 8.59748 14.9655 9.54503 15.9138C10.4933 16.8614 11.6445 17.3352 12.9987 17.3352ZM20.907 17.8227L17.4674 14.4102C17.5938 14.1032 17.6931 13.7919 17.7654 13.4763C17.8376 13.16 17.8737 12.8213 17.8737 12.4602C17.8737 11.106 17.3999 9.95477 16.4524 9.00649C15.5041 8.05893 14.3529 7.58516 12.9987 7.58516C12.6376 7.58516 12.2989 7.62127 11.9825 7.69349C11.6669 7.76571 11.3556 7.87405 11.0487 8.01849L8.2862 5.25599C9.02648 4.94905 9.78481 4.71866 10.5612 4.56482C11.3376 4.41171 12.1501 4.33516 12.9987 4.33516C15.7251 4.33516 18.1536 5.0888 20.2841 6.59607C22.4147 8.10407 23.9584 10.0588 24.9154 12.4602C24.5001 13.5254 23.9541 14.5142 23.2774 15.4263C22.5999 16.3378 21.8098 17.1365 20.907 17.8227ZM15.8966 12.8393L12.6466 9.58932C13.1522 9.49905 13.6173 9.53949 14.0419 9.71066C14.4659 9.88255 14.8313 10.131 15.1383 10.456C15.4452 10.781 15.6666 11.1558 15.8024 11.5805C15.9374 12.0044 15.9688 12.424 15.8966 12.8393Z" fill="#747373"/>
+                                        </g>
+                                    </svg>
+                                    <svg *ngIf="showPassword" class="cursor-pointer m-auto" (click)="showPassword=!showPassword" width="20" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <mask id="mask0_171_38056" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                            <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_171_38056)">
+                                            <path d="M12.9999 17.333C14.3541 17.333 15.5051 16.859 16.453 15.9111C17.401 14.9632 17.8749 13.8122 17.8749 12.458C17.8749 11.1038 17.401 9.9528 16.453 9.00488C15.5051 8.05697 14.3541 7.58301 12.9999 7.58301C11.6458 7.58301 10.4947 8.05697 9.54679 9.00488C8.59888 9.9528 8.12492 11.1038 8.12492 12.458C8.12492 13.8122 8.59888 14.9632 9.54679 15.9111C10.4947 16.859 11.6458 17.333 12.9999 17.333ZM12.9999 15.383C12.1874 15.383 11.4968 15.0986 10.928 14.5299C10.3593 13.9611 10.0749 13.2705 10.0749 12.458C10.0749 11.6455 10.3593 10.9549 10.928 10.3861C11.4968 9.81738 12.1874 9.53301 12.9999 9.53301C13.8124 9.53301 14.503 9.81738 15.0718 10.3861C15.6405 10.9549 15.9249 11.6455 15.9249 12.458C15.9249 13.2705 15.6405 13.9611 15.0718 14.5299C14.503 15.0986 13.8124 15.383 12.9999 15.383ZM12.9999 20.583C10.3638 20.583 7.96242 19.8472 5.79575 18.3757C3.62909 16.9042 2.05825 14.9316 1.08325 12.458C2.05825 9.9844 3.62909 8.01183 5.79575 6.5403C7.96242 5.06877 10.3638 4.33301 12.9999 4.33301C15.636 4.33301 18.0374 5.06877 20.2041 6.5403C22.3708 8.01183 23.9416 9.9844 24.9166 12.458C23.9416 14.9316 22.3708 16.9042 20.2041 18.3757C18.0374 19.8472 15.636 20.583 12.9999 20.583Z" fill="#747373"/>
+                                        </g>
+                                    </svg> 
+                                </div>
+                            </div>
+                            <div>
+                                <p class="auth-help-block ng-invalid text-danger mb-0" *ngIf="(!f.password.valid && !f.password.pristine) || (f.password.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.password.errors.required">
+                                       {{ 'form.create_password.required' | translate }}
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.password.errors.pattern">
+                                        {{ 'form.create_password.pattern_error' | translate }}
+                                    </span>
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="reenterPassword" class="auth-form-label">{{ 'form.re_enter_password.title' | translate }}</label>
+                            <div class="d-flex auth-input-border auth-input-border-radius align-items-center">
+                                <input [type]="showReenterPassword ? 'text' : 'password'" class="form-control auth-form-input auth-password-input" formControlName="reenterPassword" [placeholder]=" 'form.re_enter_password.placeholder' | translate " [ngClass]="{'err': submitted && f.reenterPassword.errors}">  
+                                <div class="svg svg-right password-visible-svg me-2" [ngClass]="{'err': submitted && f.reenterPassword.errors}">
+                                    <svg *ngIf="!showReenterPassword" class="cursor-pointer m-auto" (click)="showReenterPassword=!showReenterPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 26 26" fill="none">
+                                        <mask id="mask0_60_45365" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                        <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_60_45365)">
+                                        <path d="M21.4487 24.4852L16.8987 19.9893C16.2668 20.1879 15.6305 20.3371 14.9899 20.4367C14.3485 20.5357 13.6848 20.5852 12.9987 20.5852C10.2723 20.5852 7.84384 19.8315 5.71328 18.3242C3.58273 16.8162 2.03898 14.8615 1.08203 12.4602C1.4612 11.5032 1.93967 10.6138 2.51745 9.79191C3.09523 8.97074 3.75425 8.23516 4.49453 7.58516L1.51536 4.55182L3.03203 3.03516L22.9654 22.9685L21.4487 24.4852ZM12.9987 17.3352C13.1973 17.3352 13.3822 17.3261 13.5534 17.3081C13.7253 17.29 13.9105 17.2539 14.1091 17.1997L8.25911 11.3497C8.20495 11.5484 8.16884 11.7336 8.15078 11.9055C8.13273 12.0767 8.1237 12.2615 8.1237 12.4602C8.1237 13.8143 8.59748 14.9655 9.54503 15.9138C10.4933 16.8614 11.6445 17.3352 12.9987 17.3352ZM20.907 17.8227L17.4674 14.4102C17.5938 14.1032 17.6931 13.7919 17.7654 13.4763C17.8376 13.16 17.8737 12.8213 17.8737 12.4602C17.8737 11.106 17.3999 9.95477 16.4524 9.00649C15.5041 8.05893 14.3529 7.58516 12.9987 7.58516C12.6376 7.58516 12.2989 7.62127 11.9825 7.69349C11.6669 7.76571 11.3556 7.87405 11.0487 8.01849L8.2862 5.25599C9.02648 4.94905 9.78481 4.71866 10.5612 4.56482C11.3376 4.41171 12.1501 4.33516 12.9987 4.33516C15.7251 4.33516 18.1536 5.0888 20.2841 6.59607C22.4147 8.10407 23.9584 10.0588 24.9154 12.4602C24.5001 13.5254 23.9541 14.5142 23.2774 15.4263C22.5999 16.3378 21.8098 17.1365 20.907 17.8227ZM15.8966 12.8393L12.6466 9.58932C13.1522 9.49905 13.6173 9.53949 14.0419 9.71066C14.4659 9.88255 14.8313 10.131 15.1383 10.456C15.4452 10.781 15.6666 11.1558 15.8024 11.5805C15.9374 12.0044 15.9688 12.424 15.8966 12.8393Z" fill="#747373"/>
+                                        </g>
+                                    </svg>
+                                    <svg *ngIf="showReenterPassword" class="cursor-pointer m-auto" (click)="showReenterPassword=!showReenterPassword" width="20" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <mask id="mask0_171_38056" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                            <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_171_38056)">
+                                            <path d="M12.9999 17.333C14.3541 17.333 15.5051 16.859 16.453 15.9111C17.401 14.9632 17.8749 13.8122 17.8749 12.458C17.8749 11.1038 17.401 9.9528 16.453 9.00488C15.5051 8.05697 14.3541 7.58301 12.9999 7.58301C11.6458 7.58301 10.4947 8.05697 9.54679 9.00488C8.59888 9.9528 8.12492 11.1038 8.12492 12.458C8.12492 13.8122 8.59888 14.9632 9.54679 15.9111C10.4947 16.859 11.6458 17.333 12.9999 17.333ZM12.9999 15.383C12.1874 15.383 11.4968 15.0986 10.928 14.5299C10.3593 13.9611 10.0749 13.2705 10.0749 12.458C10.0749 11.6455 10.3593 10.9549 10.928 10.3861C11.4968 9.81738 12.1874 9.53301 12.9999 9.53301C13.8124 9.53301 14.503 9.81738 15.0718 10.3861C15.6405 10.9549 15.9249 11.6455 15.9249 12.458C15.9249 13.2705 15.6405 13.9611 15.0718 14.5299C14.503 15.0986 13.8124 15.383 12.9999 15.383ZM12.9999 20.583C10.3638 20.583 7.96242 19.8472 5.79575 18.3757C3.62909 16.9042 2.05825 14.9316 1.08325 12.458C2.05825 9.9844 3.62909 8.01183 5.79575 6.5403C7.96242 5.06877 10.3638 4.33301 12.9999 4.33301C15.636 4.33301 18.0374 5.06877 20.2041 6.5403C22.3708 8.01183 23.9416 9.9844 24.9166 12.458C23.9416 14.9316 22.3708 16.9042 20.2041 18.3757C18.0374 19.8472 15.636 20.583 12.9999 20.583Z" fill="#747373"/>
+                                        </g>
+                                    </svg> 
+                                </div>
+                            </div>
+                            <div>
+                                <p class="auth-help-block ng-invalid text-danger mb-0" *ngIf="(!f.reenterPassword.valid && !f.reenterPassword.pristine) || (f.reenterPassword.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.reenterPassword.errors.required">
+                                       {{ 'form.re_enter_password.required' | translate }}
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.reenterPassword.errors.matching">
+                                        {{ 'form.re_enter_password.match_error' | translate }}
+                                     </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" *ngIf="configData?.rewardPointsEnabled">
+                        <div class="form-group mb-3">
+                            <label for="referrerReferralCode" class="auth-form-label">{{ 'form.referral_code.title' | translate }}</label>
+                            <input type="text" class="form-control auth-form-input auth-input-border" formControlName="referrerReferralCode" [placeholder]="'form.referral_code.placeholder' | translate " (input)="onInput($event, 'referralCode')">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group d-flex align-items-center auth-checkbox">
+                            <mat-checkbox class="mr-5" [class.mat-mdc-error]="submitted && !f.agreePrivacyPolicy.value" formControlName="agreePrivacyPolicy"></mat-checkbox> 
+                            <p class="mb-0 sf-pro-regular form-input-label"> {{ 'auth.sign_up.agree_text' | translate}} <a routerLink="/privacy-policy" target="_self" class="text-decoration-none g-color-primary"> {{ 'auth.sign_up.privacy_policy' | translate }}</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group d-flex align-items-center auth-checkbox">
+                            <mat-checkbox class="mr-5" [class.mat-mdc-error]="submitted && !f.agreeTerms.value" formControlName="agreeTerms"></mat-checkbox> 
+                            <p class="mb-0 sf-pro-regular form-input-label"> {{ 'auth.sign_up.agree_text' | translate}} <a routerLink="/terms-and-conditions" target="_self" class="text-decoration-none text-primary"> {{ 'auth.sign_up.terms_and_conditions' | translate }}</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row pt-3">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn auth-btn-submit mb-3">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <p class="mb-0 flex-fill"> {{ 'auth.sign_up.sign_up_text' | translate }}</p>
+                                <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z" fill="white"/>
+                                </svg>
+                            </div>
+                        </button>
+        
+                        <div class="d-flex sf-pro-regular page-link-text justify-content-center">
+                            <p class="me-1 mb-0"> {{ 'auth.sign_up.already_have_account' | translate }} </p>
+                            <a href="" routerLink="/auth/signin" class="page-link g-color-primary"> {{ 'auth.sign_up.sign_in_text' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- will delete this after testing this form -->
+<!-- <div class="auth-right signup-auth-right">
+    <h1 class="mb-5 tt-firs-neue-trial-semibold heading">
+        Welcome to MyBuddy, <span class="heading-sub-text">Let's sign you up!</span>
+    </h1>
+
+    <div class="main-form-section" [ngClass]="{'main-form-section-err': errMessage || ( submitted && signupForm.invalid ) }">
+        <div class="form-section">
+            <p class="mb-3 form-subheading sf-pro-regular text-danger" *ngIf="errMessage"> {{ errMessage }}</p>
+            <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="fullName" class=" tt-firs-neue-trial-medium mb-2 form-input-label">First Name</label>
+                            <input type="text" class="form-control auth-form-input" formControlName="firstName" placeholder="First Name" [ngClass]="{'err': submitted && f.firstName.errors}" (input)="onInput($event, 'firstName')">
+                            <div>
+                                <span class="help-block ng-invalid text-danger"
+                                    *ngIf="(!f.firstName.valid && !f.firstName.pristine) || (f.firstName.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.firstName.errors.required || f.firstName.errors.spacesOnly)">
+                                        First Name is required!
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.firstName.errors.maxlength)">
+                                        First Name must be 32 characters long
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="fullName" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Last Name</label>
+                            <input type="text" class="form-control auth-form-input" formControlName="lastName" placeholder="Last Name" [ngClass]="{'err': submitted && f.lastName.errors}" (input)="onInput($event, 'lastName')">
+                            <div>
+                                <span class="help-block ng-invalid text-danger"
+                                    *ngIf="(!f.lastName.valid && !f.lastName.pristine) || (f.lastName.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.lastName.errors.required || f.lastName.errors.spacesOnly)">
+                                        Last Name is required!
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && (f.lastName.errors.maxlength)">
+                                        Last Name must be 32 characters long
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="mobileNumber" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Mobile Number</label>
+                            <div class="d-flex">
+                                <div class="form-control mobile-number-border" [ngClass]="{'err': submitted && f.mobile.errors}">
+                                    <div class="dropdown">
+                                        <button class="btn btn-ghost dropdown-toggle form-control mobile-selection" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                          {{ countryDialCode }}
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li class="country-search-box"> 
+                                                <span class="search-icon-div">
+                                                    <svg class="img-fluid" fill="#747373" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px">
+                                                      <path
+                                                        d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" placeholder="Search" formControlName="country" class="form-control search-form-input">
+                                            </li>
+                                            <span class="country-list">
+                                                <li class="country-options row" *ngFor="let country of countries | searchFilter : f.country.value : 'name'; trackBy: trackCountries" (click)="countryDialCode = country.dial_code;">
+                                                    <span class="col-3">{{ country.dial_code }}</span> <span class="col-9">{{ country.name }}</span>
+                                                </li>
+                                            </span>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="tel" class="form-control auth-form-input mobile-input" formControlName="mobile" placeholder="Mobile Number" [ngClass]="{'err': submitted && f.mobile.errors}" (keypress)="$event.charCode >= 48 && 57 >= $event.charCode">
+                            </div>
+                            <div>
+                                <span class="help-block ng-invalid text-danger"
+                                    *ngIf="(!f.mobile.valid && !f.mobile.pristine) || (f.mobile.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors.required">
+                                        Mobile Number is required!
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.minlength">
+                                        Mobile Number must be of min. {{ f.mobile.errors?.minlength?.requiredLength }} digits!
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.mobile.errors?.maxlength">
+                                        Mobile Number must be of max. {{ f.mobile.errors?.maxlength?.requiredLength }} digits!
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="email" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Email</label>
+                            <input type="email" class="form-control auth-form-input" formControlName="email" placeholder="Email" [ngClass]="{'err': submitted && f.email.errors}">  
+                            <div>
+                                <span class="help-block ng-invalid text-danger"
+                                    *ngIf="(!f.email.valid && !f.email.pristine) || (f.email.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.email.errors.required">
+                                        Email is required!
+                                    </span>
+                                </span>
+                                <span class="help-block ng-invalid text-danger" *ngIf="f.email.errors && submitted">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.email.errors.email">
+                                        Enter valid email!
+                                    </span>
+                                </span>
+                            </div>          
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" [class.mb-3]="!((!f.password.valid && !f.password.pristine) || (f.password.errors && submitted))">
+                            <label for="createPassword" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Create a password</label>
+                            <div class="d-flex">
+                                <input [type]="showPassword ? 'text' : 'password'" class="form-control auth-form-input auth-password-input" formControlName="password" placeholder="Must be at least 8 characters" [ngClass]="{'err': submitted && f.password.errors}">
+                            
+                                <div class="svg svg-right password-visible-svg"  [ngClass]="{'err': submitted && f.password.errors}">
+                                    <svg *ngIf="!showPassword" class="cursor-pointer m-auto" (click)="showPassword=!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 26 26" fill="none">
+                                        <mask id="mask0_60_45365" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                        <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_60_45365)">
+                                        <path d="M21.4487 24.4852L16.8987 19.9893C16.2668 20.1879 15.6305 20.3371 14.9899 20.4367C14.3485 20.5357 13.6848 20.5852 12.9987 20.5852C10.2723 20.5852 7.84384 19.8315 5.71328 18.3242C3.58273 16.8162 2.03898 14.8615 1.08203 12.4602C1.4612 11.5032 1.93967 10.6138 2.51745 9.79191C3.09523 8.97074 3.75425 8.23516 4.49453 7.58516L1.51536 4.55182L3.03203 3.03516L22.9654 22.9685L21.4487 24.4852ZM12.9987 17.3352C13.1973 17.3352 13.3822 17.3261 13.5534 17.3081C13.7253 17.29 13.9105 17.2539 14.1091 17.1997L8.25911 11.3497C8.20495 11.5484 8.16884 11.7336 8.15078 11.9055C8.13273 12.0767 8.1237 12.2615 8.1237 12.4602C8.1237 13.8143 8.59748 14.9655 9.54503 15.9138C10.4933 16.8614 11.6445 17.3352 12.9987 17.3352ZM20.907 17.8227L17.4674 14.4102C17.5938 14.1032 17.6931 13.7919 17.7654 13.4763C17.8376 13.16 17.8737 12.8213 17.8737 12.4602C17.8737 11.106 17.3999 9.95477 16.4524 9.00649C15.5041 8.05893 14.3529 7.58516 12.9987 7.58516C12.6376 7.58516 12.2989 7.62127 11.9825 7.69349C11.6669 7.76571 11.3556 7.87405 11.0487 8.01849L8.2862 5.25599C9.02648 4.94905 9.78481 4.71866 10.5612 4.56482C11.3376 4.41171 12.1501 4.33516 12.9987 4.33516C15.7251 4.33516 18.1536 5.0888 20.2841 6.59607C22.4147 8.10407 23.9584 10.0588 24.9154 12.4602C24.5001 13.5254 23.9541 14.5142 23.2774 15.4263C22.5999 16.3378 21.8098 17.1365 20.907 17.8227ZM15.8966 12.8393L12.6466 9.58932C13.1522 9.49905 13.6173 9.53949 14.0419 9.71066C14.4659 9.88255 14.8313 10.131 15.1383 10.456C15.4452 10.781 15.6666 11.1558 15.8024 11.5805C15.9374 12.0044 15.9688 12.424 15.8966 12.8393Z" fill="#747373"/>
+                                        </g>
+                                    </svg>
+                                    <svg *ngIf="showPassword" class="cursor-pointer m-auto" (click)="showPassword=!showPassword" width="20" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <mask id="mask0_171_38056" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                            <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_171_38056)">
+                                            <path d="M12.9999 17.333C14.3541 17.333 15.5051 16.859 16.453 15.9111C17.401 14.9632 17.8749 13.8122 17.8749 12.458C17.8749 11.1038 17.401 9.9528 16.453 9.00488C15.5051 8.05697 14.3541 7.58301 12.9999 7.58301C11.6458 7.58301 10.4947 8.05697 9.54679 9.00488C8.59888 9.9528 8.12492 11.1038 8.12492 12.458C8.12492 13.8122 8.59888 14.9632 9.54679 15.9111C10.4947 16.859 11.6458 17.333 12.9999 17.333ZM12.9999 15.383C12.1874 15.383 11.4968 15.0986 10.928 14.5299C10.3593 13.9611 10.0749 13.2705 10.0749 12.458C10.0749 11.6455 10.3593 10.9549 10.928 10.3861C11.4968 9.81738 12.1874 9.53301 12.9999 9.53301C13.8124 9.53301 14.503 9.81738 15.0718 10.3861C15.6405 10.9549 15.9249 11.6455 15.9249 12.458C15.9249 13.2705 15.6405 13.9611 15.0718 14.5299C14.503 15.0986 13.8124 15.383 12.9999 15.383ZM12.9999 20.583C10.3638 20.583 7.96242 19.8472 5.79575 18.3757C3.62909 16.9042 2.05825 14.9316 1.08325 12.458C2.05825 9.9844 3.62909 8.01183 5.79575 6.5403C7.96242 5.06877 10.3638 4.33301 12.9999 4.33301C15.636 4.33301 18.0374 5.06877 20.2041 6.5403C22.3708 8.01183 23.9416 9.9844 24.9166 12.458C23.9416 14.9316 22.3708 16.9042 20.2041 18.3757C18.0374 19.8472 15.636 20.583 12.9999 20.583Z" fill="#747373"/>
+                                        </g>
+                                    </svg> 
+                                </div>
+                            </div>
+                            <div>
+                                <p class="help-block ng-invalid text-danger mb-0" *ngIf="(!f.password.valid && !f.password.pristine) || (f.password.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.password.errors.required">
+                                       Password is required!
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.password.errors.pattern">
+                                        Password must be 8 characters long, include 1 uppercase, lowercase and number!
+                                    </span>
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="reenterPassword" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Re-enter password</label>
+                            <div class="d-flex">
+                                <input [type]="showReenterPassword ? 'text' : 'password'" class="form-control auth-form-input auth-password-input" formControlName="reenterPassword" placeholder="Must be at least 8 characters" [ngClass]="{'err': submitted && f.reenterPassword.errors}">  
+                                <div class="svg svg-right password-visible-svg" [ngClass]="{'err': submitted && f.reenterPassword.errors}">
+                                    <svg *ngIf="!showReenterPassword" class="cursor-pointer m-auto" (click)="showReenterPassword=!showReenterPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="24" viewBox="0 0 26 26" fill="none">
+                                        <mask id="mask0_60_45365" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                        <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_60_45365)">
+                                        <path d="M21.4487 24.4852L16.8987 19.9893C16.2668 20.1879 15.6305 20.3371 14.9899 20.4367C14.3485 20.5357 13.6848 20.5852 12.9987 20.5852C10.2723 20.5852 7.84384 19.8315 5.71328 18.3242C3.58273 16.8162 2.03898 14.8615 1.08203 12.4602C1.4612 11.5032 1.93967 10.6138 2.51745 9.79191C3.09523 8.97074 3.75425 8.23516 4.49453 7.58516L1.51536 4.55182L3.03203 3.03516L22.9654 22.9685L21.4487 24.4852ZM12.9987 17.3352C13.1973 17.3352 13.3822 17.3261 13.5534 17.3081C13.7253 17.29 13.9105 17.2539 14.1091 17.1997L8.25911 11.3497C8.20495 11.5484 8.16884 11.7336 8.15078 11.9055C8.13273 12.0767 8.1237 12.2615 8.1237 12.4602C8.1237 13.8143 8.59748 14.9655 9.54503 15.9138C10.4933 16.8614 11.6445 17.3352 12.9987 17.3352ZM20.907 17.8227L17.4674 14.4102C17.5938 14.1032 17.6931 13.7919 17.7654 13.4763C17.8376 13.16 17.8737 12.8213 17.8737 12.4602C17.8737 11.106 17.3999 9.95477 16.4524 9.00649C15.5041 8.05893 14.3529 7.58516 12.9987 7.58516C12.6376 7.58516 12.2989 7.62127 11.9825 7.69349C11.6669 7.76571 11.3556 7.87405 11.0487 8.01849L8.2862 5.25599C9.02648 4.94905 9.78481 4.71866 10.5612 4.56482C11.3376 4.41171 12.1501 4.33516 12.9987 4.33516C15.7251 4.33516 18.1536 5.0888 20.2841 6.59607C22.4147 8.10407 23.9584 10.0588 24.9154 12.4602C24.5001 13.5254 23.9541 14.5142 23.2774 15.4263C22.5999 16.3378 21.8098 17.1365 20.907 17.8227ZM15.8966 12.8393L12.6466 9.58932C13.1522 9.49905 13.6173 9.53949 14.0419 9.71066C14.4659 9.88255 14.8313 10.131 15.1383 10.456C15.4452 10.781 15.6666 11.1558 15.8024 11.5805C15.9374 12.0044 15.9688 12.424 15.8966 12.8393Z" fill="#747373"/>
+                                        </g>
+                                    </svg>
+                                    <svg *ngIf="showReenterPassword" class="cursor-pointer m-auto" (click)="showReenterPassword=!showReenterPassword" width="20" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <mask id="mask0_171_38056" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="26">
+                                            <rect width="26" height="26" fill="#D9D9D9"/>
+                                        </mask>
+                                        <g mask="url(#mask0_171_38056)">
+                                            <path d="M12.9999 17.333C14.3541 17.333 15.5051 16.859 16.453 15.9111C17.401 14.9632 17.8749 13.8122 17.8749 12.458C17.8749 11.1038 17.401 9.9528 16.453 9.00488C15.5051 8.05697 14.3541 7.58301 12.9999 7.58301C11.6458 7.58301 10.4947 8.05697 9.54679 9.00488C8.59888 9.9528 8.12492 11.1038 8.12492 12.458C8.12492 13.8122 8.59888 14.9632 9.54679 15.9111C10.4947 16.859 11.6458 17.333 12.9999 17.333ZM12.9999 15.383C12.1874 15.383 11.4968 15.0986 10.928 14.5299C10.3593 13.9611 10.0749 13.2705 10.0749 12.458C10.0749 11.6455 10.3593 10.9549 10.928 10.3861C11.4968 9.81738 12.1874 9.53301 12.9999 9.53301C13.8124 9.53301 14.503 9.81738 15.0718 10.3861C15.6405 10.9549 15.9249 11.6455 15.9249 12.458C15.9249 13.2705 15.6405 13.9611 15.0718 14.5299C14.503 15.0986 13.8124 15.383 12.9999 15.383ZM12.9999 20.583C10.3638 20.583 7.96242 19.8472 5.79575 18.3757C3.62909 16.9042 2.05825 14.9316 1.08325 12.458C2.05825 9.9844 3.62909 8.01183 5.79575 6.5403C7.96242 5.06877 10.3638 4.33301 12.9999 4.33301C15.636 4.33301 18.0374 5.06877 20.2041 6.5403C22.3708 8.01183 23.9416 9.9844 24.9166 12.458C23.9416 14.9316 22.3708 16.9042 20.2041 18.3757C18.0374 19.8472 15.636 20.583 12.9999 20.583Z" fill="#747373"/>
+                                        </g>
+                                    </svg> 
+                                </div>
+                            </div>
+                            <div>
+                                <p class="help-block ng-invalid text-danger mb-0" *ngIf="(!f.reenterPassword.valid && !f.reenterPassword.pristine) || (f.reenterPassword.errors && submitted)">
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.reenterPassword.errors.required">
+                                       Re-enter password is required!
+                                    </span>
+                                    <span class="small sf-pro-regular" *ngIf="submitted && f.reenterPassword.errors.matching">
+                                        Re-entered password is not matching with Password!
+                                     </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="configData?.rewardPointsEnabled">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="referrerReferralCode" class=" tt-firs-neue-trial-medium mb-2 form-input-label">Referral Code</label>
+                            <input type="text" class="form-control auth-form-input" formControlName="referrerReferralCode" placeholder="Enter referral code if any" (input)="onInput($event, 'referralCode')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group d-flex align-items-center auth-checkbox">
+                            <mat-checkbox class="mr-5" [class.mat-mdc-error]="submitted && !f.agreePrivacyPolicy.value" formControlName="agreePrivacyPolicy"></mat-checkbox> 
+                            <p class="mb-0 sf-pro-regular form-input-label">I agree to all MyBud <a routerLink="/privacy-policy" target="_self" class="text-decoration-none text-primary">Privacy Policy.</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 mb-3">
+                        <div class="form-group d-flex align-items-center auth-checkbox">
+                            <mat-checkbox class="mr-5" [class.mat-mdc-error]="submitted && !f.agreeTerms.value" formControlName="agreeTerms"></mat-checkbox> 
+                            <p class="mb-0 sf-pro-regular form-input-label">I agree to all MyBud <a routerLink="/terms-and-conditions" target="_self" class="text-decoration-none text-primary">Terms & Conditions.</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn auth-btn mb-3">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="mb-0 flex-fill sf-pro-regular btn-text">Sign Up</p>
+                        <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z" fill="white"/>
+                        </svg>
+                    </div>
+                </button>
+
+                <div class="d-flex sf-pro-regular page-link-text justify-content-center">
+                    <p class="me-1">Already have an account? </p>
+                    <a href="" routerLink="/auth/signin" class="page-link">Sign in.</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div> -->

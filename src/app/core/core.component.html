@@ -1,0 +1,11 @@
+<div [ngClass]="{'main-page-background' : currentUrl !== '/', 'landing-page-background': currentUrl === '/'}" class="vh-100 overflow-auto" (scroll)="handleScroll($event)" id="mainScrollContainer">
+    <!-- Navbar - START -->
+    <app-header></app-header>
+    <!-- Navbar - END -->
+    <div class="pb-5 vh-50">
+        <router-outlet></router-outlet>
+    </div>
+    <!-- Footer - START -->
+    <app-footer></app-footer>
+    <!-- Footer - END -->
+</div>

@@ -1,0 +1,171 @@
+.trending-plan-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .trending-plan-text-group {
+        text-align: center;
+
+        .trending-sm-text {
+            font-size: 24px;
+            margin-bottom: 0.5rem;
+
+            @media screen and (max-width: 1399px){
+                font-size: 20px;
+            }
+            @media screen and (max-width: 575px) {
+                font-size: 14px;
+            }
+        }
+
+        .trending-heading {
+            font-size: 62px;
+            line-height: 1.2;
+
+            @media screen and (max-width: 1399px) {
+                font-size: 52px;
+            }
+            @media screen and (max-width: 1199px) {
+                font-size: 42px;
+            }
+            @media screen and (max-width: 575px){
+                font-size: 36px;
+            }
+        }
+    }
+ 
+
+    .view-all-btn-div{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+
+        .view-all-btn{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 13px 20px 13px 42px;
+            border-radius: 100px;
+            font-size: 18px;
+            gap: 22px;
+
+            &:hover{
+                background-color: var(--color-primary);
+                color: var(--color-white);
+            }
+           
+            @media screen and (max-width: 1199px) {
+                padding: 10px 16px 10px 32px;
+                font-size: 16px;
+            }
+            @media screen and (max-width: 575px){
+                font-size: 14px;
+            }
+
+            svg{
+                width: 18px;
+                height: 18px;
+                
+                @media screen and (max-width: 575px){
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+        }
+    }
+
+    .plans-card-parent {
+        display: flex;
+        justify-content: center;
+        margin-top: 3.5rem;
+
+        @media screen and (max-width: 1199px) {
+            justify-content: flex-start;
+        }
+
+        .card-row {
+            padding: 0 15px;
+            @media screen and (max-width:1679px) {
+                padding: 0 7.5px;
+            }
+            @media screen and (max-width: 1199px) {
+               margin-bottom: 16px;
+            }
+            .card {
+                // width: 404px;
+                // height: 464px;
+                border-radius: 27px !important;
+                background: rgba(255, 255, 255, 0.54);
+                box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.08);
+                border: none;
+                padding: 30px 15px;
+                @media screen and (max-width: 1679px) {
+                    // width: 298px;
+                    // height: 342px;
+                    padding: 18px 12px;
+                }
+
+                .card-heading-div {
+                    height: 136px;
+                    overflow: hidden;
+
+                    @media (max-width: 1399px){
+                        height: 128px;
+                    }
+
+                    .card-heading {
+                        font-size: 22px;
+
+                        @media (max-width: 1399px){
+                            font-size: 20px;
+                        }
+                    }
+                }
+
+                .card-text {
+                    font-size: 18px;
+
+                    @media (max-width: 1399px){
+                        font-size: 16px;
+                    }
+                }
+
+                .plan-price {
+                    font-size: 32px;
+                    margin: 1rem 0 1.5rem;
+
+                    .currency-symbol {
+                        font-size: 24px;
+                    }
+                }
+
+                .card-btn-div {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .card-btn {
+                        display: flex;
+                        padding: 10px 25px 10px 24px;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 100px;
+                        font-size: 18px;
+                        line-height: 1.2;
+
+                        &:hover{
+                            background-color: var(--color-primary);
+                            color: var(--color-white);
+                        }
+
+                        @media screen and (max-width: 1399px){
+                            font-size: 16px;
+                        }
+                    }
+
+                    .primary-border-btn {
+                        border: 1px solid #6365EF;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,137 @@
+@font-face {
+    font-family: "tt-firs-neue-trial-bold";
+    src: url("/assets/fonts/TT Firs Neue Trial/Bold.ttf");
+}
+
+@font-face {
+    font-family: "tt-firs-neue-trial-semibold";
+    src: url("/assets/fonts/TT Firs Neue Trial/SemiBold.ttf");
+    // src: url("/assets/fonts/tt-firs-neue-trl-cufonfonts-webfont/TT Firs Neue Trial Regular.woff");
+}
+
+@font-face {
+    font-family: "tt-firs-neue-trial-medium";
+    src: url("/assets/fonts/TT Firs Neue Trial/Medium.ttf");
+}
+
+@font-face {
+    font-family: "tt-firs-neue-trial-regular";
+    src: url("/assets/fonts/TT Firs Neue Trial/Regular.ttf");
+}
+
+@font-face {
+    font-family: "sf-pro-regular";
+    src: url("/assets/fonts/SF Pro/Regular.ttf");
+}
+
+@font-face {
+    font-family: "sf-pro-light";
+    src: url("/assets/fonts/SF Pro/Light.ttf");
+}
+
+@font-face {
+    font-family: "sf-pro-medium";
+    src: url("/assets/fonts/SF Pro/Medium.ttf");
+}
+
+@font-face {
+    font-family: "tt-firs-bold";
+    src: url("/assets/fonts/TT Firs Neue Trial/Bold.ttf");
+}
+@font-face {
+    font-family: "tt-firs-semibold";
+    src: url("/assets/fonts/TT Firs Neue Trial/SemiBold.ttf");
+}
+
+.tt-firs-semibold{
+    font-family: "tt-firs-semibold";
+}
+
+.tt-firs-neue-trial-bold{
+    font-family: "tt-firs-neue-trial-bold" !important;
+}
+
+.tt-firs-neue-trial-semibold{
+    // font-family: "tt-firs-neue-trial-semibold" !important;
+    font-family: "tt-firs-neue-trial-medium" !important;
+}
+
+.tt-firs-neue-trial-medium{
+    font-family: "tt-firs-neue-trial-medium" !important;
+}
+
+.tt-firs-neue-trial-regular{
+    font-family: "tt-firs-neue-trial-regular" !important;
+}
+
+// .sf-pro-regular{
+//     font-family: "sf-pro-regular" !important;
+// }
+
+// .sf-pro-light{
+//     font-family: "sf-pro-light" !important;
+// }
+
+// .sf-pro-medium{
+//     font-family: "sf-pro-medium" !important;
+// }
+
+
+// ////// New Font Addition ///////
+@font-face {
+    font-family: "tt-firs-neue-trial-bold";
+    src: url("/assets/fonts/tt-firs-neue-trl-cufonfonts-webfont/TT Firs Neue Trial Bold.woff");
+}
+
+@font-face {
+    font-family: "tt-firs-neue-trial-demibold";
+    src: url("/assets/fonts/tt-firs-neue-trl-cufonfonts-webfont/TT Firs Neue Trial DemiBold.woff");
+}
+
+@font-face {
+    font-family: "tt-firs-neue-trial-medium";
+    src: url("/assets/fonts/tt-firs-neue-trl-cufonfonts-webfont/TT Firs Neue Trial Medium.woff");
+}
+
+
+@font-face {
+    font-family: "tt-firs-neue-trial-regular";
+    src: url("/assets/fonts/tt-firs-neue-trl-cufonfonts-webfont/TT Firs Neue Trial Regular.woff");
+}
+
+
+
+
+
+
+
+// Fonts Classes V2.0 //////////////////////
+.g-font-bold{
+    font-family: "tt-firs-neue-trial-bold";
+}
+
+.g-font-semibold{
+    font-family: "tt-firs-neue-trial-demibold";
+}
+
+.g-font-medium{
+    font-family: "tt-firs-neue-trial-medium";
+}
+
+.g-font-regular{
+    font-family: "tt-firs-neue-trial-regular";
+}
+
+// Sf pro classes /////////
+
+.sf-pro-regular{
+    font-family: "sf-pro-regular" !important;
+}
+
+.sf-pro-light{
+    font-family: "sf-pro-light" !important;
+}
+
+.sf-pro-medium{
+    font-family: "sf-pro-medium" !important;
+}

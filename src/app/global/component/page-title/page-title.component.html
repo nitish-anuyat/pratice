@@ -1,0 +1,97 @@
+<div class="g-page-title-section">
+
+    <!-- <div class="g-back-arrow"> -->
+        <button type="button" class="g-back-arrow" (click)="goPreviousLocation()" *ngIf="isShow">
+            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-arrow-left-short g-back-arrow-svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+        </button>
+    <!-- </div> -->
+
+    <p class="g-page-main-title" *ngIf="title" [ngClass]="titleStyle?.title || ''">
+        <span *ngIf="hasAmpersand">
+            <div class="d-flex justify-content-center">
+                <p class="m-0"> {{title.split('&')[0] }} </p> &nbsp;
+                <p class="m-0">&amp; </p> &nbsp;
+                <p class="m-0"> {{ title.split('&')[1] }}</p>
+            </div>
+        </span>
+
+        <span *ngIf="!hasAmpersand">
+            {{ title }}
+        </span>
+    </p>
+
+    <p class="g-page-sub-details text-center" *ngIf="subDetails" [ngClass]="titleStyle?.subDetails || ''"> 
+        <!-- {{ subDetails }}   -->
+        <span *ngIf="hasAmpersAndsubDetails">
+            <div class="d-flex justify-content-center flex-wrap">
+                <p class="m-0"> {{subDetails.split('&')[0] }} </p> &nbsp;
+                <p class="m-0">&amp; </p> &nbsp;
+                <p class="m-0"> {{ subDetails.split('&')[1] }}</p>
+            </div>
+        </span>
+
+        <span *ngIf="!hasAmpersAndsubDetails">
+            {{ subDetails }}
+        </span>
+    </p>
+
+
+</div>
+
+
+<!--<div class="ripple-animation-section page-title-section tt-firs-neue-trial-regular" [class.page-title-section-acc]="isShow">
+    <div class="ripple-position d-none-tab">
+        <div>
+            <div class="circles-parent">
+                <div class="solid-circle solid-circle-grey" style="opacity: 0;" id="m-circle-5"></div>
+                <div class="circle3 common-circle common-circle-grey common-circle-1" style="opacity: 0;" id="m-circle-4"></div>
+                <div class="circle2 common-circle common-circle-grey common-circle-1" style="opacity: 0;" id="m-circle-3"></div>
+                <div class="circle1 common-circle common-circle-grey common-circle-1" style="opacity: 0;" id="m-circle-2"></div>
+                <div class="circle0 common-circle-grey" id="m-circle-1" style="opacity: 0;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-arrow">
+        <button type="button" class="float-left btn bg-light p-0 mt-lg-0 mt-md-2 mt-1 custom-br" (click)="goPreviousLocation()" *ngIf="isShow">
+            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-arrow-left-short back-arrow-svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+        </button>
+    </div>
+    
+    <p class="page-main-title text-center mb-2 mx-md-3" *ngIf="title" [ngClass]="titleStyle?.title || ''">
+        <span *ngIf="hasAmpersand">
+            <div class="d-flex justify-content-center">
+                <p class="m-0"> {{title.split('&')[0] }} </p> &nbsp;
+                <p class="m-0">&amp; </p> &nbsp;
+                <p class="m-0"> {{ title.split('&')[1] }}</p>
+            </div>
+        </span>
+
+        <span *ngIf="!hasAmpersand">
+            {{ title }}
+        </span>
+        
+    </p>
+
+    <p class="page-sub-details text-center" *ngIf="subDetails" [ngClass]="titleStyle?.subDetails || ''"> 
+
+        <span *ngIf="hasAmpersAndsubDetails">
+            <div class="d-flex justify-content-center flex-wrap">
+                <p class="m-0"> {{subDetails.split('&')[0] }} </p> &nbsp;
+                <p class="m-0">&amp; </p> &nbsp;
+                <p class="m-0"> {{ subDetails.split('&')[1] }}</p>
+            </div>
+        </span>
+
+        <span *ngIf="!hasAmpersAndsubDetails">
+            {{ subDetails }}
+        </span>
+    </p>
+</div> -->
+
+
+

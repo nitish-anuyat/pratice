@@ -1,0 +1,212 @@
+<div class="row payment-status mx-auto">
+  <div class="col-12 px-md-0">
+    <div class="card shadow-card"></div>
+    <div class="card" [class.h-auto]="transactionId === ''">
+      <div class="card-body px-4 d-flex flex-column" *ngIf="!inProgress">
+        <div
+          class="d-flex justify-content-center mt-n2"
+          [ngClass]="transactionId !== '' ? 'success-icon' : 'failed-icon'"
+        >
+          <div class="modal-common-circle outer-circle">
+            <div class="modal-common-circle inner-circle">
+              <svg
+                *ngIf="transactionId !== ''; else errorSvg"
+                width="37"
+                height="29"
+                viewBox="0 0 37 29"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.108 20.492L30.772 1.82794C31.352 1.24798 32.0901 0.958008 32.9864 0.958008C33.8827 0.958008 34.6208 1.24798 35.2008 1.82794C35.7807 2.4079 36.0707 3.14602 36.0707 4.04232C36.0707 4.93862 35.7807 5.67675 35.2008 6.2567L14.3224 27.1351C13.6897 27.7678 12.9515 28.0842 12.108 28.0842C11.2644 28.0842 10.5263 27.7678 9.8936 27.1351L1.66876 18.9103C1.08881 18.3303 0.798828 17.5922 0.798828 16.6959C0.798828 15.7996 1.08881 15.0615 1.66876 14.4815C2.24872 13.9016 2.98685 13.6116 3.88314 13.6116C4.77944 13.6116 5.51756 13.9016 6.09752 14.4815L12.108 20.492Z"
+                  fill="white"
+                />
+              </svg>
+              <ng-template #errorSvg>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 329.269 329"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
+                    fill="white"
+                  />
+                </svg>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <h3 class="fw-bold mt-4 text-center heading">
+          {{ transactionId !== "" ? "Payment Success!" : "Payment failed!" }}
+        </h3>
+        <h5 class="text-center mt-2 mt-md-3 mt-lg-2 mb-md-4 mb-lg-3 message">
+          {{
+            transactionId !== ""
+              ? "Your purchase was successful and your plan is ready to be installed"
+              : "Your purchase was failed or canceled."
+          }}
+        </h5>
+        <div class="mt-3 mt-md-3" *ngIf="transactionId !== ''">
+          <div class="bg-primary-light plan-details">
+            <h3 class="fw-bold heading">
+              <ng-container *ngIf="planDetails?.convertedPrice else defaultPrice"> {{ planDetails.convertedPrice.price | currency : planDetails.convertedPrice.currency : "symbol" : "1.0-2" }} </ng-container>
+              <ng-template #defaultPrice> {{ planDetails.defaultPrice.price | currency : planDetails.defaultPrice.currency : "symbol" : "1.0-2" }} </ng-template>
+            </h3>
+            <hr class="hr-line" />
+            <p class="mt-2 mb-0 label"> {{ 'plans.modal.title' | translate }}</p>
+            <p class="mb-3 title">
+              {{ planDetails.name }} - {{ 'plans.plan_detail' | translate:{ data: planDetails.data, validity: planDetails.validity } }}
+              {{
+                (planDetails.validity > 1 ? "plans.days" : "plans.day") | translate
+              }}
+            </p>
+            <hr class="hr-line" />
+            <ng-container
+              *ngIf="
+                configData?.rewardPointsEnabled &&
+                planDetails.rewardPointsRedeemed > 0
+              "
+            >
+              <div class="d-flex loyalty-point-section">
+                <svg
+                  width="18"
+                  height="21"
+                  viewBox="0 0 18 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="rewards-icon"
+                >
+                  <path
+                    d="M2.71278 0.882812C2.15699 0.882812 1.62397 1.13477 1.23097 1.58326C0.837972 2.03176 0.617188 2.64004 0.617188 3.27431V5.17634C0.617188 6.00539 0.994393 6.77386 1.6105 7.20911L7.01153 11.0196C6.19001 11.5247 5.53972 12.3283 5.16369 13.3029C4.78767 14.2776 4.70742 15.3675 4.93567 16.4001C5.16392 17.4327 5.68761 18.3489 6.42375 19.0033C7.15989 19.6578 8.06637 20.0132 8.99954 20.0132C9.93271 20.0132 10.8392 19.6578 11.5753 19.0033C12.3115 18.3489 12.8352 17.4327 13.0634 16.4001C13.2917 15.3675 13.2114 14.2776 12.8354 13.3029C12.4594 12.3283 11.8091 11.5247 10.9876 11.0196L16.3886 7.20911C16.6921 6.99486 16.9427 6.69568 17.1166 6.33993C17.2904 5.98418 17.3817 5.58366 17.3819 5.17634V3.27431C17.3819 2.64004 17.1611 2.03176 16.7681 1.58326C16.3751 1.13477 15.8421 0.882813 15.2863 0.882812H2.71278ZM6.20542 8.57704V2.47714H11.7937V8.57704L9.36697 10.2894C9.25657 10.3673 9.12934 10.4085 8.99954 10.4085C8.86974 10.4085 8.74251 10.3673 8.63212 10.2894L6.20542 8.57704ZM8.99954 12.0431C9.74059 12.0431 10.4513 12.3791 10.9753 12.9771C11.4993 13.575 11.7937 14.3861 11.7937 15.2318C11.7937 16.0775 11.4993 16.8885 10.9753 17.4865C10.4513 18.0845 9.74059 18.4204 8.99954 18.4204C8.2585 18.4204 7.5478 18.0845 7.0238 17.4865C6.4998 16.8885 6.20542 16.0775 6.20542 15.2318C6.20542 14.3861 6.4998 13.575 7.0238 12.9771C7.5478 12.3791 8.2585 12.0431 8.99954 12.0431Z"
+                    fill="#303030"
+                  />
+                </svg>
+                <span
+                  >{{ 'order_summary.reward_points.details' | translate }} : {{ planDetails.rewardPointsRedeemed }} ({{
+                    planDetails.rewardCashValueRedeemed
+                      | currency : planDetails.currency : "symbol"
+                  }})
+                </span>
+                <span *ngIf="planDetails" class="ms-auto">
+                  -
+                  {{
+                    planDetails.rewardCashValueRedeemed
+                      | currency : planDetails.currency : "symbol"
+                  }}
+                </span>
+              </div>
+              <hr class="hr-line" />
+            </ng-container>
+            <ng-container
+              *ngIf="
+                configData?.couponCodesMasterEnabled &&
+                planDetails?.couponAmount > 0
+              "
+            >
+              <div class="d-flex coupon-redeem-section">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 26 26"
+                  fill="none"
+                  class="coupon-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.8334 4.33203H15.1775C19.2725 4.33203 21.32 4.33203 22.593 5.6017C23.4705 6.47486 23.7424 7.71528 23.828 9.73678C23.8442 10.1376 23.8529 10.3391 23.7781 10.4724C23.7023 10.6056 23.4044 10.7735 22.8064 11.1072C22.4695 11.295 22.1889 11.5693 21.9936 11.9019C21.7983 12.2344 21.6953 12.613 21.6953 12.9987C21.6953 13.3844 21.7983 13.763 21.9936 14.0955C22.1889 14.4281 22.4695 14.7024 22.8064 14.8902C23.4044 15.2249 23.7034 15.3918 23.7781 15.525C23.8529 15.6583 23.8442 15.8587 23.8269 16.2595C23.7424 18.2821 23.4694 19.5225 22.593 20.3957C21.3211 21.6654 19.2736 21.6654 15.1775 21.6654H10.8334C6.73838 21.6654 4.69088 21.6654 3.41796 20.3957C2.54046 19.5225 2.26854 18.2821 2.18296 16.2606C2.16671 15.8598 2.15804 15.6583 2.23279 15.525C2.30862 15.3918 2.60654 15.2249 3.20454 14.8902C3.54139 14.7024 3.82197 14.4281 4.0173 14.0955C4.21263 13.763 4.31562 13.3844 4.31562 12.9987C4.31562 12.613 4.21263 12.2344 4.0173 11.9019C3.82197 11.5693 3.54139 11.295 3.20454 11.1072C2.60654 10.7735 2.30754 10.6056 2.23279 10.4724C2.15804 10.3391 2.16671 10.1387 2.18404 9.73678C2.26854 7.71528 2.54154 6.47595 3.41796 5.6017C4.68979 4.33203 6.73729 4.33203 10.8334 4.33203ZM16.8491 9.17453C16.9246 9.24989 16.9845 9.33939 17.0253 9.43791C17.0662 9.53644 17.0872 9.64204 17.0872 9.7487C17.0872 9.85535 17.0662 9.96096 17.0253 10.0595C16.9845 10.158 16.9246 10.2475 16.8491 10.3229L10.3329 16.8229C10.18 16.9752 9.97293 17.0608 9.75708 17.0608C9.54124 17.0608 9.33419 16.9752 9.18129 16.8229C9.10582 16.7475 9.04595 16.658 9.0051 16.5595C8.96425 16.461 8.94323 16.3554 8.94323 16.2487C8.94323 16.142 8.96425 16.0364 9.0051 15.9379C9.04595 15.8394 9.10582 15.7499 9.18129 15.6745L15.6965 9.17453C15.8494 9.02185 16.0567 8.93609 16.2728 8.93609C16.4889 8.93609 16.6962 9.02185 16.8491 9.17453ZM15.73 16.7904C15.8764 16.7969 16.0225 16.7737 16.1597 16.7222C16.2968 16.6708 16.4221 16.592 16.528 16.4908C16.6338 16.3895 16.7181 16.2679 16.7757 16.1332C16.8332 15.9985 16.8629 15.8535 16.8629 15.707C16.8629 15.5605 16.8332 15.4156 16.7757 15.2809C16.7181 15.1462 16.6338 15.0245 16.528 14.9233C16.4221 14.822 16.2968 14.7433 16.1597 14.6918C16.0225 14.6403 15.8764 14.6172 15.73 14.6237C15.1299 14.6237 14.6435 15.109 14.6435 15.707C14.6435 16.305 15.131 16.7904 15.73 16.7904ZM10.2993 11.3737C10.8995 11.3737 11.3859 10.8884 11.3859 10.2904C11.3859 9.69236 10.8995 9.20703 10.2993 9.20703C10.153 9.20048 10.0068 9.22366 9.86966 9.27515C9.73252 9.32664 9.60723 9.40538 9.50136 9.50662C9.39549 9.60786 9.31123 9.7295 9.25366 9.86421C9.19609 9.99891 9.16641 10.1439 9.16641 10.2904C9.16641 10.4369 9.19609 10.5818 9.25366 10.7165C9.31123 10.8512 9.39549 10.9729 9.50136 11.0741C9.60723 11.1754 9.73252 11.2541 9.86966 11.3056C10.0068 11.3571 10.153 11.3802 10.2993 11.3737Z"
+                    fill="#303030"
+                  />
+                </svg>
+                <span>{{ 'order_summary.coupon_code.details' | translate }} : {{ planDetails.couponCode }} </span>
+                <span *ngIf="planDetails" class="ms-auto">
+                  -
+                  {{
+                    planDetails.couponAmount
+                      | currency : planDetails.currency : "symbol"
+                  }}
+                </span>
+              </div>
+              <hr class="hr-line" />
+            </ng-container>
+            <div class="payble-amount-section d-flex">
+              <span> {{ 'payment.amount_paid' | translate }} :</span>
+              <span class="amount ms-auto"
+                >{{
+                  ((planDetails?.convertedPrice ? planDetails?.convertedPrice.price  : planDetails?.price) -
+                    ( (planDetails.rewardCashValueRedeemed || 0) +
+                      (planDetails.couponAmount || 0)))
+                  | currency : planDetails.currency : "symbol" : '1.0-2'
+                }}
+              </span>
+            </div>
+          </div>
+          <div class="bg-primary-light earned-points-section" *ngIf="configData?.rewardPointsEnabled">
+            <span> {{ 'payment.earned_points' | translate }} : </span>
+            <span class="ms-auto">
+              <svg
+                width="18"
+                height="21"
+                viewBox="0 0 18 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="rewards-icon"
+              >
+                <path
+                  d="M2.71278 0.882812C2.15699 0.882812 1.62397 1.13477 1.23097 1.58326C0.837972 2.03176 0.617188 2.64004 0.617188 3.27431V5.17634C0.617188 6.00539 0.994393 6.77386 1.6105 7.20911L7.01153 11.0196C6.19001 11.5247 5.53972 12.3283 5.16369 13.3029C4.78767 14.2776 4.70742 15.3675 4.93567 16.4001C5.16392 17.4327 5.68761 18.3489 6.42375 19.0033C7.15989 19.6578 8.06637 20.0132 8.99954 20.0132C9.93271 20.0132 10.8392 19.6578 11.5753 19.0033C12.3115 18.3489 12.8352 17.4327 13.0634 16.4001C13.2917 15.3675 13.2114 14.2776 12.8354 13.3029C12.4594 12.3283 11.8091 11.5247 10.9876 11.0196L16.3886 7.20911C16.6921 6.99486 16.9427 6.69568 17.1166 6.33993C17.2904 5.98418 17.3817 5.58366 17.3819 5.17634V3.27431C17.3819 2.64004 17.1611 2.03176 16.7681 1.58326C16.3751 1.13477 15.8421 0.882813 15.2863 0.882812H2.71278ZM6.20542 8.57704V2.47714H11.7937V8.57704L9.36697 10.2894C9.25657 10.3673 9.12934 10.4085 8.99954 10.4085C8.86974 10.4085 8.74251 10.3673 8.63212 10.2894L6.20542 8.57704ZM8.99954 12.0431C9.74059 12.0431 10.4513 12.3791 10.9753 12.9771C11.4993 13.575 11.7937 14.3861 11.7937 15.2318C11.7937 16.0775 11.4993 16.8885 10.9753 17.4865C10.4513 18.0845 9.74059 18.4204 8.99954 18.4204C8.2585 18.4204 7.5478 18.0845 7.0238 17.4865C6.4998 16.8885 6.20542 16.0775 6.20542 15.2318C6.20542 14.3861 6.4998 13.575 7.0238 12.9771C7.5478 12.3791 8.2585 12.0431 8.99954 12.0431Z"
+                  fill="#303030"
+                />
+              </svg>
+              {{ planDetails.earnedPoints || 0 }}
+            </span>
+          </div>
+          <div class="mt-3">
+            <form [formGroup]="activeForm">
+              <div>
+                <label for="now">
+                  <input
+                    type="radio"
+                    id="now"
+                    formControlName="active"
+                    value="now"
+                  />
+                  {{ 'payment.activate_now' | translate }}
+                </label>
+              </div>
+              <div>
+                <label for="manual">
+                  <input
+                    type="radio"
+                    id="manual"
+                    formControlName="active"
+                    value="manual"
+                  />
+                  {{ 'payment.activate_later' | translate }}
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="d-flex justify-content-center"
+          [ngClass]="transactionId === '' ? 'mt-4' : 'mt-auto'"
+        >
+          <button
+            class="btn btn-primary rounded-pill w-100 py-2"
+            (click)="continue()"
+          >
+            {{ 'installation.continue' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="w-auto mx-auto" [class.d-none]="!inProgress">
+        <app-loader></app-loader>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<!-- <div class="section-div vector-bg-image">
+    <div class="mid mt-from-header landing-header" [class.show-currency]="showCurrency">
+        <div class="section-header">
+            <p class="heading tt-firs-semibold mb-0">eSIM on the go,</p>
+            <p class="sub-heading tt-firs-semibold mb-1">Stay connected</p>
+            <p class="info-heading px-2">No matter where you are in the world, we’ve got you covered!</p>
+        </div>
+        <div class="carousel slide">
+            <div class="carousel-indicators">
+              <div data-bs-target="landingCarousel" class="pe-none" [class.active]="currentScreenIndex === 1"></div>
+              <div data-bs-target="landingCarousel" class="pe-none" [class.active]="currentScreenIndex === 2"></div>
+              <div data-bs-target="landingCarousel" class="pe-none" [class.active]="currentScreenIndex === 3"></div>
+            </div>
+            <div class="carousel-inner d-flex justify-content-center">
+              <div class="position-relative" [class.active]="currentScreenIndex == 1">
+                <span class="carousel-info-group">
+                  <span class="text-primary header"> Up to 365 days validity</span>
+                  <span class="subheader">Your data stays valid as long<br> as you need it</span>
+                </span>
+                <img src="assets/images/landing-page/validity-web.png" class="d-none d-sm-block" alt="c-image-3">
+                <img src="assets/images/landing-page/validity-mobile.png" class="d-block d-sm-none" alt="c-image-3">
+              </div>
+              <div class="position-relative" [class.active]="currentScreenIndex == 2">
+                <span class="carousel-info-group">
+                  <span class="text-primary header"> 70+ countries </span>
+                  <span class="subheader">Stay connected all over the world</span>
+                </span>
+                <img src="assets/images/landing-page/countries-web.png" class="d-none d-sm-block" alt="c-image-1">
+                <img src="assets/images/landing-page/countries-mobile.png" class="d-block d-sm-none" alt="c-image-1">
+              </div>
+              <div class="position-relative" [class.active]="currentScreenIndex == 3">
+                <span class="carousel-info-group">
+                  <span class="text-primary header">Low Prices</span>
+                  <span class="subheader">Plans in England starting as low as £2 </span>
+                </span>
+                <img src="assets/images/landing-page/plans-web.png" class="d-none d-sm-block" alt="c-image-2">
+                <img src="assets/images/landing-page/plans-mobile.png" class="d-block d-sm-none" alt="c-image-2">
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn plan-button btn-primary" routerLink="/choose-destination">Browse Plans</button>
+            </div>
+          </div>
+    </div>
+    
+    <app-currency (close)="showCurrency = false" *ngIf="showCurrency"></app-currency>
+    
+</div> -->
+
+
+<div class="lading-header-section">
+    <div class="" [class.show-currency]="showCurrency">
+        <div class="lading-inner-section">
+            <p class="landing-heading g-font-semibold g-color-dark">{{ 'landing.guest.heading' | translate }},</p>
+            <p class="landing-sub-heading g-font-semibold g-color-dark">{{ 'landing.guest.sub_heading' | translate }}</p>
+            <p class="lading-header-text g-font-medium g-color-dark">{{ 'landing.guest.description' | translate }}</p>
+        </div>
+        <div class="header-carousel-section">
+            <div class="header-carousel-inner" id="carouselItemRow">
+                <div class="header-carousel-item" id="carouselItemFirst">
+                    <img src="assets/images/landing-page/validity-web.png" class="w-100 h-100 d-md-block d-none" alt="c-image-3">
+                    <img src="assets/images/landing-page/validity.png" class="d-block d-md-none w-100 h-auto" alt="c-image-3">
+                    <div class="header-carousel-info-group">
+                        <p class="carousel-card-heading g-font-semibold g-color-primary"> {{ 'landing.guest.card_header_1' | translate }}</p>
+                        <p class="carousel-card-text g-font-medium">{{ 'landing.guest.card_details_1' | translate }}</p>
+                    </div>
+                </div>
+                <div class="header-carousel-item" id="carouselItemSecond">
+                    <img src="assets/images/landing-page/countries-web.png" class="w-100 h-100 d-md-block d-none" alt="c-image-1">
+                    <img src="assets/images/landing-page/countries.png" class="d-block d-md-none w-100 h-auto" alt="c-image-1">
+                    <div class="header-carousel-info-group">
+                        <p class="carousel-card-heading g-font-semibold g-color-primary">{{ 'landing.guest.card_header_2' | translate }}</p>
+                        <p class="carousel-card-text g-font-medium">{{ 'landing.guest.card_details_2' | translate }}</p>
+                    </div>
+                </div>
+                <div class="header-carousel-item" id="carouselItemThird">
+                    <img src="assets/images/landing-page/plans-web.png" class="w-100 h-100 d-md-block d-none" alt="c-image-2">
+                    <img src="assets/images/landing-page/plans.png" class="d-block d-md-none w-100 h-auto" alt="c-image-2">
+                    <div class="header-carousel-info-group">
+                        <p class="carousel-card-heading g-font-semibold g-color-primary">{{ 'landing.guest.card_header_3' | translate }}</p>
+                        <p class="carousel-card-text g-font-medium">{{ 'landing.guest.card_details_3' | translate }} </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="browse-plan-btn-div">
+                <button class="btn browse-plan-btn g-font-regular g-bg-primary g-color-white" routerLink="/choose-destination">{{ 'landing.guest.browse_plans' | translate }}</button>
+            </div>
+        </div>
+
+        <div class="carousel-indicators-row">
+          <div class="indicators" id="indicatorFirst"></div>
+          <div class="indicators active" id="indicatorSecond"></div>
+          <div class="indicators" id="indicatorThird"></div>
+        </div>
+    </div>
+
+    <app-currency (closeEvent)="showCurrency = false" *ngIf="showCurrency"></app-currency>
+
+</div>

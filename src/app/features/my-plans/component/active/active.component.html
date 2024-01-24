@@ -1,0 +1,19 @@
+<div class="plan-section tt-firs-neue-trial-regular p-2 p-lg-4 mb-lg-4" *ngIf="!inProgress && activePlan">
+    <app-active-plan class="active-grid-container" [planDetails]="activePlan" (triggerEvent)="handleEvent($event)"></app-active-plan>
+</div>
+
+<div class="w-auto d-flex justify-content-center" *ngIf="inProgress">
+    <app-loader></app-loader>
+</div>
+
+<ng-container *ngIf="activePlan; else msg">
+    <div class="entries sf-pro-regular ms-lg-4">
+        {{ 'my_plan.active.pagination'| translate:{displayPlan: 1, totalPlan: 1} }}
+    </div>
+</ng-container>
+
+<ng-template #msg>
+    <div class="entries sf-pro-regular ms-lg-4 d-flex justify-content-center">
+        {{ 'my_plan.active.no_plan'| translate }}
+    </div>
+</ng-template>

@@ -1,0 +1,71 @@
+<!-- <section class="testimonials-div">
+    <div class="mid p-md-5 py-5 px-4 pb-lg-2">
+        <div class="section-header">
+            <p class="supporting-text tt-firs-semibold">What our customers say?</p>
+            <p class="heading tt-firs-semibold">Testimonials</p>
+        </div>
+        <div class="container row gap-3">
+            <div class="relative">
+                <img [src]="testimonialsData[activeTestimonial].imgUrl" class="phone-img" alt="">
+            </div>
+            <div class="content ps-0 ms-auto">
+                <p class="heading inner"> {{ testimonialsData[activeTestimonial].title }}</p>
+                <p class="paragraph-text text-left mb-0 mb-md-2">For the first time in my life, I didn’t have to worry about going through the hassle of getting a new sim card in a different country. everything was in the palm of my hands, and the MyBud app has helped me stay connected with my close ones even when I was miles apart from them.</p>
+            </div>
+        </div>
+        <div class="d-flex sf-pro-regular justify-content-end position-absolute">
+            <button class="btn ms-auto rounded-pill" [ngClass]=" activeTestimonial !== 0 ? 'btn-primary' : 'bg-white text-primary btn-outline-primary opacity-100' " [disabled]="activeTestimonial === 0" (click)="activeTestimonial = activeTestimonial - 1"> 
+                <svg *ngIf="activeTestimonial !== 0" width="40" height="36" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="back-arrow-svg">
+                    <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z" fill="white"/>
+                </svg>
+                Back
+            </button>
+            <button class="btn ms-2 rounded-pill" [ngClass]=" activeTestimonial !== 2 ? 'btn-primary' : 'bg-white text-primary btn-outline-primary opacity-100' " [disabled]="activeTestimonial === 2" (click)="activeTestimonial = activeTestimonial + 1">
+                Next
+                <svg *ngIf="activeTestimonial !== 2" width="40" height="36" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="bullets mt-1">
+            <li [class.active]=" activeTestimonial === tIndex" *ngFor="let details of testimonialsData; let tIndex = index;"></li>
+        </ul>
+        
+    </div>
+</section> -->
+
+<section class="container-lg">
+    <div class="testimonials-section-div">
+        <div class="testimonials-heading-group">
+            <p class="testimonials-subheading g-font-semibold g-color-dark">What our customers say?</p>
+            <p class="testimonials-heading g-font-semibold g-color-dark">Testimonials</p>
+        </div>
+        <div class="testimonials-img-div">
+            <img [src]="testimonialsData[activeTestimonial].imgUrl" class="w-100 h-100" alt="">
+        </div>
+        <div class="testimonials-content-div">
+            <div class="testimonials-text-group">
+                <p class="testimonials-card-heading g-font-semibold g-color-white"> {{ testimonialsData[activeTestimonial].title | translate}}</p>
+                <p class="testimonials-card-text sf-pro-light g-color-white"> {{ 'landing.testimonials.sub_details_1' | translate }}</p>
+            </div>
+        </div>
+        <div class="back-next-btn-group">
+            <button class="btn back-btn sf-pro-regular" [ngClass]=" activeTestimonial != 0 ? 'btn-primary' : 'g-bg-white g-color-primary' " [disabled]="activeTestimonial == 0" (click)="activeTestimonial = activeTestimonial - 1"> 
+                <svg *ngIf="activeTestimonial != 0" width="40" height="36" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="back-arrow-svg">
+                    <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z" fill="white"/>
+                </svg>
+                {{ 'landing.testimonials.back_text' | translate }}
+            </button>
+            <button class="btn next-btn sf-pro-regular" [ngClass]=" activeTestimonial != 2 ? 'btn-primary' : 'g-bg-white g-color-primary' " [disabled]="activeTestimonial == 2" (click)="activeTestimonial = activeTestimonial + 1">
+                {{ 'landing.testimonials.next_text' | translate }}
+                <svg *ngIf="activeTestimonial != 2" width="40" height="36" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.2858 12.4375C16.9099 12.0103 16.9099 11.3178 17.2858 10.8907C17.6617 10.4635 18.2711 10.4635 18.647 10.8907L23.7803 16.724C24.1562 17.1511 24.1562 17.8437 23.7803 18.2708L18.647 24.1041C18.2711 24.5313 17.6617 24.5313 17.2858 24.1041C16.9099 23.677 16.9099 22.9845 17.2858 22.5573L20.7761 18.5911H8.34141C7.80983 18.5911 7.37891 18.1015 7.37891 17.4974C7.37891 16.8933 7.80983 16.4036 8.34141 16.4036H20.7761L17.2858 12.4375Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="bullets-indicator-ul">
+            <li [class.active]=" activeTestimonial == tIndex" *ngFor="let details of testimonialsData; let tIndex = index;"></li>
+        </ul>
+        
+    </div>
+</section>

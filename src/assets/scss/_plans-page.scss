@@ -1,0 +1,207 @@
+.search-form-section{
+        max-width: 50.2vw;
+        position: relative;
+
+    input{
+        border-radius: 0.94vw;
+        color: var(--text-color);
+        font-family: "sf-pro-regular" !important;
+        font-size: 1.15vw;
+        font-style: normal;
+        // font-weight: 600;
+        // line-height: 34px;
+    }
+    .search-icon-div{
+        position: absolute;
+        // transform: translate(60%, 40%);
+        width: 1.5rem;
+        top: 50%;
+        width: 1.5rem;
+        left: 3.5%;
+        transform: translate(-0, -50%);
+        svg {
+            fill: var(--primary-color); 
+        }
+    }
+}
+.choose-destination-section{
+    .popular-destination-heading{
+        color: var(--bs-primary);
+        font-size: 1.04vw;
+        font-style: normal;
+        font-weight: 500;
+        font-family: "tt-firs-neue-trial-regular";
+        padding-top: 1.88vw;
+        // line-height: 30px;
+        // letter-spacing: -0.4px;
+    }
+    .btn-supported-contries{
+        font-family: "sf-pro-regular" !important;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 32px; /* 145.455% */
+        letter-spacing: -0.44px;
+        svg{
+            height: 32px;
+            width: 32px;
+        }
+
+        .show-all-countries-font{
+            font-size: 1.15vw;
+        }
+    }
+}
+
+.choose-destination-section, .popular-destination-section{
+    .countries-result-section{
+        .country-details{
+            padding: 1.5rem 2rem;
+
+            &:not(:nth-child(3n)){
+                border-right: 1px solid #e0e0e0;
+            }
+
+            &:not(:nth-last-child(-n + 3)){
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+
+            .flag-style{
+                // height: 46px;
+                // width: 64px;
+                // border-radius: 9px;
+                width: 3.33vw;
+                height: 2.40vw;
+                border-radius: 0.48vw;
+            }
+            .country-name{
+                font-family: "tt-firs-neue-trial-medium" !important;
+                font-size: 1.15vw;
+                margin-left: 2.29vw;
+                // font-style: normal;
+                // font-weight: 600;
+                // line-height: 40px;
+                // letter-spacing: -0.44px;
+            }
+            .plan-starting-perent{
+                margin-top: 1.15vw;
+            }
+
+            .helping-text{
+                color: var(--text-secondary-color);
+                font-family: "sf-pro-regular" !important;
+                font-size: 1.15vw;
+                font-style: normal;
+                // font-weight: 400;
+                // line-height: 40px;
+                // letter-spacing: -0.44px;
+            }
+            .plan-pricing{
+                color: var(--bs-primary);
+                font-family: "sf-pro-medium" !important;
+                font-size: 1.15vw;
+                font-style: normal;
+                // font-weight: 700;
+                // line-height: 40px;
+                // letter-spacing: -0.44px;
+            }
+            .arrow-svg{
+                fill: var(--primary-color); 
+                border: 1px solid var(--primary-color);
+                border-radius: 50%;
+                height: 2.4vw;
+                width: 2.4vw;
+                flex-shrink: 0;
+                background-color: #fff;
+            }
+        }
+    }
+
+    .back-arrow-svg:not(.bi-arrow-left-short){
+        fill: var(--bs-primary);
+        transform: scale(-1, 1);
+    }
+    .arrow-up-svg{
+        fill: var(--bs-primary);
+        transform: rotate(-90deg);
+        border: 1px solid var(--primary-color);
+        border-radius: 50%;
+        // height: 46px;
+        // width: 46px;
+        height: 2.4vw;
+        width: 2.4vw;
+
+        flex-shrink: 0;
+        background-color: #fff;
+    }
+}
+.plan-details-section{
+    .currency-symbol{
+        font-size: 1.2rem;
+    }
+    .card{
+        height: unset !important;
+        border-radius: 1.20vw !important; 
+        box-shadow: 3.42105px 3.42105px 17.10526px 0px rgba(0, 0, 0, 0.08);
+        border: none !important;
+        .heading{
+            margin-top: 0 !important;
+            @media (max-width: 992px) {
+                margin-bottom: 5.96vw !important;
+            }
+        }
+    }
+}
+.plan-details-card{
+    &:hover{
+        background: url(/assets/images/landing-page/plan-bg.png) no-repeat center center;
+        background-size: 200%;
+        border: 0;
+    }
+    .heading{
+        font-family: "tt-firs-neue-trial-demibold" !important;
+        font-size: 1.67vw;
+        font-style: normal;
+        // font-weight: 600;
+        // line-height: 38px;
+        // letter-spacing: -0.64px;
+        height: 6.5vw;
+
+    }
+    .plan-description-section{
+        font-family: "tt-firs-neue-trial-medium" !important;
+        font-size: 1.07vw;
+        font-style: normal;
+        margin-top: 0 !important;
+        margin-bottom: 1.30vw !important;
+        // font-weight: 600;
+        // line-height: 29.079px; /* 141.667% */
+        // letter-spacing: -0.411px;
+    }
+    .price{
+        font-family: "tt-firs-neue-trial-demibold" !important;
+        font-size: 2.23vw;
+        font-style: normal;
+        // font-weight: 600;
+        line-height: 3.12vw;
+        margin-top: 0 !important;
+        margin-bottom: 0.83vw !important;
+        // letter-spacing: -0.855px;
+        .currency-symbol{
+            font-size: 1.25vw;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 2.14vw;
+            letter-spacing: -0.479px;
+        }
+    }
+    .btn{
+        text-align: center;
+        font-size: 1.151vw;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.67vw;
+        letter-spacing: -0.44px;
+    }
+}

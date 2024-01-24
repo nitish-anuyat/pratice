@@ -1,0 +1,338 @@
+.rewards-page{
+    .page-details-card{
+        margin-top: -13vw !important;
+    }
+    .card-body{
+        padding: 1.563vw 1.978vw;
+    }
+    .heading{
+        font-family: "tt-firs-neue-trial-regular" !important;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 135.714%;
+        letter-spacing: -0.02em;
+        text-align: left;
+    }
+    .sub-heading{
+        font-family: "tt-firs-neue-trial-regular" !important;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 180%;
+        letter-spacing: -0.02em;
+        text-align: left;
+    }
+
+    .rewards-section{
+        padding-right: 7vw;
+        .reward-points-value{
+            font-family: "tt-firs-neue-trial-regular" !important;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 160%;
+            letter-spacing: 0em;
+            text-align: left;
+            vertical-align: middle;
+            margin-left: 0.85vw;
+        }
+
+        .form-group{
+            .copy-icon{
+                position: relative;
+                left: 91%;
+                top: -50%;
+                cursor: pointer;
+            }
+            .form-control{
+                border-radius: 14px;
+                padding: 0.833vw 0.94vw;
+                font-family:"tt-firs-neue-trial-regular" !important;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 160%;
+                letter-spacing: 0em;
+                text-align: left;
+                color: var(--t-disabled);
+            }
+        }
+        .note-text{
+            font-family: "sf-pro-regular" !important;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 160%;
+            letter-spacing: 0em;
+            text-align: left;
+            color: var(--t-disabled);
+        }
+        .note-heading{
+            font-family: "sf-pro-regular" !important;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 134%;
+            letter-spacing: -0.02em;
+            text-align: left;
+        }
+    }
+
+    .transaction-container{
+        max-height: 23.5vw;
+        min-height: 24vw;
+    }
+    .transaction-history{
+        padding: 0 4.16vw;
+        // border-left: 1px solid var(--border-light);
+        margin-left: -1.5rem;
+        .no-transactions-found{
+            font-family: "sf-pro-regular" !important;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 134%;
+            letter-spacing: 0em;
+            text-align: left;
+            color: var(--t-disabled);
+        }
+        .transaction-details{
+            display: flex;
+            border: 1px solid #D0D5DD;
+            border-radius: 14px;
+            margin-right: 1.3vw;
+            padding: 0.467vw 0.728vw;
+            .w-70{
+                width: 70%;
+            }
+            .w-30{
+                width: 30%;
+            }
+            &:not(:first-child){
+                margin-top: 0.624vw;
+            }
+            .transaction-heading{
+                font-family:"tt-firs-neue-trial-regular" !important;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 210%;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            .transaction-sub-heading{
+                font-family: "sf-pro-regular" !important;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 184%;
+                letter-spacing: 0em;
+                text-align: left;
+                color: var(--t-disabled);
+            }
+            .negative-value,.positive-value{
+                font-family:"tt-firs-neue-trial-regular" !important;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 135%;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            .negative-value{ color: #D32F2F; }
+            .positive-value{ color: #59D956; }
+        }
+    }
+
+    .border-right {
+      border-right: 1px solid var(--border-light);
+    }
+}
+
+// Only for mobile screen
+@include media-breakpoint-down(md) {
+    #rewardsPage{
+        .page-details-card{
+            margin-top: -27.5vw !important;
+        }
+        .heading{
+            font-size: 18px !important;
+            line-height: 155.55% !important;
+            letter-spacing: -2% !important;
+            margin-bottom: 5vw;
+        }
+        .sub-heading{
+            font-size: 14px !important;
+            line-height: 171.42% !important;
+            letter-spacing: -2% !important;
+        }
+        .rewards-section{
+            padding: 4vw 3.5vw 0 !important;
+            border-right: unset !important;
+
+            .rewards-icon{
+                height: 4.22vw !important;
+                width: 3.63vw !important;
+            }
+            .reward-points-value{
+                font-size: 14px !important;
+                line-height: 171.42% !important;
+                margin-left: 1.25vw !important;
+            }
+            hr{
+                margin: 3vw 0 !important;
+            }
+
+            .form-group{
+                .copy-icon{
+                    left: 87.5% !important;
+                    img{
+                        height: 3.375vw !important;
+                        width: 3.375vw !important;
+                    }
+                }
+                .form-control{
+                    border-radius: 8px !important;
+                    padding: 1.5vw 3.75vw !important;
+                    font-size: 14px !important;
+                    line-height: 171.42% !important;
+                }
+            }
+            .note-text{
+                font-size: 12px !important;
+                line-height: 166% !important;
+            }
+            .note-heading{
+                font-size: 12px !important;
+                line-height: 166% !important;
+            }
+        }
+        .transaction-container{
+            max-height: 68vw !important;
+            margin-right: -3vw !important;
+        }
+        .transaction-history{
+            border-top: 1px solid var(--border-light);
+            border-left: unset !important;
+            margin: 4vw 3.5vw !important;
+            padding: 3.5vw 0 0 !important;
+            .no-transactions-found{
+                font-size: 12px !important;
+                line-height: 166% !important;
+            }
+            .transaction-details{
+                margin-right: 2vw !important;
+                padding: 2.25vw 3.75vw !important;
+                .w-70{
+                    width: 65% !important;
+                }
+                .w-30{
+                    width: 35% !important;
+                }
+                &:not(:first-child){
+                    margin-top: 1.5vw !important;
+                }
+                .transaction-heading{
+                    font-size: 12px !important;
+                    line-height: 129% !important;
+                }
+                .transaction-sub-heading{
+                    font-size: 12px !important;
+                    line-height: 119.33% !important;
+                }
+                .negative-value,.positive-value{
+                    font-size: 12px !important;
+                    line-height: 200% !important;
+                }
+            }
+        }
+    }
+}
+
+// For tablet screen
+@include media-breakpoint-between(md, lg) {
+    #rewardsPage{
+        .page-details-card{
+            margin-top: -24vw !important;
+        }
+        .heading{
+            font-size: 24px !important;
+            line-height: 174% !important;
+            letter-spacing: -2% !important;
+        }
+        .sub-heading{
+            font-size: 18px !important;
+            line-height: 155% !important;
+            letter-spacing: -2% !important;
+        }
+        .rewards-section{
+            padding-right: 1.6vw !important;
+            padding-left: 0.6vw;
+            .rewards-icon{
+                height: 1.67vw !important;
+                width: 1.47vw !important;
+            }
+            .reward-points-value{
+                font-size: 18px !important;
+                line-height: 155% !important;
+                margin-left: 0.75vw !important;
+            }
+            hr{
+                margin: 1.96vw 0 !important;
+            }
+
+            .form-group{
+                .copy-icon{
+                    left: 87.5% !important;
+                    img{
+                        height: 1.75vw !important;
+                        width: 1.75vw !important;
+                    }
+                }
+                .form-control{
+                    border-radius: 12px !important;
+                    padding: 1.078vw 1.568vw !important;
+                    font-size: 14px !important;
+                    line-height: 185% !important;
+                }
+            }
+            .note-text{
+                font-size: 12px !important;
+                line-height: 166% !important;
+            }
+            .note-heading{
+                font-size: 12px !important;
+                line-height: 166% !important;
+            }
+        }
+        .transaction-container{
+            max-height: 41vw !important;
+        }
+        .transaction-history{
+            padding: 0 !important;
+            margin-left: -1.5rem;
+            margin-right: -0.5rem;
+            padding-left: 1rem !important;
+            .no-transactions-found{
+                font-size: 12px !important;
+                line-height: 166% !important;
+            }
+            .transaction-details{
+                margin-right: 0.98vw !important;
+                padding: 1.078vw 0.98vw !important;
+                .w-70{
+                    width: 65% !important;
+                }
+                .w-30{
+                    width: 35% !important;
+                }
+                &:not(:first-child){
+                    margin-top: 0.98vw !important;
+                }
+                .transaction-heading{
+                    font-size: 14px !important;
+                    line-height: 171.42% !important;
+                }
+                .transaction-sub-heading{
+                    font-size: 12px !important;
+                    line-height: 216% !important;
+                }
+                .negative-value,.positive-value{
+                    font-size: 16px !important;
+                    line-height: 150% !important;
+                }
+            }
+        }
+    }
+}
